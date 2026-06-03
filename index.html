@@ -517,8 +517,6 @@ document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key===
 // NAV
 // ============================================================
 function showTab(tab,el){
-  // after render, re-parse emojis
-  setTimeout(()=>{ if(window.twemoji) twemoji.parse(document.body,{folder:'svg',ext:'.svg',base:'https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/'}); },100);
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   if(el)el.classList.add('active');
   document.querySelectorAll('[id^="tab-"]').forEach(t=>t.style.display='none');
@@ -747,17 +745,6 @@ function showToast(msg,type='success'){
   setTimeout(()=>{t.className='';},2800);
 }
 </script>
-<script>
-// Render all emoji as images via Twemoji (funciona en todos los navegadores incluyendo Windows)
-document.addEventListener('DOMContentLoaded', function() {
-  twemoji.parse(document.body, {
-    folder: 'svg',
-    ext: '.svg',
-    base: 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/'
-  });
-});
-// Re-parse after tab switches (contenido dinámico)
-const origShowTab = window.showTab;
-</script>
+
 </body>
 </html>
