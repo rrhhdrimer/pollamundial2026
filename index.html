@@ -28,7 +28,7 @@
   #login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; background:radial-gradient(ellipse at 50% 0%, #1a2a4a 0%, var(--dark) 70%); }
   .login-box { background:var(--dark2); border:1px solid var(--dark4); border-radius:20px; padding:44px 38px; width:100%; max-width:390px; text-align:center; position:relative; overflow:hidden; }
   .login-box::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:200px; height:200px; background:radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%); pointer-events:none; }
-  .login-ball { font-size:56px; margin-bottom:8px; display:block; animation: spin 8s linear infinite; }
+  .login-ball { display:block; margin:0 auto 12px; animation: spin 10s linear infinite; width:64px; height:64px; }
   @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
   .login-title { font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--gold); letter-spacing:3px; line-height:1; }
   .login-edition { font-size:11px; letter-spacing:4px; color:var(--text2); text-transform:uppercase; margin-bottom:6px; }
@@ -94,6 +94,7 @@
 
   .match-body { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; }
   .team-side { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .team-flag-wrap { display:flex; align-items:center; justify-content:center; width:64px; height:48px; }
   .team-flag { font-size:36px; line-height:1; }
   .team-name-txt { font-size:12px; font-weight:600; text-align:center; }
   .score-zone { display:flex; align-items:center; gap:6px; flex-direction:column; }
@@ -169,7 +170,15 @@
 
 <div id="login-screen">
   <div class="login-box">
-    <span class="login-ball">⚽</span>
+    <svg class="login-ball" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="#fff" stroke="#ddd" stroke-width="1"/>
+      <polygon points="32,8 40,14 37,24 27,24 24,14" fill="#1a1a2e"/>
+      <polygon points="52,22 58,30 54,40 44,38 42,28" fill="#1a1a2e"/>
+      <polygon points="44,50 36,56 26,52 28,42 38,40" fill="#1a1a2e"/>
+      <polygon points="12,50 6,42 10,32 20,34 22,44" fill="#1a1a2e"/>
+      <polygon points="12,22 22,20 26,30 18,38 8,34" fill="#1a1a2e"/>
+      <circle cx="32" cy="32" r="30" fill="none" stroke="#ccc" stroke-width="1.5"/>
+    </svg>
     <div class="login-edition">DRIMER PERU · 2026</div>
     <div class="login-title">POLLA MUNDIAL</div>
     <div class="login-sub">🇺🇸 USA &nbsp;·&nbsp; 🇨🇦 Canadá &nbsp;·&nbsp; 🇲🇽 México</div>
@@ -256,19 +265,23 @@ const ADMIN_PASSWORD = 'admin2026';
 const ADMIN_USERS    = ['christopher'];
 
 // ============================================================
-// BANDERAS
+// BANDERAS — imágenes reales vía flagcdn.com
 // ============================================================
-const FLAGS = {
-  'México':'🇲🇽','Ecuador':'🇪🇨','Bolivia':'🇧🇴','USA':'🇺🇸',
-  'Argentina':'🇦🇷','Perú':'🇵🇪','Chile':'🇨🇱','Canadá':'🇨🇦',
-  'Brasil':'🇧🇷','Croacia':'🇭🇷','Marruecos':'🇲🇦','Alemania':'🇩🇪',
-  'Francia':'🇫🇷','Australia':'🇦🇺','Portugal':'🇵🇹','Arabia Saudita':'🇸🇦',
-  'España':'🇪🇸','Japón':'🇯🇵','Serbia':'🇷🇸','Bélgica':'🇧🇪',
-  'Inglaterra':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Senegal':'🇸🇳','Holanda':'🇳🇱','Uruguay':'🇺🇾',
-  'Colombia':'🇨🇴','Costa Rica':'🇨🇷','Suiza':'🇨🇭','Camerún':'🇨🇲',
-  'Italia':'🇮🇹','Ghana':'🇬🇭','Sudáfrica':'🇿🇦','Otro':'🌍',
+const FLAG_CODES = {
+  'México':'mx','Ecuador':'ec','Bolivia':'bo','USA':'us',
+  'Argentina':'ar','Perú':'pe','Chile':'cl','Canadá':'ca',
+  'Brasil':'br','Croacia':'hr','Marruecos':'ma','Alemania':'de',
+  'Francia':'fr','Australia':'au','Portugal':'pt','Arabia Saudita':'sa',
+  'España':'es','Japón':'jp','Serbia':'rs','Bélgica':'be',
+  'Inglaterra':'gb-eng','Senegal':'sn','Holanda':'nl','Uruguay':'uy',
+  'Colombia':'co','Costa Rica':'cr','Suiza':'ch','Camerún':'cm',
+  'Italia':'it','Ghana':'gh','Sudáfrica':'za','Otro':'un',
 };
-const flag = t => FLAGS[t] || '🏳️';
+const flag = (t, size=48) => {
+  const code = FLAG_CODES[t];
+  if (!code) return `<span style="font-size:${size}px">🏳️</span>`;
+  return `<img src="https://flagcdn.com/${size}x${Math.round(size*0.75)}/${code}.png" alt="${t}" style="width:${size}px;height:${Math.round(size*0.75)}px;border-radius:4px;object-fit:cover;display:block;" onerror="this.style.display='none'">`;
+};
 
 // ============================================================
 // PARTIDOS
@@ -492,7 +505,7 @@ function renderGrupos(){
         </div>
         <div class="match-body">
           <div class="team-side">
-            <div class="team-flag">${flag(p.local)}</div>
+            <div class="team-flag-wrap">${flag(p.local, 52)}</div>
             <div class="team-name-txt">${p.local}</div>
           </div>
           <div class="score-zone">
@@ -504,7 +517,7 @@ function renderGrupos(){
             <div class="vs-label">${locked?'🔒 CERRADO':'VS'}</div>
           </div>
           <div class="team-side">
-            <div class="team-flag">${flag(p.visita)}</div>
+            <div class="team-flag-wrap">${flag(p.visita, 52)}</div>
             <div class="team-name-txt">${p.visita}</div>
           </div>
         </div>`;
@@ -600,7 +613,7 @@ async function renderAdmin(){
   PARTIDOS.forEach(p=>{
     const res=resultados[p.id]||{};
     html+=`<div class="admin-row">
-      <div class="admin-label">${flag(p.local)} ${p.local} vs ${flag(p.visita)} ${p.visita} <span style="font-size:10px;color:var(--text3)">${fmt(p.fecha)}</span></div>
+      <div class="admin-label"><img src="https://flagcdn.com/20x15/${FLAG_CODES[p.local]||'un'}.png" style="border-radius:2px;vertical-align:middle"> ${p.local} vs <img src="https://flagcdn.com/20x15/${FLAG_CODES[p.visita]||'un'}.png" style="border-radius:2px;vertical-align:middle"> ${p.visita} <span style="font-size:10px;color:var(--text3)">${fmt(p.fecha)}</span></div>
       <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??''}" placeholder="L">
       <span style="color:var(--text3)">–</span>
       <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??''}" placeholder="V">
