@@ -22,7 +22,7 @@
   .login-ball{width:130px;height:130px;animation:spin 8s linear infinite;object-fit:contain;filter:drop-shadow(0 8px 28px rgba(0,150,255,0.3));}
   .login-hosts{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px;margin-top:10px;}
   .host-flag{display:flex;flex-direction:column;align-items:center;gap:5px;}
-  .host-flag img{width:72px;height:auto;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,0.5);}
+  .host-flag-emoji{font-size:44px;line-height:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));}
   .host-flag span{font-size:12px;color:var(--text2);font-weight:600;letter-spacing:0.5px;}
   @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
   .login-edition{font-size:12px;letter-spacing:4px;color:var(--text2);text-transform:uppercase;margin-bottom:4px;}
@@ -85,7 +85,7 @@
   .match-date-tag{font-size:12px;color:var(--text2);}
   .match-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;}
   .team-side{display:flex;flex-direction:column;align-items:center;gap:8px;}
-  .team-flag-img{width:56px;height:42px;border-radius:6px;object-fit:cover;display:block;}
+  .team-flag-emoji{font-size:48px;line-height:1;display:block;}
   .team-flag-fallback{font-size:40px;line-height:1;}
   .team-name-txt{font-size:14px;font-weight:600;text-align:center;line-height:1.2;}
   .score-zone{display:flex;flex-direction:column;align-items:center;gap:6px;}
@@ -192,16 +192,16 @@
     <div class="login-title">POLLA MUNDIAL</div>
     <div class="login-hosts">
       <div class="host-flag">
-        <img src="https://flagcdn.com/w80/us.png" alt="USA" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-size:32px">🇺🇸</span>
-        <span>🇺🇸 USA</span>
+        <div class="host-flag-emoji">🇺🇸</div>
+        <span>USA</span>
       </div>
       <div class="host-flag">
-        <img src="https://flagcdn.com/w80/ca.png" alt="Canadá" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-size:32px">🇨🇦</span>
-        <span>🇨🇦 Canadá</span>
+        <div class="host-flag-emoji">🇨🇦</div>
+        <span>Canadá</span>
       </div>
       <div class="host-flag">
-        <img src="https://flagcdn.com/w80/mx.png" alt="México" onerror="this.style.display='none';this.nextSibling.style.display='block'"><span style="display:none;font-size:32px">🇲🇽</span>
-        <span>🇲🇽 México</span>
+        <div class="host-flag-emoji">🇲🇽</div>
+        <span>México</span>
       </div>
     </div>
     <input type="text" id="login-name" placeholder="Tu nombre completo" maxlength="40"/>
@@ -302,16 +302,27 @@ const FLAG_CODES = {
   'Portugal':'pt','RD Congo':'cd','Uzbekistán':'uz','Colombia':'co',
   'Inglaterra':'gb-eng','Croacia':'hr','Ghana':'gh','Panamá':'pa',
 };
-const flagImg = (team, w=52, h=39) => {
-  const code = FLAG_CODES[team];
-  if (!code) return `<span style="font-size:36px">🏳️</span>`;
-  return `<img src="https://flagcdn.com/${w}x${h}/${code}.png" alt="${team}" class="team-flag-img" onerror="this.replaceWith(document.createTextNode('🏳️'))">`;
+// Banderas como emoji unicode — funcionan sin internet ni CORS
+const FLAG_EMOJI = {
+  'México':'🇲🇽','Sudáfrica':'🇿🇦','Corea del Sur':'🇰🇷','Chequia':'🇨🇿',
+  'Canadá':'🇨🇦','Bosnia y Herzegovina':'🇧🇦','Catar':'🇶🇦','Suiza':'🇨🇭',
+  'Brasil':'🇧🇷','Marruecos':'🇲🇦','Haití':'🇭🇹','Escocia':'🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+  'Estados Unidos':'🇺🇸','Paraguay':'🇵🇾','Australia':'🇦🇺','Turquía':'🇹🇷',
+  'Alemania':'🇩🇪','Curazao':'🇨🇼','Costa de Marfil':'🇨🇮','Ecuador':'🇪🇨',
+  'Países Bajos':'🇳🇱','Japón':'🇯🇵','Suecia':'🇸🇪','Túnez':'🇹🇳',
+  'España':'🇪🇸','Cabo Verde':'🇨🇻','Bélgica':'🇧🇪','Egipto':'🇪🇬',
+  'Arabia Saudita':'🇸🇦','Uruguay':'🇺🇾','Irán':'🇮🇷','Nueva Zelanda':'🇳🇿',
+  'Francia':'🇫🇷','Senegal':'🇸🇳','Irak':'🇮🇶','Noruega':'🇳🇴',
+  'Argentina':'🇦🇷','Argelia':'🇩🇿','Austria':'🇦🇹','Jordania':'🇯🇴',
+  'Portugal':'🇵🇹','RD Congo':'🇨🇩','Uzbekistán':'🇺🇿','Colombia':'🇨🇴',
+  'Inglaterra':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Croacia':'🇭🇷','Ghana':'🇬🇭','Panamá':'🇵🇦',
 };
-const flagSmall = (team) => {
-  const code = FLAG_CODES[team];
-  if (!code) return '🏳️';
-  return `<img src="https://flagcdn.com/20x15/${code}.png" style="border-radius:2px;vertical-align:middle;margin-right:4px" onerror="this.remove()">`;
+
+const flagImg = (team) => {
+  const emoji = FLAG_EMOJI[team] || '🏳️';
+  return `<div class="team-flag-emoji">${emoji}</div>`;
 };
+const flagSmall = (team) => FLAG_EMOJI[team] || '🏳️';
 
 // ============================================================
 // PARTIDOS — calendario oficial del Excel
