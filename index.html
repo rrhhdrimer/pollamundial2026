@@ -14,7 +14,7 @@
   /* LOGIN */
   #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:radial-gradient(ellipse at 50% 0%,#1a2a4a 0%,var(--dark) 70%);}
   .login-box{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:20px;padding:24px 38px 36px;width:100%;max-width:420px;text-align:center;}
-  .login-ball-wrap{display:flex;justify-content:center;margin-bottom:-32px;}
+  .login-ball-wrap{display:flex;justify-content:center;margin-bottom:0;}
   .login-ball{width:130px;height:130px;animation:spin 8s linear infinite;object-fit:contain;filter:drop-shadow(0 8px 28px rgba(0,150,255,0.3));}
   @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
   .login-hosts{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;margin-top:8px;}
@@ -388,6 +388,9 @@
 <div id="login-screen">
   <div class="login-box">
     <div class="login-ball-wrap">
+      <img src="./trionda.png" alt="Pelota Oficial FIFA Mundial 2026" class="login-ball">
+    </div>
+    <div class="login-ball-wrap">
       <img src="./LPD_Logo.png" alt="La Polla Drimer" style="width:300px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 20px rgba(56,73,103,0.15))">
     </div>
     <div class="login-edition">COPA MUNDIAL DE FÚTBOL 2026</div>
@@ -486,7 +489,7 @@
 </ul>
 </div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
-        <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>jueves 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente <strong>30 minutos antes</strong> del inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>jueves 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
       </div>
 
       <!-- PREMIOS -->
@@ -528,7 +531,7 @@
     <div id="tab-grupos" style="display:none">
       <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase de Grupos</span></div>
       <div class="section-sub">72 partidos · 11 Jun – 27 Jun 2026 · Hora Perú (GMT-5)</div>
-      <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico antes de que empiece cada partido. El campo se bloquea automáticamente a la hora de inicio.</span></div>
+      <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico hasta <strong>30 minutos antes</strong> del inicio de cada partido. El campo se bloquea automáticamente.</span></div>
       <div id="grupos-content"><div class="loader">⏳ Cargando partidos...</div></div>
     </div>
     <div id="tab-eliminatorias" style="display:none">
@@ -817,7 +820,7 @@ async function renderLeaderboard(){
   document.getElementById("leaderboard-content").innerHTML=html;
 }
 
-function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`);}
+function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`)-30*60*1000;}
 function fmt(f){const[,m,d]=f.split("-");return `${parseInt(d)} ${["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"][parseInt(m)]}`;}
 function fmt12(h){
   const[hh,mm]=h.split(":").map(Number);
@@ -1040,8 +1043,32 @@ async function renderAdmin(){
     <button class="admin-save-btn" onclick="saveResultado('${p.id}',this)">Guardar</button>
   </div>`;});html+=`</div>`;});
   html+=`</div>`;
-  html+=`<div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales</div>`;
-  ESPECIALES.forEach(e=>{const res=resultados["esp_"+e.id]||{};html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${e.id}" value="${res.local||""}" placeholder="Ganador real"><button class="admin-save-btn" onclick="saveEspResultado('${e.id}')">Confirmar</button></div>`;});
+  // Ganadores Especiales
+  html+=`<div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales — Campeón y Subcampeón</div>
+    <div style="font-size:14px;color:#1a3a4f;margin-bottom:14px;">Selecciona el equipo ganador real. El sistema compara automáticamente con los pronósticos (selector de lista).</div>`;
+  ["campeon","subcampeon"].forEach(k=>{
+    const e=ESPECIALES.find(x=>x.id===k);
+    const res=resultados["esp_"+k]||{};
+    html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${k}" value="${res.local||""}" placeholder="Equipo real"><button class="admin-save-btn" onclick="saveEspResultado('${k}')">Confirmar</button></div>`;
+  });
+  html+=`</div>`;
+
+  // Goleador y Portero — validación manual con checkboxes
+  html+=`<div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales — Goleador y Guante de Oro</div>
+    <div style="font-size:14px;color:#1a3a4f;margin-bottom:14px;">Marca los usuarios que acertaron. El sistema les suma los puntos automáticamente.</div>`;
+
+  ["goleador","portero"].forEach(k=>{
+    const e=ESPECIALES.find(x=>x.id===k);
+    const pts=e.puntos;
+    // Group all answers
+    const answers={};
+    // We'll load from leaderboard data — show all unique answers
+    html+=`<div style="margin-bottom:20px">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;margin-bottom:8px">${e.icon} ${e.titulo} (+${pts}pts)</div>
+      <div id="esp-manual-${k}" style="margin-bottom:8px"><div style="font-size:13px;color:#2a4a5a">Cargando respuestas...</div></div>
+      <button class="admin-save-btn" onclick="loadEspAnswers('${k}')">Ver respuestas de participantes</button>
+    </div>`;
+  });
   html+=`</div>`;
   html+=`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
   document.getElementById("admin-content").innerHTML=html;
@@ -1090,6 +1117,61 @@ async function saveEspResultado(espId){
   if(!val){showToast("Ingresa el valor","error");return;}
   const r=await api("saveResultado",{matchId:"esp_"+espId,local:val,visita:""});
   if(r.ok){resultados["esp_"+espId]={local:val};showToast("✅ Confirmado","success");}
+}
+
+async function loadEspAnswers(key){
+  const container=document.getElementById(`esp-manual-${key}`);
+  container.innerHTML='<div style="font-size:13px;color:#2a4a5a">Cargando...</div>';
+  
+  // Get all speciales from sheets
+  const r=await api("getEspAnswers",{key});
+  if(!r.ok||!r.data||r.data.length===0){
+    container.innerHTML='<div style="font-size:13px;color:#2a4a5a">No hay respuestas aún.</div>';
+    return;
+  }
+  
+  // Group by answer
+  const groups={};
+  r.data.forEach(({username,value})=>{
+    const v=(value||"").trim();
+    if(!v)return;
+    if(!groups[v])groups[v]=[];
+    groups[v].push(username);
+  });
+
+  const e=ESPECIALES.find(x=>x.id===key);
+  const pts=e.puntos;
+  const alreadySaved=resultados["esp_manual_"+key]||{};
+
+  let html='<div style="display:flex;flex-direction:column;gap:8px;">';
+  Object.entries(groups).sort().forEach(([answer,users])=>{
+    const savedUsers=alreadySaved[answer]||[];
+    const isConfirmed=savedUsers.length>0;
+    html+=`<div style="background:${isConfirmed?'rgba(37,168,101,0.1)':'rgba(5,28,44,0.05)'};border:1.5px solid ${isConfirmed?'#1A7A4A':'#b0c4d8'};border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div style="font-size:15px;font-weight:700;color:#051C2C">"${answer}" <span style="font-size:12px;color:#2a4a5a;font-weight:400">(${users.length} usuario${users.length>1?'s':''})</span></div>
+        <div style="font-size:12px;color:#2a4a5a;margin-top:2px">${users.join(", ")}</div>
+      </div>
+      <button onclick="toggleEspManual('${key}','${answer.replace(/'/g,"\'")}','${users.join(",").replace(/'/g,"\'")}',${pts},this)"
+        style="background:${isConfirmed?'#1A7A4A':'var(--gold)'};color:${isConfirmed?'#fff':'#0A0E1A'};border:none;border-radius:6px;padding:8px 14px;font-family:Outfit,sans-serif;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;">
+        ${isConfirmed?'✅ Válido':'Marcar válido'}
+      </button>
+    </div>`;
+  });
+  html+='</div>';
+  container.innerHTML=html;
+}
+
+async function toggleEspManual(key,answer,usersStr,pts,btn){
+  const isValid=btn.textContent.includes('Válido')&&!btn.textContent.includes('Marcar');
+  // Toggle: if already valid → remove, else → add
+  const action=isValid?'removeEspManual':'addEspManual';
+  const users=usersStr.split(',').map(u=>u.trim()).filter(Boolean);
+  const r=await api(action,{key,answer,users,pts});
+  if(r.ok){
+    showToast(isValid?'Puntaje removido':'✅ Puntaje asignado a '+users.length+' usuario(s)','success');
+    await loadEspAnswers(key);
+  }else showToast('Error al guardar','error');
 }
 
 async function saveElimTeams(matchId,btn){
