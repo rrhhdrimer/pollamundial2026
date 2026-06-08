@@ -103,10 +103,10 @@
   .match-date-center{font-size:17px;color:#1a3a4f;text-align:center;margin-bottom:8px;font-weight:600;}
   .estadio-txt{font-size:17px;color:#1a3a4f;text-align:center;margin-top:8px;}
   .save-match-btn{width:100%;margin-top:14px;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;cursor:pointer;transition:all .2s;}
-  .save-match-btn.btn-saved{background:#1a3a4f;color:#fff;}
+  .save-match-btn.btn-saved{background:#1a3a4f;color:#fff;border:none;}
   .save-match-btn.btn-saved:hover{background:#1a3a4f;}
   .save-match-btn:hover:not(:disabled){background:#e6b830;}
-  .save-match-btn:disabled{background:#b0c4d8;color:#6a8a9a;cursor:not-allowed;}
+  .save-match-btn:disabled{background:#e0e8f0;color:#9ab0c4;cursor:not-allowed;border:1.5px dashed #9ab0c4;}
   .match-result-info{margin-top:12px;font-size:18px;color:#051C2C;text-align:center;padding:10px;background:rgba(5,28,44,0.08);border-radius:8px;}
   .pts-exact{color:var(--gold-dark);font-weight:700;}
   .pts-correct{color:var(--green-light);font-weight:700;}
@@ -471,19 +471,18 @@
       <div class="cj-grid">
         <div class="cj-block"><div class="cj-icon" style="background:#384967">⚽</div><div class="cj-block-title">¿CÓMO SE JUEGA?</div><div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#1A7A4A">📊</div><div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div><div class="cj-block-text">
-<strong style="color:#1a3a4f">Fase de Grupos:</strong>
+<strong style="color:#1a3a4f">Fase de Grupos:</strong><br>
 <ul class="cj-list">
-  <li>Si aciertas el resultado (empate o ganador) = <strong style="color:#C8860A">1 punto</strong></li>
-  <li>Si aciertas el marcador exacto = <strong style="color:#C8860A">3 puntos</strong></li>
+  <li>Empate o ganador = <strong style="color:#C8860A">1 pt</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">3 pts</strong></li>
 </ul>
 <br>
-<strong style="color:#1a3a4f">Fase Eliminatoria</strong> — los puntos van aumentando según la etapa:
+<strong style="color:#1a3a4f">Fase Eliminatoria</strong> — los pts van aumentando según la etapa:<br>
 <ul class="cj-list">
-  <li>Ronda de 32: Empate o ganador = <strong style="color:#C8860A">2 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">6 puntos</strong></li>
-  <li>Octavos de Final: Empate o ganador = <strong style="color:#C8860A">3 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">9 puntos</strong></li>
-  <li>Cuartos de Final: Empate o ganador = <strong style="color:#C8860A">4 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">12 puntos</strong></li>
-  <li>Semifinales: Empate o ganador = <strong style="color:#C8860A">5 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">15 puntos</strong></li>
-  <li>Final: Empate o ganador = <strong style="color:#C8860A">8 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">24 puntos</strong></li>
+  <li>Ronda de 32: &nbsp; Empate o ganador = <strong style="color:#C8860A">2 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">6 pts</strong></li>
+  <li>Octavos de Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">3 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">9 pts</strong></li>
+  <li>Cuartos de Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">4 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">12 pts</strong></li>
+  <li>Semifinales: &nbsp; Empate o ganador = <strong style="color:#C8860A">5 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">15 pts</strong></li>
+  <li>Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">8 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">24 pts</strong></li>
 </ul>
 </div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
@@ -977,16 +976,33 @@ function renderEspeciales(){
     html+=`</div>`;
   });
   html+="</div>";
-  if(!locked)html+=`<button class="save-esp-btn" onclick="saveEspeciales()">⭐ GUARDAR MIS PREDICCIONES</button>`;
+  const anyFilled=ESPECIALES.some(e=>myEspeciales[e.id]);
+  if(!locked)html+=`<button class="save-esp-btn ${anyFilled?'btn-saved':''}" onclick="saveEspeciales()">${anyFilled?'✅ Guardado':'⭐ GUARDAR MIS PREDICCIONES'}</button>`;
   else html+=`<div class="notice"><strong>🔒 Predicciones cerradas</strong><span>Cerraron el 18 de junio a las 11:00pm.</span></div>`;
   document.getElementById("especiales-content").innerHTML=html;
 }
 
 async function saveEspeciales(){
   const data={};ESPECIALES.forEach(e=>{data[e.id]=document.getElementById("esp-"+e.id)?.value||"";});
+  const btn=document.querySelector(".save-esp-btn");
+  if(btn){btn.textContent="⏳ Guardando...";btn.disabled=true;}
   const r=await api("saveEspeciales",{username:currentUser,...data});
-  if(r.ok){myEspeciales=data;renderEspeciales();showToast("Predicciones guardadas ✓","success");}
-  else showToast("Error al guardar","error");
+  if(r.ok){
+    myEspeciales=data;
+    showToast("Predicciones guardadas ✓","success");
+    renderEspeciales();
+    // After re-render, update button state
+    setTimeout(()=>{
+      const b=document.querySelector(".save-esp-btn");
+      if(b){
+        const anyFilled=Object.values(data).some(v=>v);
+        if(anyFilled){b.textContent="✅ Guardado";b.classList.add("btn-saved");}
+      }
+    },50);
+  }else{
+    if(btn){btn.textContent="⭐ GUARDAR MIS PREDICCIONES";btn.disabled=false;}
+    showToast("Error al guardar","error");
+  }
 }
 
 async function renderAdmin(){
