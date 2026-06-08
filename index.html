@@ -62,7 +62,7 @@
   .section-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:12px;}
   .section-title .st-emoji{font-size:32px;flex-shrink:0;line-height:1;}
   .section-title .st-text{text-align:center;}
-  .section-sub{color:#ffffff;font-size:19px;margin-bottom:20px;}
+  .section-sub{color:var(--gold);font-size:19px;margin-bottom:20px;}
 
   /* LEADERBOARD */
   .lb-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);overflow:hidden;}
@@ -84,7 +84,10 @@
   /* MATCHES */
   .grupo-header{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);letter-spacing:2px;margin:26px 0 14px;display:flex;align-items:center;gap:10px;}
   .grupo-header::after{content:'';flex:1;height:1px;background:#b0c4d8;}
-  .match-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;}
+  .match-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;position:relative;}
+  .pts-badge{position:absolute;top:10px;right:12px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;border-radius:8px;padding:3px 10px;line-height:1.3;}
+  .pts-badge.pts-win{background:rgba(37,168,101,0.15);color:#1A7A4A;border:1.5px solid #1A7A4A;}
+  .pts-badge.pts-zero{background:rgba(224,82,82,0.12);color:#C0392B;border:1.5px solid #E05252;}
   .match-card.saved{border-left:4px solid var(--green);}
   .match-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
   .match-group-tag{font-size:16px;color:#051C2C;text-transform:uppercase;letter-spacing:1px;background:rgba(5,28,44,0.12);border-radius:4px;padding:3px 10px;}
@@ -473,7 +476,7 @@
       <div class="cj-welcome">
         <div class="cj-welcome-icon">🏆</div>
         <div class="cj-welcome-title">¡BIENVENIDOS!</div>
-        <div class="cj-welcome-text">Sé parte de la fiebre del fútbol participando en La Polla Drimer 2026, creada exclusivamente para tí. <strong>¡Juega, acierta y gana!</strong></div>
+        <div class="cj-welcome-text">Sé parte de la fiebre del fútbol participando en <strong style="color:#1a3a4f">La Polla Drimer 2026</strong>, creada exclusivamente para tí. <strong>¡Juega, acierta y gana!</strong></div>
       </div>
       <div class="cj-grid">
         <div class="cj-block"><div class="cj-icon" style="background:#384967">⚽</div><div class="cj-block-title">¿CÓMO SE JUEGA?</div><div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div></div>
@@ -523,7 +526,7 @@
             <div class="premio-label">soles</div>
           </div>
         </div>
-        <div class="premios-nota">Se consideran los tres puestos con mayor puntaje en la tabla de posiciones al finalizar el torneo.<br>La entrega de premios se coordinará con RRHH luego del 19 de julio del 2026.</div>
+        <div class="premios-nota">Se consideran los tres puestos con mayor puntaje en la tabla de posiciones al finalizar el torneo.<br>La entrega de premios se coordinará con Talento Humano luego del 19 de julio del 2026.</div>
       </div>
 
     </div>
@@ -678,6 +681,7 @@ function apiLocal(action,body){
   if(action==="getEspeciales")return{ok:true,data:{}};
   if(action==="getResultados")return{ok:true,data:{}};
   if(action==="getElimTeams")return{ok:true,data:{}};
+  if(action==="getEspManualWinners")return{ok:true,data:{}};
   return{ok:false,error:"⚠️ Sin conexión al servidor. Verifica tu internet e intenta de nuevo."};
 }
 
@@ -772,8 +776,15 @@ async function loadElimTeams(){
 async function enterApp(name){
   await loadElimTeams();
   currentUser=name;isAdmin=false;
-  const[pR,eR,rR]=await Promise.all([api("getPronosticos",{username:name}),api("getEspeciales",{username:name}),api("getResultados")]);
+  const[pR,eR,rR,mR]=await Promise.all([
+    api("getPronosticos",{username:name}),
+    api("getEspeciales",{username:name}),
+    api("getResultados"),
+    api("getEspManualWinners",{username:name})
+  ]);
   myPronosticos=pR.data||{};myEspeciales=eR.data||{};resultados=rR.data||{};
+  // Merge manual esp winners into resultados
+  if(mR.ok&&mR.data){Object.assign(resultados,mR.data);}
   document.getElementById("login-screen").style.display="none";
   document.getElementById("app").style.display="block";
   document.getElementById("header-username").textContent=name;
@@ -824,6 +835,18 @@ async function renderLeaderboard(){
   document.getElementById("leaderboard-content").innerHTML=html;
 }
 
+function ptsBadge(pron, res, fase){
+  if(!res || pron.local===undefined) return '';
+  const s=SCORING[fase];
+  const rL=parseInt(res.local),rV=parseInt(res.visita);
+  const pL=parseInt(pron.local),pV=parseInt(pron.visita);
+  let pts=0;
+  if(pL===rL && pV===rV){ pts=s.exact; }
+  else{ const rG=rL>rV?'L':rV>rL?'V':'E', pG=pL>pV?'L':pV>pL?'V':'E'; if(rG===pG) pts=s.correct; }
+  if(pts>0) return `<div class="pts-badge pts-win">+${pts} pts</div>`;
+  return `<div class="pts-badge pts-zero">+0 pts</div>`;
+}
+
 function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`)-30*60*1000;}
 function fmt(f){const[,m,d]=f.split("-");return `${parseInt(d)} ${["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"][parseInt(m)]}`;}
 function fmt12(h){
@@ -848,6 +871,7 @@ function renderGrupos(){
         else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}
       }
       html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
+        ${ptsBadge(pron, res, 'g')}
         <div class="match-meta"><span class="match-group-tag">Grupo ${g}</span></div>
         <div class="match-body">
           <div class="team-side">${flagImg(p.local)}<div class="team-name-txt">${p.local}</div></div>
@@ -926,7 +950,7 @@ function renderEliminatorias(){
   let html="";
   fasesAbiertas.forEach(fase=>{
     const partidos=ELIM_PARTIDOS[fase]||[];
-    html+=`<div style="margin-top:20px"><div class="grupo-header">${pNames[fase]} <span style="font-size:15px;font-weight:400;color:#C8860A">${pScore[fase]}</span></div>`;
+    html+=`<div style="margin-top:20px"><div class="grupo-header">${pNames[fase]} <span style="font-size:17px;font-weight:400;color:#C8860A">${pScore[fase]}</span></div>`;
     partidos.forEach(p=>{
       const pron=myPronosticos[p.id]||{},res=resultados[p.id],hasPron=pron.local!==undefined;
       if(elimTeams[p.id]?.local) p.local=elimTeams[p.id].local;
@@ -936,6 +960,7 @@ function renderEliminatorias(){
       if(res&&hasPron){const s=SCORING[fase],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}}
       const matchLabel=(fase==="fin"&&p.id==="fin_001")?"Tercer Puesto":pNames[fase];
       html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
+        ${ptsBadge(pron, res, fase)}
         <div class="match-meta"><span class="match-group-tag">${matchLabel}</span></div>
         <div class="match-body">
           <div class="team-side">${p.local?flagImg(p.local):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.local||"Por definir"}</div></div>
@@ -980,11 +1005,31 @@ async function saveElimPron(id,fase){
 }
 
 function renderEspeciales(){
-  const locked=!FASES_UNLOCK.grupos&&new Date()>=new Date("2026-06-18T23:00:00-05:00");
+  const locked=new Date()>=new Date("2026-06-18T23:00:00-05:00");
   let html="<div class='especiales-grid'>";
   ESPECIALES.forEach(esp=>{
     const saved=myEspeciales[esp.id];
-    html+=`<div class="esp-card ${saved?"esp-saved":""} ${locked?"esp-locked":""}"><span class="esp-icon">${esp.icon}</span><div class="esp-title">${esp.titulo}</div><div class="esp-desc">${esp.desc}</div><div class="esp-pts">${esp.puntos} PTS</div>`;
+    // Calculate badge for this especial
+    let espBadge='';
+    if(saved){
+      const res=resultados["esp_"+esp.id];
+      if(esp.tipo==='select'&&res?.local){
+        // Auto comparison for campeon/subcampeon
+        const correct=saved.toLowerCase()===res.local.toLowerCase();
+        espBadge=correct?`<div class="pts-badge pts-win">+${esp.puntos} pts</div>`:`<div class="pts-badge pts-zero">+0 pts</div>`;
+      } else if(esp.tipo==='text'){
+        // Manual validation for goleador/portero — check EspecialesManual via resultados
+        const manualKey="esp_manual_"+esp.id;
+        const manualData=resultados[manualKey];
+        if(manualData!==undefined){
+          // manualData is set when admin confirmed — check if current user is in the valid list
+          const validUsers=Array.isArray(manualData)?manualData:(manualData?.users||[]);
+          const userWon=validUsers.includes(currentUser)||resultados["esp_manual_won_"+esp.id+"_"+currentUser];
+          espBadge=userWon?`<div class="pts-badge pts-win">+${esp.puntos} pts</div>`:`<div class="pts-badge pts-zero">+0 pts</div>`;
+        }
+      }
+    }
+    html+=`<div class="esp-card ${saved?"esp-saved":""} ${locked?"esp-locked":""}" style="position:relative">${espBadge}<span class="esp-icon">${esp.icon}</span><div class="esp-title">${esp.titulo}</div><div class="esp-desc">${esp.desc}</div><div class="esp-pts">${esp.puntos} PTS</div>`;
     if(esp.tipo==="select")html+=`<select class="esp-input" id="esp-${esp.id}" ${locked?"disabled":""}><option value="">-- Elige equipo --</option>${EQUIPOS.map(eq=>`<option value="${eq}" ${saved===eq?"selected":""}>${eq}</option>`).join("")}</select>`;
     else html+=`<input class="esp-input" type="text" id="esp-${esp.id}" placeholder="${esp.ph}" value="${saved||""}" ${locked?"disabled":""}>`;
     if(saved)html+=`<div class="esp-saved-tag">✓ ${saved}</div>`;
