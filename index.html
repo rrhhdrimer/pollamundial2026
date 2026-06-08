@@ -126,8 +126,11 @@
   .esp-input:focus{border-color:#051C2C;}
   select.esp-input{appearance:none;cursor:pointer;}
   .esp-saved-tag{margin-top:8px;font-size:14px;color:#1A7A4A;background:rgba(37,168,101,.25);border-radius:6px;padding:4px 8px;font-weight:700;}
-  .save-esp-btn{width:100%;margin-top:22px;background:var(--gold);color:#0A0E1A;border:none;border-radius:10px;padding:15px;font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;cursor:pointer;}
-  .save-esp-btn:hover{background:#e6b830;}
+  .save-esp-btn{width:100%;margin-top:22px;background:var(--gold);color:#0A0E1A;border:none;border-radius:10px;padding:15px;font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;cursor:pointer;transition:all .2s;}
+  .save-esp-btn:hover:not(:disabled):not(.btn-saved){background:#e6b830;}
+  .save-esp-btn.btn-saved{background:#1a3a4f !important;color:#fff !important;border:none;}
+  .save-esp-btn.btn-saved:hover{background:#1a3a4f !important;}
+  .save-esp-btn:disabled:not(.btn-saved){background:#e0e8f0;color:#9ab0c4;cursor:not-allowed;border:1.5px dashed #9ab0c4;}
 
   /* FASES */
   .phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:22px;}
@@ -167,7 +170,7 @@
   .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#C8860A;letter-spacing:3px;margin-bottom:12px;}
   .cj-block-text{font-size:17px;color:#1a3a4f;line-height:1.7;text-align:left;}
   .cj-block-text strong{color:#1a3a4f;font-weight:700;}
-  .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
+  .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:10px;}
   .cj-list li{font-size:16px;color:#1a3a4f;}
   .cj-list li strong{color:#C8860A;}
 
@@ -481,11 +484,11 @@
 <br>
 <strong style="color:#1a3a4f">Fase Eliminatoria</strong> — los pts van aumentando según la etapa:<br>
 <ul class="cj-list">
-  <li>Ronda de 32: &nbsp; Empate o ganador = <strong style="color:#C8860A">2 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">6 pts</strong></li>
-  <li>Octavos de Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">3 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">9 pts</strong></li>
-  <li>Cuartos de Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">4 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">12 pts</strong></li>
-  <li>Semifinales: &nbsp; Empate o ganador = <strong style="color:#C8860A">5 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">15 pts</strong></li>
-  <li>Final: &nbsp; Empate o ganador = <strong style="color:#C8860A">8 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">24 pts</strong></li>
+  <li><strong style="color:#1a3a4f">Ronda de 32:</strong><br>Empate o ganador = <strong style="color:#C8860A">2 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">6 pts</strong></li>
+  <li><strong style="color:#1a3a4f">Octavos de Final:</strong><br>Empate o ganador = <strong style="color:#C8860A">3 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">9 pts</strong></li>
+  <li><strong style="color:#1a3a4f">Cuartos de Final:</strong><br>Empate o ganador = <strong style="color:#C8860A">4 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">12 pts</strong></li>
+  <li><strong style="color:#1a3a4f">Semifinales:</strong><br>Empate o ganador = <strong style="color:#C8860A">5 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">15 pts</strong></li>
+  <li><strong style="color:#1a3a4f">Final:</strong><br>Empate o ganador = <strong style="color:#C8860A">8 pts</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">24 pts</strong></li>
 </ul>
 </div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
