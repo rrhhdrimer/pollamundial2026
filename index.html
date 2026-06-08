@@ -144,6 +144,22 @@
   .admin-save-btn{background:var(--gold);color:#0A0E1A;border:none;border-radius:6px;padding:9px 16px;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;cursor:pointer;}
 
   .notice{background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;}
+
+  /* CÓMO SE JUEGA */
+  .cj-welcome{text-align:center;padding:32px 24px;background:var(--dark2);border:1px solid var(--dark4);border-radius:16px;margin-bottom:28px;}
+  .cj-welcome-icon{font-size:52px;margin-bottom:12px;}
+  .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;}
+  .cj-welcome-text{font-size:18px;color:var(--text2);line-height:1.7;max-width:600px;margin:0 auto;}
+  .cj-welcome-text strong{color:var(--text);}
+  .cj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .cj-block{background:var(--dark2);border:1px solid var(--dark4);border-radius:16px;padding:28px 24px;text-align:center;}
+  .cj-icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;}
+  .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);letter-spacing:1px;margin-bottom:12px;}
+  .cj-block-text{font-size:16px;color:var(--text2);line-height:1.7;text-align:left;}
+  .cj-block-text strong{color:var(--text);}
+  .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
+  .cj-list li{font-size:15px;color:var(--text2);}
+  .cj-list li strong{color:var(--gold);}
   .notice strong{color:var(--gold);display:block;margin-bottom:3px;font-size:19px;}
   .notice span{color:var(--text2);font-size:18px;}
 
@@ -375,8 +391,53 @@
   <div class="main-content">
     <div id="tab-comojuega">
       <div class="section-title"><span class="st-emoji">⚡</span><span class="st-text">¿Cómo se juega?</span></div>
-      <div class="section-sub">Guía rápida para participar en la Polla Mundial 2026</div>
-      <div class="notice"><strong>Próximamente</strong><span>Aquí irán las instrucciones del juego.</span></div>
+
+      <!-- BIENVENIDOS -->
+      <div class="cj-welcome">
+        <div class="cj-welcome-icon">🏆</div>
+        <div class="cj-welcome-title">¡BIENVENIDOS!</div>
+        <div class="cj-welcome-text">Sé parte de la fiebre del fútbol participando en La Polla Drimer 2026, creada exclusivamente para tí. <strong>¡Juega, acierta y gana!</strong></div>
+      </div>
+
+      <!-- BLOQUES -->
+      <div class="cj-grid">
+
+        <div class="cj-block">
+          <div class="cj-icon" style="background:#384967">⚽</div>
+          <div class="cj-block-title">¿CÓMO SE JUEGA?</div>
+          <div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div>
+        </div>
+
+        <div class="cj-block">
+          <div class="cj-icon" style="background:#1A7A4A">📊</div>
+          <div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div>
+          <div class="cj-block-text">
+            Por cada partido: si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.
+            <br><br>
+            En la <strong>Fase Eliminatoria</strong> los puntos se multiplican según la ronda:
+            <ul class="cj-list">
+              <li>Ronda de 32: <strong>2 pts</strong> resultado · <strong>6 pts</strong> exacto</li>
+              <li>Octavos de Final: <strong>3 pts</strong> · <strong>9 pts</strong> exacto</li>
+              <li>Cuartos de Final: <strong>4 pts</strong> · <strong>12 pts</strong> exacto</li>
+              <li>Semifinales: <strong>5 pts</strong> · <strong>15 pts</strong> exacto</li>
+              <li>Final: <strong>8 pts</strong> · <strong>¡24 pts</strong> si aciertas el marcador exacto!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cj-block">
+          <div class="cj-icon" style="background:#C49A10">⭐</div>
+          <div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div>
+          <div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div>
+        </div>
+
+        <div class="cj-block">
+          <div class="cj-icon" style="background:#E05252">🔒</div>
+          <div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div>
+          <div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>14 de junio a las 8:00pm</strong> (hora Lima).</div>
+        </div>
+
+      </div>
     </div>
     <div id="tab-leaderboard" style="display:none">
       <div class="section-title"><span class="st-emoji">🏆</span><span class="st-text">Tabla de Posiciones</span></div>
