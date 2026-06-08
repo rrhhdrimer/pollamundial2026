@@ -102,7 +102,9 @@
   .vs-label{font-size:13px;color:#1a3a4f;letter-spacing:2px;min-height:18px;}
   .match-date-center{font-size:17px;color:#1a3a4f;text-align:center;margin-bottom:8px;font-weight:600;}
   .estadio-txt{font-size:17px;color:#1a3a4f;text-align:center;margin-top:8px;}
-  .save-match-btn{width:100%;margin-top:14px;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;cursor:pointer;transition:background .2s;}
+  .save-match-btn{width:100%;margin-top:14px;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;cursor:pointer;transition:all .2s;}
+  .save-match-btn.btn-saved{background:#1a3a4f;color:#fff;}
+  .save-match-btn.btn-saved:hover{background:#1a3a4f;}
   .save-match-btn:hover:not(:disabled){background:#e6b830;}
   .save-match-btn:disabled{background:#b0c4d8;color:#6a8a9a;cursor:not-allowed;}
   .match-result-info{margin-top:12px;font-size:18px;color:#051C2C;text-align:center;padding:10px;background:rgba(5,28,44,0.08);border-radius:8px;}
@@ -142,8 +144,11 @@
   /* ADMIN */
   .admin-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);padding:22px;margin-bottom:14px;}
   .admin-title{font-size:16px;font-weight:700;color:var(--gold-dark);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;}
-  .admin-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
-  .admin-label{flex:1;font-size:15px;color:#051C2C;min-width:150px;}
+  .admin-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:nowrap;}
+  .admin-label{font-size:14px;color:#051C2C;white-space:nowrap;}
+  .admin-team{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#051C2C;white-space:nowrap;}
+  .admin-score-sep{font-size:16px;color:#1a3a4f;font-weight:700;}
+  .admin-date{font-size:12px;color:#2a4a5a;margin-left:4px;white-space:nowrap;}
   .admin-score-input{width:54px;background:#fff;border:1px solid #b0c4d8;border-radius:6px;padding:8px;color:#051C2C;font-family:'Outfit',sans-serif;font-size:16px;text-align:center;outline:none;}
   .admin-score-input:focus{border-color:#051C2C;}
   .admin-save-btn{background:var(--gold);color:#0A0E1A;border:none;border-radius:6px;padding:9px 16px;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;cursor:pointer;}
@@ -154,23 +159,23 @@
   .cj-welcome{text-align:center;padding:32px 24px;background:#DDE5ED;border:1px solid #b0c4d8;border-radius:16px;margin-bottom:28px;}
   .cj-welcome-icon{font-size:52px;margin-bottom:12px;}
   .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#C8860A;letter-spacing:3px;margin-bottom:10px;}
-  .cj-welcome-text{font-size:18px;color:#1a3a4f;line-height:1.7;max-width:600px;margin:0 auto;}
+  .cj-welcome-text{font-size:19px;color:#1a3a4f;line-height:1.7;max-width:600px;margin:0 auto;}
   .cj-welcome-text strong{color:#1a3a4f;}
   .cj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   .cj-block{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:16px;padding:28px 24px;text-align:center;}
   .cj-icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;}
-  .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a3a4f;letter-spacing:1px;margin-bottom:12px;}
-  .cj-block-text{font-size:16px;color:#1a3a4f;line-height:1.7;text-align:left;}
+  .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#C8860A;letter-spacing:3px;margin-bottom:12px;}
+  .cj-block-text{font-size:17px;color:#1a3a4f;line-height:1.7;text-align:left;}
   .cj-block-text strong{color:#1a3a4f;font-weight:700;}
   .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
-  .cj-list li{font-size:15px;color:#1a3a4f;}
+  .cj-list li{font-size:16px;color:#1a3a4f;}
   .cj-list li strong{color:#C8860A;}
 
   /* PREMIOS */
   .premios-section{text-align:center;margin-top:28px;}
   .premios-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;}
-  .premios-icon{font-size:28px;}
-  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#ffffff;letter-spacing:2px;}
+  .premios-icon{font-size:32px;line-height:1;}
+  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px;}
   .premios-grid{display:flex;align-items:flex-end;justify-content:center;gap:16px;margin-bottom:20px;}
   .premio-card{background:#DDE5ED;border:2px solid #b0c4d8;border-radius:16px;padding:24px 20px;text-align:center;position:relative;transition:transform .2s;}
   .premio-card:hover{transform:translateY(-4px);}
@@ -184,7 +189,7 @@
   .premio-monto{font-family:'Bebas Neue',sans-serif;font-size:40px;color:#C8860A;letter-spacing:2px;line-height:1;}
   .premio-1 .premio-monto{font-size:52px;color:#C8860A;}
   .premio-label{font-size:14px;color:#1a3a4f;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:4px;}
-  .premios-nota{font-size:15px;color:var(--text2);line-height:1.8;margin-top:16px;display:block;}
+  .premios-nota{font-size:17px;color:#ffffff;line-height:1.8;margin-top:16px;display:block;}
   .notice strong{color:#1a3a4f;display:block;margin-bottom:3px;font-size:19px;}
   .notice span{color:#1a3a4f;font-size:18px;}
 
@@ -322,7 +327,7 @@
     .cj-welcome-text{font-size:15px;}
     .cj-block{padding:18px 14px;}
     .cj-icon{width:60px;height:60px;font-size:26px;}
-    .cj-block-title{font-size:17px;}
+    .cj-block-title{font-size:26px;}
     .cj-block-text{font-size:14px;}
     .cj-list li{font-size:13px;}
 
@@ -465,9 +470,24 @@
       </div>
       <div class="cj-grid">
         <div class="cj-block"><div class="cj-icon" style="background:#384967">⚽</div><div class="cj-block-title">¿CÓMO SE JUEGA?</div><div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div></div>
-        <div class="cj-block"><div class="cj-icon" style="background:#1A7A4A">📊</div><div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div><div class="cj-block-text">En la <strong>Fase de Grupos:</strong> si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.<br><br>En la <strong>Fase Eliminatoria</strong> los puntos se multiplican:<ul class="cj-list"><li>Ronda de 32: <strong>2 pts</strong> · <strong>6 pts</strong> exacto</li><li>Octavos de Final: <strong>3 pts</strong> · <strong>9 pts</strong> exacto</li><li>Cuartos de Final: <strong>4 pts</strong> · <strong>12 pts</strong> exacto</li><li>Semifinales: <strong>5 pts</strong> · <strong>15 pts</strong> exacto</li><li>Final: <strong>8 pts</strong> · <strong>¡24 pts</strong> exacto!</li></ul></div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#1A7A4A">📊</div><div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div><div class="cj-block-text">
+<strong style="color:#1a3a4f">Fase de Grupos:</strong>
+<ul class="cj-list">
+  <li>Si aciertas el resultado (empate o ganador) = <strong style="color:#C8860A">1 punto</strong></li>
+  <li>Si aciertas el marcador exacto = <strong style="color:#C8860A">3 puntos</strong></li>
+</ul>
+<br>
+<strong style="color:#1a3a4f">Fase Eliminatoria</strong> — los puntos van aumentando según la etapa:
+<ul class="cj-list">
+  <li>Ronda de 32: Empate o ganador = <strong style="color:#C8860A">2 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">6 puntos</strong></li>
+  <li>Octavos de Final: Empate o ganador = <strong style="color:#C8860A">3 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">9 puntos</strong></li>
+  <li>Cuartos de Final: Empate o ganador = <strong style="color:#C8860A">4 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">12 puntos</strong></li>
+  <li>Semifinales: Empate o ganador = <strong style="color:#C8860A">5 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">15 puntos</strong></li>
+  <li>Final: Empate o ganador = <strong style="color:#C8860A">8 puntos</strong> &nbsp;/&nbsp; Marcador exacto = <strong style="color:#C8860A">24 puntos</strong></li>
+</ul>
+</div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
-        <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>miércoles 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>jueves 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
       </div>
 
       <!-- PREMIOS -->
@@ -521,7 +541,7 @@
     </div>
     <div id="tab-especiales" style="display:none">
       <div class="section-title"><span class="st-emoji">⭐</span><span class="st-text">Predicciones Especiales</span></div>
-      <div class="section-sub">Disponibles hasta el miércoles 18 de junio a las 11:00pm (hora Lima)</div>
+      <div class="section-sub">Disponibles hasta el jueves 18 de junio a las 11:00pm (hora Lima)</div>
       <div id="especiales-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
     <div id="tab-admin" style="display:none">
@@ -828,9 +848,9 @@ function renderGrupos(){
           <div class="score-zone">
             <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
             <div class="score-inputs-row">
-              <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+              <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
               <span class="score-sep">:</span>
-              <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+              <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
             </div>
             <div class="vs-label">${locked?"🔒 CERRADO":""}</div>
           </div>
@@ -850,15 +870,34 @@ function renderGrupos(){
   document.getElementById("grupos-content").innerHTML=html;
 }
 
-function onInput(id){const l=document.getElementById("sl-"+id)?.value,v=document.getElementById("sv-"+id)?.value,btn=document.getElementById("btn-"+id);if(btn)btn.disabled=(l===""||v==="");}
+function onInput(id){
+  const l=document.getElementById("sl-"+id)?.value,v=document.getElementById("sv-"+id)?.value,btn=document.getElementById("btn-"+id);
+  if(!btn)return;
+  btn.disabled=(l===""||v==="");
+  // Reset to yellow when user starts editing
+  if(btn.classList.contains("btn-saved")){
+    btn.classList.remove("btn-saved");
+    btn.textContent="💾 Guardar pronóstico";
+  }
+}
 
 async function savePron(id){
   const l=document.getElementById("sl-"+id).value,v=document.getElementById("sv-"+id).value;
   if(l===""||v==="")return;
   const btn=document.getElementById("btn-"+id);btn.textContent="⏳ Guardando...";btn.disabled=true;
   const r=await api("savePronostico",{username:currentUser,matchId:id,local:parseInt(l),visita:parseInt(v)});
-  if(r.ok){myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};document.getElementById("mc-"+id).classList.add("saved");btn.textContent="✅ Guardado";showToast("Pronóstico guardado ✓","success");}
-  else{btn.textContent="💾 Guardar pronóstico";btn.disabled=false;showToast("Error al guardar","error");}
+  if(r.ok){
+    myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};
+    document.getElementById("mc-"+id).classList.add("saved");
+    btn.textContent="✅ Guardado";
+    btn.classList.add("btn-saved");
+    showToast("Pronóstico guardado ✓","success");
+  }else{
+    btn.textContent="💾 Guardar pronóstico";
+    btn.classList.remove("btn-saved");
+    btn.disabled=false;
+    showToast("Error al guardar","error");
+  }
 }
 
 function renderPhaseGrid(){
@@ -891,9 +930,9 @@ function renderEliminatorias(){
         <div class="score-zone">
           <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
           <div class="score-inputs-row">
-            <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+            <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
             <span class="score-sep">:</span>
-            <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+            <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
           </div>
           <div class="vs-label">${sinEq?"⏳ Equipos por definir":locked?"🔒 CERRADO":""}</div>
         </div>
@@ -912,8 +951,18 @@ async function saveElimPron(id,fase){
   if(l===""||v==="")return;
   const btn=document.getElementById("btn-"+id);btn.textContent="⏳ Guardando...";btn.disabled=true;
   const r=await api("savePronostico",{username:currentUser,matchId:id,local:parseInt(l),visita:parseInt(v)});
-  if(r.ok){myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};document.getElementById("mc-"+id).classList.add("saved");btn.textContent="✅ Guardado";showToast("Pronóstico guardado ✓","success");}
-  else{btn.textContent="💾 Guardar pronóstico";btn.disabled=false;showToast("Error al guardar","error");}
+  if(r.ok){
+    myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};
+    document.getElementById("mc-"+id).classList.add("saved");
+    btn.textContent="✅ Guardado";
+    btn.classList.add("btn-saved");
+    showToast("Pronóstico guardado ✓","success");
+  }else{
+    btn.textContent="💾 Guardar pronóstico";
+    btn.classList.remove("btn-saved");
+    btn.disabled=false;
+    showToast("Error al guardar","error");
+  }
 }
 
 function renderEspeciales(){
@@ -944,14 +993,36 @@ async function renderAdmin(){
   if(!isAdmin){document.getElementById("admin-content").innerHTML="<div class='empty-state'><div class='ei'>🚫</div><div>Solo administradores</div></div>";return;}
   let html="";
   html+=`<div class="admin-card"><div class="admin-title">⚽ Resultados — Fase de Grupos</div>`;
-  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row"><div class="admin-label">${flagSmall(p.local)}${p.local} vs ${flagSmall(p.visita)}${p.visita} <small style="color:#2a4a5a">${fmt(p.fecha)} ${fmt12(p.hora)}</small></div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});
+  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row">
+    <div class="admin-team">${flagSmall(p.local)}${p.local}</div>
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-">
+    <span class="admin-score-sep">–</span>
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-">
+    <div class="admin-team">${flagSmall(p.visita)}${p.visita}</div>
+    <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
+    <button class="admin-save-btn" onclick="saveResultado('${p.id}',this)">Guardar</button>
+  </div>`;});
   html+=`</div>`;
   const elimFases=[{key:"r32",label:"Ronda de 32",partidos:ELIM_PARTIDOS.r32},{key:"r16",label:"Octavos de Final",partidos:ELIM_PARTIDOS.r16},{key:"qf",label:"Cuartos de Final",partidos:ELIM_PARTIDOS.qf},{key:"sf",label:"Semifinales",partidos:ELIM_PARTIDOS.sf},{key:"fin",label:"Final",partidos:ELIM_PARTIDOS.fin}];
   html+=`<div class="admin-card"><div class="admin-title">⚽ Definir Equipos — Fase Eliminatoria</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Ingresa los equipos que se enfrentan en cada partido.</div>`;
-  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const sL=elimTeams[p.id]?.local||p.local||"",sV=elimTeams[p.id]?.visita||p.visita||"";html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">P${i+1} · ${fmt(p.fecha)} ${fmt12(p.hora)} · ${p.estadio}</div><input id="et-${p.id}-l" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Local" value="${sL}"><span style="color:#1a3a4f">vs</span><input id="et-${p.id}-v" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Visita" value="${sV}"><button class="admin-save-btn" onclick="saveElimTeams('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const sL=elimTeams[p.id]?.local||p.local||"",sV=elimTeams[p.id]?.visita||p.visita||"";html+=`<div class="admin-row">
+    <span class="admin-date">P${i+1} · ${fmt(p.fecha)} ${fmt12(p.hora)}</span>
+    <input id="et-${p.id}-l" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Equipo 1" value="${sL}">
+    <span class="admin-score-sep">vs</span>
+    <input id="et-${p.id}-v" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Equipo 2" value="${sV}">
+    <button class="admin-save-btn" onclick="saveElimTeams('${p.id}',this)">Guardar</button>
+  </div>`;});html+=`</div>`;});
   html+=`</div>`;
   html+=`<div class="admin-card"><div class="admin-title">🔥 Resultados — Fase Eliminatoria</div>`;
-  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{},lbl=p.local&&p.visita?`${p.local} vs ${p.visita}`:`Partido ${i+1}`;html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">${lbl} · ${fmt(p.fecha)}</div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{};const localNm=p.local||`Local ${i+1}`;const visitaNm=p.visita||`Visita ${i+1}`;html+=`<div class="admin-row">
+    <div class="admin-team">${p.local?flagSmall(p.local):'❓'}${localNm}</div>
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-">
+    <span class="admin-score-sep">–</span>
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-">
+    <div class="admin-team">${p.visita?flagSmall(p.visita):'❓'}${visitaNm}</div>
+    <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
+    <button class="admin-save-btn" onclick="saveResultado('${p.id}',this)">Guardar</button>
+  </div>`;});html+=`</div>`;});
   html+=`</div>`;
   html+=`<div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales</div>`;
   ESPECIALES.forEach(e=>{const res=resultados["esp_"+e.id]||{};html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${e.id}" value="${res.local||""}" placeholder="Ganador real"><button class="admin-save-btn" onclick="saveEspResultado('${e.id}')">Confirmar</button></div>`;});
@@ -965,19 +1036,37 @@ async function renderAdmin(){
   },50);
 }
 
-async function saveResultado(id){
+async function saveResultado(id,btn){
   const l=document.getElementById(`ar-${id}-l`).value,v=document.getElementById(`ar-${id}-v`).value;
-  // Allow saving empty to clear a result
   if(l===""&&v===""){
+    if(btn){btn.textContent="⏳...";btn.disabled=true;}
     const r=await api("clearResultado",{matchId:id});
-    if(r.ok){delete resultados[id];showToast("✅ Resultado borrado","success");}
-    else showToast("Error al borrar","error");
+    if(r.ok){
+      delete resultados[id];
+      if(btn){btn.textContent="🗑 Borrado";btn.style.background="#6a8a9a";btn.style.color="#fff";btn.disabled=false;}
+      showToast("✅ Resultado borrado","success");
+    }else{
+      if(btn){btn.textContent="Guardar";btn.disabled=false;}
+      showToast("Error al borrar","error");
+    }
     return;
   }
   if(l===""||v===""){showToast("Ingresa ambos valores o deja ambos en blanco para borrar","error");return;}
+  if(btn){btn.textContent="⏳...";btn.disabled=true;}
   const r=await api("saveResultado",{matchId:id,local:parseInt(l),visita:parseInt(v)});
-  if(r.ok){resultados[id]={local:parseInt(l),visita:parseInt(v)};showToast("✅ Resultado guardado","success");}
-  else showToast("Error al guardar","error");
+  if(r.ok){
+    resultados[id]={local:parseInt(l),visita:parseInt(v)};
+    if(btn){
+      btn.textContent="✅ Guardado";
+      btn.style.background="#1a3a4f";
+      btn.style.color="#fff";
+      btn.disabled=false;
+    }
+    showToast("✅ Resultado guardado","success");
+  }else{
+    if(btn){btn.textContent="Guardar";btn.disabled=false;}
+    showToast("Error al guardar","error");
+  }
 }
 
 async function saveEspResultado(espId){
@@ -987,17 +1076,24 @@ async function saveEspResultado(espId){
   if(r.ok){resultados["esp_"+espId]={local:val};showToast("✅ Confirmado","success");}
 }
 
-async function saveElimTeams(matchId){
+async function saveElimTeams(matchId,btn){
+  const b=btn||event.target;
   const l=document.getElementById("et-"+matchId+"-l").value.trim(),v=document.getElementById("et-"+matchId+"-v").value.trim();
-  const btn=event.target;btn.textContent="⏳...";btn.disabled=true;
+  b.textContent="⏳...";b.disabled=true;
   const r=await api("saveElimTeams",{matchId,local:l,visita:v});
-  btn.textContent="Guardar";btn.disabled=false;
   if(r.ok){
     elimTeams[matchId]={local:l,visita:v};
     for(const fase of Object.values(ELIM_PARTIDOS)){const p=fase.find(x=>x.id===matchId);if(p){p.local=l;p.visita=v;}}
-    const msg=(!l&&!v)?"✅ Equipos borrados":"✅ Equipos guardados en Sheets";
-    showToast(msg,"success");renderEliminatorias();
-  }else showToast("Error al guardar","error");
+    b.textContent="✅ Guardado";
+    b.style.background="#1a3a4f";
+    b.style.color="#fff";
+    b.disabled=false;
+    showToast((!l&&!v)?"✅ Equipos borrados":"✅ Equipos guardados","success");
+    renderEliminatorias();
+  }else{
+    b.textContent="Guardar";b.disabled=false;
+    showToast("Error al guardar","error");
+  }
 }
 
 function toggleFase(key){
