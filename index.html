@@ -48,7 +48,7 @@
   .offline-badge{background:rgba(224,82,82,.1);color:var(--red);border-radius:20px;padding:4px 12px;font-size:14px;border:1px solid rgba(224,82,82,.3);}
 
   /* NAV */
-  .nav-tabs{display:flex;background:var(--dark2);border-bottom:1px solid var(--dark4);padding:0 20px;overflow-x:auto;scrollbar-width:none;}
+  .nav-tabs{display:flex;background:var(--dark2);border-bottom:1px solid var(--dark4);padding:0 20px;overflow-x:auto;scrollbar-width:none;position:sticky;top:134px;z-index:99;}
   .nav-tabs::-webkit-scrollbar{display:none;}
   .nav-tab{padding:12px 18px;font-size:15px;font-weight:600;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer;white-space:normal;text-align:center;line-height:1.4;transition:all .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
   .nav-tab:hover{color:var(--text);}
@@ -97,9 +97,9 @@
   .score-sep{color:#1a3a4f;font-size:28px;}
   .vs-label{font-size:13px;color:var(--text3);letter-spacing:2px;}
   .estadio-txt{font-size:16px;color:#1a3a4f;text-align:center;margin-top:8px;}
-  .save-match-btn{width:100%;margin-top:14px;background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:19px;cursor:pointer;transition:background .2s;}
-  .save-match-btn:hover:not(:disabled){background:var(--green-light);}
-  .save-match-btn:disabled{background:var(--dark4);color:var(--text3);cursor:not-allowed;}
+  .save-match-btn{width:100%;margin-top:14px;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;cursor:pointer;transition:background .2s;}
+  .save-match-btn:hover:not(:disabled){background:#e6b830;}
+  .save-match-btn:disabled{background:#b0c4d8;color:#6a8a9a;cursor:not-allowed;}
   .match-result-info{margin-top:12px;font-size:18px;color:#051C2C;text-align:center;padding:10px;background:rgba(5,28,44,0.08);border-radius:8px;}
   .pts-exact{color:var(--gold-dark);font-weight:700;}
   .pts-correct{color:var(--green-light);font-weight:700;}
@@ -129,10 +129,10 @@
   .phase-card.locked{opacity:.4;}
   .phase-icon{font-size:32px;margin-bottom:8px;}
   .phase-name{font-weight:700;font-size:19px;color:#051C2C;}
-  .phase-pts{font-size:17px;color:var(--gold-dark);color:var(--gold);margin-top:3px;}
+  .phase-pts{font-size:17px;color:var(--gold-dark);-webkit-text-stroke:0.5px #1a3a4f;color:var(--gold);margin-top:3px;}
   .phase-dates{font-size:16px;color:#1a3a4f;color:var(--text2);margin-top:4px;}
   .phase-badge{margin-top:10px;font-size:16px;background:rgba(5,28,44,0.1);color:#1a3a4f;border-radius:10px;padding:3px 10px;display:inline-block;}
-  .phase-badge.open{background:rgba(37,168,101,.15);color:var(--green-light);}
+  .phase-badge.open{background:rgba(37,168,101,.2);color:#1A7A4A;font-weight:700;border:1px solid #1A7A4A;}
 
   /* ADMIN */
   .admin-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);padding:22px;margin-bottom:14px;}
@@ -143,12 +143,12 @@
   .admin-score-input:focus{border-color:#051C2C;}
   .admin-save-btn{background:var(--gold);color:#0A0E1A;border:none;border-radius:6px;padding:9px 16px;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;cursor:pointer;}
 
-  .notice{background:rgba(245,200,66,.15);border:1px solid rgba(245,200,66,.4);border-radius:10px;padding:14px 18px;margin-bottom:20px;}
+  .notice{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:10px;padding:14px 18px;margin-bottom:20px;}
 
   /* CÓMO SE JUEGA */
   .cj-welcome{text-align:center;padding:32px 24px;background:#DDE5ED;border:1px solid #b0c4d8;border-radius:16px;margin-bottom:28px;}
   .cj-welcome-icon{font-size:52px;margin-bottom:12px;}
-  .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;}
+  .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;-webkit-text-stroke:1.5px #051C2C;text-shadow:1px 1px 0 #051C2C,-1px -1px 0 #051C2C,1px -1px 0 #051C2C,-1px 1px 0 #051C2C;}
   .cj-welcome-text{font-size:18px;color:#051C2C;line-height:1.7;max-width:600px;margin:0 auto;}
   .cj-welcome-text strong{color:#051C2C;}
   .cj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
@@ -160,8 +160,8 @@
   .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
   .cj-list li{font-size:15px;color:#051C2C;}
   .cj-list li strong{color:var(--gold-dark);}
-  .notice strong{color:var(--gold-dark);display:block;margin-bottom:3px;font-size:19px;}
-  .notice span{color:#051C2C;font-size:18px;}
+  .notice strong{color:#1a3a4f;display:block;margin-bottom:3px;font-size:19px;}
+  .notice span{color:#1a3a4f;font-size:18px;}
 
   #toast{position:fixed;bottom:24px;right:24px;background:var(--dark2);border:1px solid var(--dark4);border-radius:12px;padding:14px 22px;font-size:16px;color:var(--text);z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.4);}
   #toast.show{opacity:1;}
@@ -412,7 +412,7 @@
           <div class="cj-icon" style="background:#1A7A4A">📊</div>
           <div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div>
           <div class="cj-block-text">
-            <strong>En la Fase de Grupos:</strong> si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.
+            En la <strong>Fase de Grupos:</strong> si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.
             <br><br>
             En la <strong>Fase Eliminatoria</strong> los puntos se multiplican según la ronda:
             <ul class="cj-list">
@@ -905,11 +905,12 @@ function renderGrupos() {
       html += `<div class="match-card ${hasPron?'saved':''}" id="mc-${p.id}">
         <div class="match-meta">
           <span class="match-group-tag">Grupo ${g}</span>
-          <span class="match-date-tag">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</span>
+          <span class="match-date-tag"></span>
         </div>
         <div class="match-body">
           <div class="team-side">${flagImg(p.local)}<div class="team-name-txt">${p.local}</div></div>
           <div class="score-zone">
+            <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</div>
             <div class="score-inputs-row">
               <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:''}" placeholder="0" ${locked?'disabled':''} oninput="onInput('${p.id}')">
               <span class="score-sep">:</span>
