@@ -54,7 +54,7 @@
   /* NAV */
   .nav-tabs{display:flex;background:var(--dark2);border-bottom:1px solid var(--dark4);padding:0 20px;overflow-x:auto;scrollbar-width:none;position:sticky;top:134px;z-index:99;}
   .nav-tabs::-webkit-scrollbar{display:none;}
-  .nav-tab{padding:12px 18px;font-size:15px;font-weight:600;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer;white-space:normal;text-align:center;line-height:1.4;transition:all .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+  .nav-tab{padding:12px 18px;font-size:15px;font-weight:600;color:#ffffff;border-bottom:2px solid transparent;cursor:pointer;white-space:normal;text-align:center;line-height:1.4;transition:all .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
   .nav-tab:hover{color:var(--text);}
   .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
 
@@ -62,7 +62,7 @@
   .section-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:12px;}
   .section-title .st-emoji{font-size:32px;flex-shrink:0;line-height:1;}
   .section-title .st-text{text-align:center;}
-  .section-sub{color:var(--text2);font-size:19px;margin-bottom:20px;}
+  .section-sub{color:#ffffff;font-size:19px;margin-bottom:20px;}
 
   /* LEADERBOARD */
   .lb-card{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:var(--radius);overflow:hidden;}
@@ -167,9 +167,10 @@
   .cj-list li strong{color:#C8860A;}
 
   /* PREMIOS */
-  .premios-section{text-align:center;}
-  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a3a4f;letter-spacing:1px;margin-bottom:6px;}
-  .premios-sub{font-size:16px;color:#1a3a4f;margin-bottom:24px;}
+  .premios-section{text-align:center;background:#1a3a4f;border-radius:16px;padding:28px 24px;margin-top:20px;}
+  .premios-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;}
+  .premios-icon{font-size:28px;}
+  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#ffffff;letter-spacing:2px;}
   .premios-grid{display:flex;align-items:flex-end;justify-content:center;gap:16px;margin-bottom:20px;}
   .premio-card{background:#DDE5ED;border:2px solid #b0c4d8;border-radius:16px;padding:24px 20px;text-align:center;position:relative;transition:transform .2s;}
   .premio-card:hover{transform:translateY(-4px);}
@@ -183,7 +184,7 @@
   .premio-monto{font-family:'Bebas Neue',sans-serif;font-size:40px;color:#C8860A;letter-spacing:2px;line-height:1;}
   .premio-1 .premio-monto{font-size:52px;color:#C8860A;}
   .premio-label{font-size:14px;color:#1a3a4f;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:4px;}
-  .premios-nota{font-size:15px;color:#1a3a4f;background:rgba(200,134,10,0.08);border:1px solid rgba(200,134,10,0.25);border-radius:10px;padding:12px 20px;display:inline-block;}
+  .premios-nota{font-size:15px;color:#ffffff;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:12px 20px;display:inline-block;line-height:1.7;}
   .notice strong{color:#1a3a4f;display:block;margin-bottom:3px;font-size:19px;}
   .notice span{color:#1a3a4f;font-size:18px;}
 
@@ -192,8 +193,8 @@
   #toast.success{border-left:3px solid var(--green-light);}
   #toast.error{border-left:3px solid var(--red);}
 
-  .loader{text-align:center;padding:48px;color:var(--text2);font-size:17px;}
-  .empty-state{text-align:center;padding:56px 20px;color:var(--text2);}
+  .loader{text-align:center;padding:48px;color:#ffffff;font-size:17px;}
+  .empty-state{text-align:center;padding:56px 20px;color:#ffffff;}
   .empty-state .ei{font-size:52px;margin-bottom:14px;}
 
 
@@ -470,9 +471,11 @@
       </div>
 
       <!-- PREMIOS -->
-      <div class="cj-block premios-section">
-        <div class="cj-icon" style="background:#C8860A">🎁</div>
-        <div class="premios-title">PREMIOS</div>
+      <div class="premios-section">
+        <div class="premios-header">
+          <span class="premios-icon">🎁</span>
+          <span class="premios-title">PREMIOS</span>
+        </div>
         <div class="premios-grid">
           <div class="premio-card premio-2">
             <div class="premio-medal">🥈</div>
@@ -494,7 +497,7 @@
             <div class="premio-label">soles</div>
           </div>
         </div>
-        <div class="premios-nota">Se consideran los tres puestos con mayor puntaje en la tabla de posiciones al finalizar el torneo. La entrega de premios se coordinará con RRHH luego del 19 de julio del 2026.</div>
+        <div class="premios-nota">Se consideran los tres puestos con mayor puntaje en la tabla de posiciones al finalizar el torneo.<br>La entrega de premios se coordinará con RRHH luego del 19 de julio del 2026.</div>
       </div>
 
     </div>
@@ -693,9 +696,14 @@ async function doRegister(){
   regBtn.disabled=true;
   regBtn.innerHTML='<span class="btn-spinner"></span>Registrando...';
   const r=await api("register",{username:nombre,gerencia,area,pin});
-  regBtn.disabled=false;
-  regBtn.innerHTML="✅ REGISTRARME";
-  if(!r.ok){err.textContent=r.error||"Error al registrar";return;}
+  if(!r.ok){
+    regBtn.disabled=false;
+    regBtn.innerHTML="✅ REGISTRARME";
+    err.textContent=r.error||"Error al registrar";
+    return;
+  }
+  // Mantener spinner hasta que todo cargue
+  regBtn.innerHTML='<span class="btn-spinner"></span>Cargando datos...';
   await enterApp(nombre);
 }
 
@@ -712,9 +720,14 @@ async function doLogin(){
   loginBtn.disabled=true;
   loginBtn.innerHTML='<span class="btn-spinner"></span>Ingresando...';
   const r=await api("loginPin",{username:name,pin});
-  loginBtn.disabled=false;
-  loginBtn.innerHTML="⚡ ENTRAR A JUGAR";
-  if(!r.ok){err.textContent=r.error||"Error al ingresar";return;}
+  if(!r.ok){
+    loginBtn.disabled=false;
+    loginBtn.innerHTML="⚡ ENTRAR A JUGAR";
+    err.textContent=r.error||"Error al ingresar";
+    return;
+  }
+  // Mantener spinner hasta que todo cargue
+  loginBtn.innerHTML='<span class="btn-spinner"></span>Cargando datos...';
   await enterApp(name);
 }
 
