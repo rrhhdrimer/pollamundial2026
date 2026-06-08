@@ -917,42 +917,47 @@ function renderPhaseGrid(){
 
 function renderEliminatorias(){
   renderPhaseGrid();
-  const faseActiva=["r32","r16","qf","sf","fin"].find(f=>FASES_UNLOCK[f])||null;
   const pNames={r32:"Ronda de 32",r16:"Octavos de Final",qf:"Cuartos de Final",sf:"Semifinales",fin:"Final"};
   const pScore={r32:"2pts · 6pts exacto",r16:"3pts · 9pts exacto",qf:"4pts · 12pts exacto",sf:"5pts · 15pts exacto",fin:"8pts · 24pts exacto"};
   const ec=document.getElementById("elim-content");
-  if(!faseActiva){ec.innerHTML="";return;}
-  const partidos=ELIM_PARTIDOS[faseActiva]||[];
-  let html=`<div style="margin-top:20px"><div class="grupo-header">${pNames[faseActiva]} <span style="font-size:15px;font-weight:400;color:#C8860A">${pScore[faseActiva]}</span></div>`;
-  partidos.forEach(p=>{
-    const pron=myPronosticos[p.id]||{},res=resultados[p.id],hasPron=pron.local!==undefined;
-    // Merge elimTeams into p if available
-    if(elimTeams[p.id]?.local) p.local=elimTeams[p.id].local;
-    if(elimTeams[p.id]?.visita) p.visita=elimTeams[p.id].visita;
-    const sinEq=!p.local||!p.visita,locked=!FASES_UNLOCK[faseActiva]||sinEq;
-    let si=null;
-    if(res&&hasPron){const s=SCORING[faseActiva],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}}
-    html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
-      <div class="match-meta"><span class="match-group-tag">${pNames[faseActiva]}</span></div>
-      <div class="match-body">
-        <div class="team-side">${p.local?flagImg(p.local):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.local||"Por definir"}</div></div>
-        <div class="score-zone">
-          <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
-          <div class="score-inputs-row">
-            <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
-            <span class="score-sep">:</span>
-            <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+  // Show ALL unlocked phases
+  const fasesAbiertas=["r32","r16","qf","sf","fin"].filter(f=>FASES_UNLOCK[f]);
+  if(!fasesAbiertas.length){ec.innerHTML="";return;}
+  let html="";
+  fasesAbiertas.forEach(fase=>{
+    const partidos=ELIM_PARTIDOS[fase]||[];
+    html+=`<div style="margin-top:20px"><div class="grupo-header">${pNames[fase]} <span style="font-size:15px;font-weight:400;color:#C8860A">${pScore[fase]}</span></div>`;
+    partidos.forEach(p=>{
+      const pron=myPronosticos[p.id]||{},res=resultados[p.id],hasPron=pron.local!==undefined;
+      if(elimTeams[p.id]?.local) p.local=elimTeams[p.id].local;
+      if(elimTeams[p.id]?.visita) p.visita=elimTeams[p.id].visita;
+      const sinEq=!p.local||!p.visita,locked=!FASES_UNLOCK[fase]||sinEq;
+      let si=null;
+      if(res&&hasPron){const s=SCORING[fase],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}}
+      const matchLabel=(fase==="fin"&&p.id==="fin_001")?"Tercer Puesto":pNames[fase];
+      html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
+        <div class="match-meta"><span class="match-group-tag">${matchLabel}</span></div>
+        <div class="match-body">
+          <div class="team-side">${p.local?flagImg(p.local):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.local||"Por definir"}</div></div>
+          <div class="score-zone">
+            <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
+            <div class="score-inputs-row">
+              <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+              <span class="score-sep">:</span>
+              <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="-" ${locked?"disabled":""} oninput="onInput('${p.id}')">
+            </div>
+            <div class="vs-label">${sinEq?"⏳ Equipos por definir":locked?"🔒 CERRADO":""}</div>
           </div>
-          <div class="vs-label">${sinEq?"⏳ Equipos por definir":locked?"🔒 CERRADO":""}</div>
+          <div class="team-side">${p.visita?flagImg(p.visita):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.visita||"Por definir"}</div></div>
         </div>
-        <div class="team-side">${p.visita?flagImg(p.visita):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.visita||"Por definir"}</div></div>
-      </div>
-      <div class="estadio-txt">🏟️ ${p.estadio}</div>`;
-    if(!sinEq&&!locked)html+=`<button class="save-match-btn ${hasPron?'btn-saved':''}" id="btn-${p.id}" onclick="saveElimPron('${p.id}','${faseActiva}')" ${hasPron?"":"disabled"}>${hasPron?'✅ Guardado':'💾 Guardar pronóstico'}</button>`;
-    else if(res){const cls=si?(si.tipo==="exact"?"pts-exact":si.tipo==="correct"?"pts-correct":""):"";const lbl=si?(si.tipo==="exact"?"¡Score exacto! 🎯":si.tipo==="correct"?"Resultado correcto ✅":"Sin puntos ❌"):"";html+=`<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${si?` · <span class="${cls}">${lbl} +${si.pts}pts`:""}</div>`;}
-    html+=`</div>`;
+        <div class="estadio-txt">🏟️ ${p.estadio}</div>`;
+      if(!sinEq&&!locked)html+=`<button class="save-match-btn ${hasPron?'btn-saved':''}" id="btn-${p.id}" onclick="saveElimPron('${p.id}','${fase}')" ${hasPron?"":"disabled"}>${hasPron?'✅ Guardado':'💾 Guardar pronóstico'}</button>`;
+      else if(res){const cls=si?(si.tipo==="exact"?"pts-exact":si.tipo==="correct"?"pts-correct":""):"";const lbl=si?(si.tipo==="exact"?"¡Score exacto! 🎯":si.tipo==="correct"?"Resultado correcto ✅":"Sin puntos ❌"):"";html+=`<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${si?` · <span class="${cls}">${lbl} +${si.pts}pts`:""}</div>`;}
+      html+=`</div>`;
+    });
+    html+="</div>";
   });
-  html+="</div>";ec.innerHTML=html;
+  ec.innerHTML=html;
 }
 
 async function saveElimPron(id,fase){
