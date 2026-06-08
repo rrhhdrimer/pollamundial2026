@@ -30,6 +30,9 @@
   .login-error{color:#c0392b;font-size:17px;margin-top:8px;min-height:20px;}
   .login-loader{color:#384967;font-size:17px;margin-top:8px;min-height:20px;}
   .login-toggle{font-size:15px;color:#384967;margin-top:14px;}
+  .login-btn:disabled{opacity:0.85;cursor:not-allowed;transform:none;}
+  @keyframes spin-btn{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .btn-spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(10,14,26,0.3);border-top-color:#0A0E1A;border-radius:50%;animation:spin-btn 0.7s linear infinite;vertical-align:middle;margin-right:8px;}
   .login-toggle span{color:#1a5fa8;cursor:pointer;font-weight:600;text-decoration:underline;}
   .login-toggle span:hover{color:#384967;}
   .register-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#384967;letter-spacing:2px;margin-bottom:16px;}
@@ -97,8 +100,8 @@
   .score-input:disabled{opacity:.4;cursor:not-allowed;background:#c8d8e8;}
   .score-sep{color:#1a3a4f;font-size:28px;}
   .vs-label{font-size:13px;color:#1a3a4f;letter-spacing:2px;min-height:18px;}
-  .match-date-center{font-size:14px;color:#1a3a4f;text-align:center;margin-bottom:8px;font-weight:600;}
-  .estadio-txt{font-size:16px;color:#1a3a4f;text-align:center;margin-top:8px;}
+  .match-date-center{font-size:17px;color:#1a3a4f;text-align:center;margin-bottom:8px;font-weight:600;}
+  .estadio-txt{font-size:17px;color:#1a3a4f;text-align:center;margin-top:8px;}
   .save-match-btn{width:100%;margin-top:14px;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:19px;cursor:pointer;transition:background .2s;}
   .save-match-btn:hover:not(:disabled){background:#e6b830;}
   .save-match-btn:disabled{background:#b0c4d8;color:#6a8a9a;cursor:not-allowed;}
@@ -150,37 +153,37 @@
   /* CÓMO SE JUEGA */
   .cj-welcome{text-align:center;padding:32px 24px;background:#DDE5ED;border:1px solid #b0c4d8;border-radius:16px;margin-bottom:28px;}
   .cj-welcome-icon{font-size:52px;margin-bottom:12px;}
-  .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;-webkit-text-stroke:1.5px #051C2C;text-shadow:1px 1px 0 #051C2C,-1px -1px 0 #051C2C,1px -1px 0 #051C2C,-1px 1px 0 #051C2C;}
-  .cj-welcome-text{font-size:18px;color:#051C2C;line-height:1.7;max-width:600px;margin:0 auto;}
-  .cj-welcome-text strong{color:#051C2C;}
+  .cj-welcome-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#C8860A;letter-spacing:3px;margin-bottom:10px;-webkit-text-stroke:1px #1a3a4f;text-shadow:1px 1px 0 #1a3a4f,-1px -1px 0 #1a3a4f,1px -1px 0 #1a3a4f,-1px 1px 0 #1a3a4f;}
+  .cj-welcome-text{font-size:18px;color:#1a3a4f;line-height:1.7;max-width:600px;margin:0 auto;}
+  .cj-welcome-text strong{color:#1a3a4f;}
   .cj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   .cj-block{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:16px;padding:28px 24px;text-align:center;}
   .cj-icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;}
-  .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#051C2C;letter-spacing:1px;margin-bottom:12px;}
-  .cj-block-text{font-size:16px;color:#051C2C;line-height:1.7;text-align:left;}
-  .cj-block-text strong{color:#051C2C;font-weight:700;}
+  .cj-block-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a3a4f;letter-spacing:1px;margin-bottom:12px;}
+  .cj-block-text{font-size:16px;color:#1a3a4f;line-height:1.7;text-align:left;}
+  .cj-block-text strong{color:#1a3a4f;font-weight:700;}
   .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
-  .cj-list li{font-size:15px;color:#051C2C;}
-  .cj-list li strong{color:var(--gold-dark);}
+  .cj-list li{font-size:15px;color:#1a3a4f;}
+  .cj-list li strong{color:#C8860A;}
 
   /* PREMIOS */
-  .premios-section{margin-top:32px;text-align:center;}
-  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:6px;}
-  .premios-sub{font-size:17px;color:var(--text2);margin-bottom:28px;}
+  .premios-section{text-align:center;}
+  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a3a4f;letter-spacing:1px;margin-bottom:6px;}
+  .premios-sub{font-size:16px;color:#1a3a4f;margin-bottom:24px;}
   .premios-grid{display:flex;align-items:flex-end;justify-content:center;gap:16px;margin-bottom:20px;}
   .premio-card{background:#DDE5ED;border:2px solid #b0c4d8;border-radius:16px;padding:24px 20px;text-align:center;position:relative;transition:transform .2s;}
   .premio-card:hover{transform:translateY(-4px);}
-  .premio-1{border-color:var(--gold);background:rgba(245,200,66,0.08);min-width:180px;padding:32px 24px;}
-  .premio-2{border-color:#C0C0C0;background:rgba(192,192,192,0.08);min-width:150px;}
-  .premio-3{border-color:#CD7F32;background:rgba(205,127,50,0.08);min-width:150px;}
+  .premio-1{border-color:#C8860A;background:rgba(200,134,10,0.08);min-width:180px;padding:32px 24px;}
+  .premio-2{border-color:#888;background:rgba(136,136,136,0.08);min-width:150px;}
+  .premio-3{border-color:#8B5E2E;background:rgba(139,94,46,0.08);min-width:150px;}
   .premio-crown{font-size:28px;margin-bottom:4px;}
   .premio-medal{font-size:44px;margin-bottom:8px;}
   .premio-1 .premio-medal{font-size:52px;}
   .premio-puesto{font-size:15px;font-weight:700;color:#1a3a4f;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
   .premio-monto{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#C8860A;letter-spacing:2px;line-height:1;}
-  .premio-1 .premio-monto{font-size:64px;color:var(--gold-dark);}
+  .premio-1 .premio-monto{font-size:64px;color:#C8860A;}
   .premio-label{font-size:14px;color:#1a3a4f;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:4px;}
-  .premios-nota{font-size:15px;color:var(--text2);background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:12px 20px;display:inline-block;}
+  .premios-nota{font-size:15px;color:#1a3a4f;background:rgba(200,134,10,0.08);border:1px solid rgba(200,134,10,0.25);border-radius:10px;padding:12px 20px;display:inline-block;}
   .notice strong{color:#1a3a4f;display:block;margin-bottom:3px;font-size:19px;}
   .notice span{color:#1a3a4f;font-size:18px;}
 
@@ -467,8 +470,9 @@
       </div>
 
       <!-- PREMIOS -->
-      <div class="premios-section">
-        <div class="premios-title">🎁 PREMIOS</div>
+      <div class="cj-block premios-section">
+        <div class="cj-icon" style="background:#C8860A">🎁</div>
+        <div class="premios-title">PREMIOS</div>
         <div class="premios-sub">Los tres mejores pronósticos del torneo se llevan:</div>
         <div class="premios-grid">
           <div class="premio-card premio-2">
@@ -685,9 +689,13 @@ async function doRegister(){
   if(!area){err.textContent="Selecciona tu área";return;}
   if(!/^\d{4}$/.test(pin)){err.textContent="El PIN debe ser exactamente 4 dígitos";return;}
   if(pin!==pin2){err.textContent="Los PINs no coinciden";return;}
-  err.textContent="";ldr.textContent="Registrando...";
+  err.textContent="";
+  const regBtn=document.querySelector("#panel-registro .login-btn");
+  regBtn.disabled=true;
+  regBtn.innerHTML='<span class="btn-spinner"></span>Registrando...';
   const r=await api("register",{username:nombre,gerencia,area,pin});
-  ldr.textContent="";
+  regBtn.disabled=false;
+  regBtn.innerHTML="✅ REGISTRARME";
   if(!r.ok){err.textContent=r.error||"Error al registrar";return;}
   await enterApp(nombre);
 }
@@ -700,9 +708,13 @@ async function doLogin(){
   if(!document.getElementById("login-nombre").value.trim()){err.textContent="Ingresa tu nombre";return;}
   if(!document.getElementById("login-apellido").value.trim()){err.textContent="Ingresa tu apellido";return;}
   if(!/^\d{4}$/.test(pin)){err.textContent="Ingresa tu PIN de 4 dígitos";return;}
-  err.textContent="";ldr.textContent="Verificando...";
+  err.textContent="";
+  const loginBtn=document.querySelector("#panel-login .login-btn");
+  loginBtn.disabled=true;
+  loginBtn.innerHTML='<span class="btn-spinner"></span>Ingresando...';
   const r=await api("loginPin",{username:name,pin});
-  ldr.textContent="";
+  loginBtn.disabled=false;
+  loginBtn.innerHTML="⚡ ENTRAR A JUGAR";
   if(!r.ok){err.textContent=r.error||"Error al ingresar";return;}
   await enterApp(name);
 }
