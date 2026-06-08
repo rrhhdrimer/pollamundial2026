@@ -129,7 +129,7 @@
   .phase-card.locked{opacity:.4;}
   .phase-icon{font-size:32px;margin-bottom:8px;}
   .phase-name{font-weight:700;font-size:19px;color:#051C2C;}
-  .phase-pts{font-size:17px;color:var(--gold-dark);-webkit-text-stroke:0.5px #1a3a4f;color:var(--gold);margin-top:3px;}
+  .phase-pts{font-size:17px;color:#C8860A;color:var(--gold);margin-top:3px;}
   .phase-dates{font-size:16px;color:#1a3a4f;color:var(--text2);margin-top:4px;}
   .phase-badge{margin-top:10px;font-size:16px;background:rgba(5,28,44,0.1);color:#1a3a4f;border-radius:10px;padding:3px 10px;display:inline-block;}
   .phase-badge.open{background:rgba(37,168,101,.2);color:#1A7A4A;font-weight:700;border:1px solid #1A7A4A;}
@@ -916,7 +916,7 @@ function renderGrupos() {
               <span class="score-sep">:</span>
               <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:''}" placeholder="0" ${locked?'disabled':''} oninput="onInput('${p.id}')">
             </div>
-            <div class="vs-label">${locked&&!TEST_MODE?'🔒 CERRADO':'VS'}</div>
+            <div class="vs-label">${locked&&!TEST_MODE?'🔒 CERRADO':''}</div>
           </div>
           <div class="team-side">${flagImg(p.visita)}<div class="team-name-txt">${p.visita}</div></div>
         </div>
