@@ -535,7 +535,7 @@
     <div id="tab-grupos" style="display:none">
       <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase de Grupos</span></div>
       <div class="section-sub">72 partidos · 11 Jun – 27 Jun 2026 · Hora Perú (GMT-5)</div>
-      <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico hasta <strong>30 minutos antes</strong> del inicio de cada partido.</span><span>El campo se bloquea automáticamente.</span></div>
+      <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico hasta 30 minutos antes del inicio de cada partido.</span><span>El campo se bloquea automáticamente.</span></div>
       <div id="grupos-content"><div class="loader">⏳ Cargando partidos...</div></div>
     </div>
     <div id="tab-eliminatorias" style="display:none">
@@ -1179,15 +1179,42 @@ async function loadEspAnswers(key){
 }
 
 async function toggleEspManual(key,answer,usersStr,pts,btn){
-  const isValid=btn.textContent.includes('Válido')&&!btn.textContent.includes('Marcar');
-  // Toggle: if already valid → remove, else → add
+  const isValid=btn.textContent.includes('✅');
   const action=isValid?'removeEspManual':'addEspManual';
   const users=usersStr.split(',').map(u=>u.trim()).filter(Boolean);
+
+  // Show loading state
+  const prevText=btn.textContent;
+  btn.textContent='⏳...'; btn.disabled=true;
+
   const r=await api(action,{key,answer,users,pts});
+
   if(r.ok){
-    showToast(isValid?'Puntaje removido':'✅ Puntaje asignado a '+users.length+' usuario(s)','success');
-    await loadEspAnswers(key);
-  }else showToast('Error al guardar','error');
+    // Update button in place — no reload, no collapse
+    if(isValid){
+      // Was valid → now unmarked
+      btn.textContent='Marcar válido';
+      btn.style.background='var(--gold)';
+      btn.style.color='#0A0E1A';
+      // Update card background
+      const card=btn.closest('div[style*="border"]');
+      if(card){card.style.background='rgba(5,28,44,0.05)';card.style.borderColor='#b0c4d8';}
+      showToast('Puntaje removido','error');
+    }else{
+      // Was unmarked → now valid
+      btn.textContent='✅ Válido';
+      btn.style.background='#1a3a4f';
+      btn.style.color='#fff';
+      // Update card background
+      const card=btn.closest('div[style*="border"]');
+      if(card){card.style.background='rgba(37,168,101,0.1)';card.style.borderColor='#1A7A4A';}
+      showToast('✅ Puntaje asignado a '+users.length+' usuario(s)','success');
+    }
+    btn.disabled=false;
+  }else{
+    btn.textContent=prevText; btn.disabled=false;
+    showToast('Error al guardar','error');
+  }
 }
 
 async function saveElimTeams(matchId,btn){
