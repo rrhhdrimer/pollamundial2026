@@ -37,7 +37,7 @@
 
   /* APP */
   #app{display:none;}
-  .app-header{background:#DDE5ED;border-bottom:2px solid #b0c4d8;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:80px;position:sticky;top:0;z-index:100;}
+  .app-header{background:#DDE5ED;border-bottom:2px solid #b0c4d8;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:96px;position:sticky;top:0;z-index:100;}
   .app-logo{display:flex;align-items:center;}
   .header-right{display:flex;align-items:center;gap:10px;}
   .user-pill{background:rgba(56,73,103,0.1);border:1px solid #b0c4d8;border-radius:20px;padding:6px 14px;font-size:15px;color:#384967;}
@@ -55,8 +55,10 @@
   .nav-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
 
   .main-content{padding:22px;max-width:960px;margin:0 auto;}
-  .section-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;}
-  .section-sub{color:var(--text2);font-size:16px;margin-bottom:20px;}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px;margin-bottom:4px;display:flex;align-items:center;gap:12px;}
+  .section-title .st-emoji{font-size:32px;flex-shrink:0;line-height:1;}
+  .section-title .st-text{flex:1;text-align:center;}
+  .section-sub{color:var(--text2);font-size:19px;margin-bottom:20px;}
 
   /* LEADERBOARD */
   .lb-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:var(--radius);overflow:hidden;}
@@ -69,8 +71,8 @@
   .rk2{background:#C0C0C0;color:#0A0E1A;}
   .rk3{background:#CD7F32;color:#fff;}
   .rkn{background:var(--dark4);color:var(--text2);}
-  .lb-name{flex:1;font-size:18px;font-weight:600;}
-  .lb-sub{font-size:14px;color:var(--text2);}
+  .lb-name{flex:1;font-size:22px;font-weight:600;}
+  .lb-sub{font-size:17px;color:var(--text2);}
   .lb-pts{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);}
   .lb-pts-label{font-size:13px;color:var(--text2);text-align:right;}
   .you-tag{font-size:12px;color:var(--gold);background:rgba(245,200,66,.1);border-radius:4px;padding:2px 7px;margin-left:6px;}
@@ -81,12 +83,12 @@
   .match-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;}
   .match-card.saved{border-left:3px solid var(--green);}
   .match-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-  .match-group-tag{font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;background:var(--dark3);border-radius:4px;padding:3px 10px;}
-  .match-date-tag{font-size:14px;color:var(--text2);}
+  .match-group-tag{font-size:16px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;background:var(--dark3);border-radius:4px;padding:3px 10px;}
+  .match-date-tag{font-size:17px;color:var(--text2);}
   .match-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;}
   .team-side{display:flex;flex-direction:column;align-items:center;gap:8px;}
   .team-flag-img{width:72px;height:54px;border-radius:8px;object-fit:cover;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.4);}
-  .team-name-txt{font-size:16px;font-weight:600;text-align:center;line-height:1.2;}
+  .team-name-txt{font-size:19px;font-weight:600;text-align:center;line-height:1.2;}
   .score-zone{display:flex;flex-direction:column;align-items:center;gap:6px;}
   .score-inputs-row{display:flex;align-items:center;gap:8px;}
   .score-input{width:56px;height:56px;background:var(--dark3);border:1.5px solid var(--dark4);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;text-align:center;outline:none;transition:border-color .2s;}
@@ -94,14 +96,14 @@
   .score-input:disabled{opacity:.5;cursor:not-allowed;}
   .score-sep{color:var(--text3);font-size:28px;}
   .vs-label{font-size:13px;color:var(--text3);letter-spacing:2px;}
-  .estadio-txt{font-size:13px;color:var(--text3);text-align:center;margin-top:8px;}
-  .save-match-btn{width:100%;margin-top:14px;background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:16px;cursor:pointer;transition:background .2s;}
+  .estadio-txt{font-size:16px;color:var(--text3);text-align:center;margin-top:8px;}
+  .save-match-btn{width:100%;margin-top:14px;background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-weight:600;font-size:19px;cursor:pointer;transition:background .2s;}
   .save-match-btn:hover:not(:disabled){background:var(--green-light);}
   .save-match-btn:disabled{background:var(--dark4);color:var(--text3);cursor:not-allowed;}
-  .match-result-info{margin-top:12px;font-size:15px;color:var(--text2);text-align:center;padding:10px;background:var(--dark3);border-radius:8px;}
+  .match-result-info{margin-top:12px;font-size:18px;color:var(--text2);text-align:center;padding:10px;background:var(--dark3);border-radius:8px;}
   .pts-exact{color:var(--gold);font-weight:700;}
   .pts-correct{color:var(--green-light);font-weight:700;}
-  .locked-overlay{font-size:14px;color:var(--text3);text-align:center;margin-top:10px;}
+  .locked-overlay{font-size:17px;color:var(--text3);text-align:center;margin-top:10px;}
 
   /* ESPECIALES */
   .especiales-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;}
@@ -110,14 +112,14 @@
   .esp-card.esp-saved{border-color:var(--green);}
   .esp-card.esp-locked{opacity:.6;}
   .esp-icon{font-size:52px;margin-bottom:10px;display:block;}
-  .esp-title{font-weight:700;font-size:18px;margin-bottom:4px;}
-  .esp-desc{font-size:14px;color:var(--text2);margin-bottom:10px;}
-  .esp-pts{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);margin-bottom:14px;}
-  .esp-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:11px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;outline:none;text-align:center;}
+  .esp-title{font-weight:700;font-size:22px;margin-bottom:4px;}
+  .esp-desc{font-size:17px;color:var(--text2);margin-bottom:10px;}
+  .esp-pts{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);margin-bottom:14px;}
+  .esp-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:11px 12px;color:var(--text);font-family:'Outfit',sans-serif;font-size:19px;outline:none;text-align:center;}
   .esp-input:focus{border-color:var(--gold);}
   select.esp-input{appearance:none;cursor:pointer;}
   .esp-saved-tag{margin-top:8px;font-size:14px;color:var(--green-light);background:rgba(37,168,101,.1);border-radius:6px;padding:4px 8px;}
-  .save-esp-btn{width:100%;margin-top:22px;background:var(--gold);color:#0A0E1A;border:none;border-radius:10px;padding:15px;font-family:'Outfit',sans-serif;font-weight:700;font-size:17px;cursor:pointer;}
+  .save-esp-btn{width:100%;margin-top:22px;background:var(--gold);color:#0A0E1A;border:none;border-radius:10px;padding:15px;font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;cursor:pointer;}
   .save-esp-btn:hover{background:#e6b830;}
 
   /* FASES */
@@ -126,10 +128,10 @@
   .phase-card.unlocked{border-color:var(--gold);background:rgba(245,200,66,.04);}
   .phase-card.locked{opacity:.4;}
   .phase-icon{font-size:32px;margin-bottom:8px;}
-  .phase-name{font-weight:700;font-size:16px;}
-  .phase-pts{font-size:14px;color:var(--gold);margin-top:3px;}
-  .phase-dates{font-size:13px;color:var(--text2);margin-top:4px;}
-  .phase-badge{margin-top:10px;font-size:13px;background:var(--dark3);color:var(--text3);border-radius:10px;padding:3px 10px;display:inline-block;}
+  .phase-name{font-weight:700;font-size:19px;}
+  .phase-pts{font-size:17px;color:var(--gold);margin-top:3px;}
+  .phase-dates{font-size:16px;color:var(--text2);margin-top:4px;}
+  .phase-badge{margin-top:10px;font-size:16px;background:var(--dark3);color:var(--text3);border-radius:10px;padding:3px 10px;display:inline-block;}
   .phase-badge.open{background:rgba(37,168,101,.15);color:var(--green-light);}
 
   /* ADMIN */
@@ -142,8 +144,8 @@
   .admin-save-btn{background:var(--gold);color:#0A0E1A;border:none;border-radius:6px;padding:9px 16px;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;cursor:pointer;}
 
   .notice{background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;}
-  .notice strong{color:var(--gold);display:block;margin-bottom:3px;font-size:16px;}
-  .notice span{color:var(--text2);font-size:15px;}
+  .notice strong{color:var(--gold);display:block;margin-bottom:3px;font-size:19px;}
+  .notice span{color:var(--text2);font-size:18px;}
 
   #toast{position:fixed;bottom:24px;right:24px;background:var(--dark2);border:1px solid var(--dark4);border-radius:12px;padding:14px 22px;font-size:16px;color:var(--text);z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.4);}
   #toast.show{opacity:1;}
@@ -157,84 +159,129 @@
 
   /* ── TABLET (601–900px) ── */
   @media(min-width:601px) and (max-width:900px){
-    .app-header{height:70px;padding:0 16px;}
-    .app-header img{height:52px !important;}
-    .nav-tab{padding:12px 14px;font-size:14px;}
+    .app-header{height:78px;padding:0 14px;}
+    .app-header .app-logo img{height:78px !important;}
+    .app-header > div:nth-child(2) img{height:56px !important;}
+    .app-header > div:nth-child(2) div{font-size:12px !important;}
+    .nav-tab{padding:11px 12px;font-size:13px;}
     .main-content{padding:16px;}
+    .section-title{font-size:28px;}
+    .section-sub{font-size:16px;}
     .especiales-grid{grid-template-columns:repeat(2,1fr);}
     .team-flag-img{width:56px;height:42px;}
-    .score-input{width:48px;height:48px;font-size:22px;}
-    .lb-pts{font-size:26px;}
+    .team-name-txt{font-size:15px;}
+    .score-input{width:50px;height:50px;font-size:22px;}
+    .lb-pts{font-size:24px;}
+    .lb-name{font-size:18px;}
+    .match-date-tag{font-size:13px;}
+    .match-group-tag{font-size:12px;}
   }
 
   /* ── MÓVIL ALTA GAMA (411–600px) ── */
   @media(max-width:600px){
     body{font-size:15px;}
     /* Header */
-    .app-header{height:58px;padding:0 10px;}
-    .app-header img{height:44px !important;}
+    .app-header{height:56px;padding:0 8px;}
+    .app-header .app-logo img{height:56px !important;}
+    .app-header > div:nth-child(2){display:none;}
     .user-pill{display:none;}
     .logout-btn{padding:5px 10px;font-size:13px;}
     /* Nav */
-    .nav-tabs{padding:0 8px;}
-    .nav-tab{padding:9px 10px;font-size:12px;max-width:none;}
+    .nav-tabs{padding:0 4px;}
+    .nav-tab{padding:8px 8px;font-size:11px;max-width:none;}
+    .st-emoji{font-size:22px !important;}
+    /* Section titles */
+    .section-title{font-size:22px;}
+    .section-sub{font-size:13px;margin-bottom:14px;}
     /* Contenido */
-    .main-content{padding:12px;}
-    .section-title{font-size:24px;}
-    .section-sub{font-size:13px;}
+    .main-content{padding:10px;}
+    .notice{padding:10px 12px;}
+    .notice strong{font-size:14px !important;}
+    .notice span{font-size:13px !important;}
     /* Partidos */
-    .match-card{padding:12px 14px;}
-    .match-body{gap:6px;}
-    .team-flag-img{width:44px;height:33px;border-radius:5px;}
+    .grupo-header{font-size:17px;}
+    .match-card{padding:10px 12px;margin-bottom:8px;}
+    .match-meta{margin-bottom:10px;}
+    .match-group-tag{font-size:11px;}
+    .match-date-tag{font-size:11px;}
+    .match-body{gap:4px;}
+    .team-flag-img{width:40px;height:30px;border-radius:4px;}
     .team-name-txt{font-size:11px;}
-    .score-input{width:42px;height:42px;font-size:19px;}
+    .score-input{width:40px;height:40px;font-size:18px;}
+    .score-sep{font-size:18px;}
     .estadio-txt{font-size:11px;}
+    .save-match-btn{font-size:13px;padding:9px;}
+    .match-result-info{font-size:13px;}
+    .locked-overlay{font-size:12px;}
     /* Especiales */
-    .especiales-grid{grid-template-columns:repeat(2,1fr);}
-    .esp-icon{font-size:36px;}
+    .especiales-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+    .esp-card{padding:14px 10px;}
+    .esp-icon{font-size:32px;}
     .esp-title{font-size:15px;}
-    .esp-pts{font-size:22px;}
+    .esp-desc{font-size:12px;}
+    .esp-pts{font-size:24px;}
+    .esp-input{font-size:13px;padding:8px 10px;}
+    .save-esp-btn{font-size:15px;padding:12px;}
     /* Leaderboard */
-    .lb-row{padding:12px 12px;gap:8px;}
-    .lb-pts{font-size:22px;}
+    .lb-row{padding:10px 10px;gap:8px;}
+    .rank-num{width:28px;height:28px;font-size:12px;}
+    .lb-pts{font-size:20px;}
     .lb-name{font-size:14px;}
-    .lb-sub{font-size:12px;}
+    .lb-sub{font-size:11px;}
+    /* Fases */
+    .phase-grid{grid-template-columns:repeat(2,1fr);}
+    .phase-card{padding:14px 10px;}
+    .phase-icon{font-size:24px;}
+    .phase-name{font-size:14px;}
+    .phase-pts{font-size:12px;}
+    .phase-dates{font-size:11px;}
     /* Login */
-    .login-box{padding:18px 16px 26px;}
-    .login-ball-wrap img{width:200px !important;}
+    .login-box{padding:16px 14px 24px;}
+    .login-ball-wrap img{width:180px !important;}
     .login-hosts{gap:8px;}
-    .login-edition{font-size:11px;letter-spacing:1px;}
-    .grupo-header{font-size:18px;}
+    .login-edition{font-size:10px;letter-spacing:1px;}
+    .login-box input{font-size:15px;padding:11px 12px;}
+    .login-box select{font-size:14px;padding:11px 12px;}
+    .login-btn{font-size:15px;padding:13px;}
     /* Admin */
     .admin-row{gap:6px;}
-    .admin-label{font-size:12px;}
+    .admin-label{font-size:12px;min-width:100px;}
+    .admin-score-input{width:42px;font-size:13px;}
   }
 
   /* ── MÓVIL BAJA GAMA (hasta 360px) ── */
   @media(max-width:360px){
-    body{font-size:14px;}
-    .app-header{height:52px;padding:0 8px;}
-    .app-header img{height:38px !important;}
-    .nav-tab{padding:8px 7px;font-size:11px;}
-    .section-title{font-size:20px;}
-    .match-body{gap:4px;}
-    .team-flag-img{width:36px;height:27px;}
+    body{font-size:13px;}
+    .app-header{height:48px;padding:0 6px;}
+    .app-header .app-logo img{height:48px !important;}
+    .nav-tab{padding:7px 5px;font-size:10px;}
+    .st-emoji{font-size:18px !important;}
+    .section-title{font-size:19px;}
+    .match-body{gap:2px;}
+    .team-flag-img{width:32px;height:24px;}
     .team-name-txt{font-size:10px;}
-    .score-input{width:38px;height:38px;font-size:17px;}
+    .score-input{width:34px;height:34px;font-size:15px;}
+    .score-sep{font-size:15px;}
     .especiales-grid{grid-template-columns:1fr 1fr;}
-    .esp-icon{font-size:28px;}
-    .esp-pts{font-size:18px;}
-    .lb-pts{font-size:20px;}
+    .esp-icon{font-size:26px;}
+    .esp-title{font-size:13px;}
+    .esp-pts{font-size:20px;}
+    .lb-pts{font-size:18px;}
     .lb-name{font-size:13px;}
-    .login-box{padding:14px 12px 22px;}
-    .login-ball-wrap img{width:170px !important;}
-    .login-btn{font-size:15px;padding:12px;}
-    .save-match-btn{font-size:13px;padding:10px;}
+    .lb-sub{font-size:10px;}
+    .login-box{padding:12px 10px 20px;}
+    .login-ball-wrap img{width:150px !important;}
+    .login-btn{font-size:14px;padding:11px;}
+    .save-match-btn{font-size:12px;padding:8px;}
+    .phase-grid{grid-template-columns:1fr 1fr;}
   }
 
   /* ── PC GRANDE (1200px+) ── */
   @media(min-width:1200px){
     .main-content{max-width:1100px;}
+    .especiales-grid{grid-template-columns:repeat(4,1fr);}
+    .phase-grid{grid-template-columns:repeat(5,1fr);}
+  }
     .especiales-grid{grid-template-columns:repeat(4,1fr);}
     .phase-grid{grid-template-columns:repeat(5,1fr);}
   }
@@ -303,11 +350,13 @@
   <div class="app-header">
     <!-- Izquierda: Logo La Polla Drimer -->
     <div class="app-logo">
-      <img src="./LPD_Logo.png" alt="La Polla Drimer" style="height:64px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.2))">
+      <img src="./LPD_Logo.png" alt="La Polla Drimer" style="height:96px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.2))">
     </div>
-    <!-- Centro: Logo oficial Mundial -->
-    <div style="position:absolute;left:50%;transform:translateX(-50%);">
-      <img src="./Mundial_logo.png" alt="FIFA Mundial 2026" style="height:64px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.15))" onerror="this.style.display='none'">
+    <!-- Centro: texto + logo mundial + países -->
+    <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:#384967;text-align:right;line-height:1.3;white-space:nowrap;">COPA MUNDIAL<br>DE FÚTBOL 2026</div>
+      <img src="./Mundial_logo.png" alt="FIFA Mundial 2026" style="height:72px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.15))" onerror="this.style.display='none'">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:#384967;text-align:left;line-height:1.7;white-space:nowrap;">🇺🇸 USA<br>🇨🇦 Canadá &nbsp;·&nbsp; 🇲🇽 México</div>
     </div>
     <!-- Derecha: Usuario y salir -->
     <div class="header-right">
@@ -320,28 +369,28 @@
     <div class="nav-tab" data-tab="especiales" onclick="showTab('especiales',this)">⭐ Predicciones Especiales</div>
     <div class="nav-tab" data-tab="grupos" onclick="showTab('grupos',this)">⚽ Fase de Grupos</div>
     <div class="nav-tab" data-tab="eliminatorias" onclick="showTab('eliminatorias',this)">⚽ Fase Eliminatoria</div>
-    <div class="nav-tab" data-tab="leaderboard" onclick="showTab('leaderboard',this)">🏆 Ranking</div>
+    <div class="nav-tab" data-tab="leaderboard" onclick="showTab('leaderboard',this)">🏆 Tabla de Posiciones</div>
     <div class="nav-tab" data-tab="admin" id="admin-tab" style="display:none" onclick="showTab('admin',this)">🔧 Admin</div>
   </div>
   <div class="main-content">
     <div id="tab-comojuega">
-      <div class="section-title">❓ ¿Cómo se juega?</div>
+      <div class="section-title"><span class="st-emoji">⚡</span><span class="st-text">¿Cómo se juega?</span></div>
       <div class="section-sub">Guía rápida para participar en la Polla Mundial 2026</div>
       <div class="notice"><strong>Próximamente</strong><span>Aquí irán las instrucciones del juego.</span></div>
     </div>
     <div id="tab-leaderboard" style="display:none">
-      <div class="section-title">🏆 Tabla de Posiciones</div>
+      <div class="section-title"><span class="st-emoji">🏆</span><span class="st-text">Tabla de Posiciones</span></div>
       <div class="section-sub">Puntajes actualizados en tiempo real</div>
       <div id="leaderboard-content"><div class="loader">⏳ Cargando clasificación...</div></div>
     </div>
     <div id="tab-grupos" style="display:none">
-      <div class="section-title">⚽ Fase de Grupos</div>
+      <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase de Grupos</span></div>
       <div class="section-sub">72 partidos · 11 Jun – 27 Jun 2026 · Hora Lima (GMT-5)</div>
       <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico antes de que empiece cada partido. El campo se bloquea automáticamente a la hora de inicio.</span></div>
       <div id="grupos-content"><div class="loader">⏳ Cargando partidos...</div></div>
     </div>
     <div id="tab-eliminatorias" style="display:none">
-      <div class="section-title">🔥 Fase Eliminatoria</div>
+      <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase Eliminatoria</span></div>
       <div class="section-sub">Se desbloquean conforme avanza el torneo</div>
       <div class="phase-grid">
         <div class="phase-card unlocked"><div class="phase-icon">3️⃣2️⃣</div><div class="phase-name">Dieciseisavos</div><div class="phase-pts">2pts / 6pts exacto</div><div class="phase-dates">28 Jun – 3 Jul</div><div class="phase-badge open">Abre 27 Jun</div></div>
@@ -353,12 +402,12 @@
       <div class="empty-state"><div class="ei">🔒</div><div>Las eliminatorias abren el 27 de junio</div></div>
     </div>
     <div id="tab-especiales" style="display:none">
-      <div class="section-title">⭐ Predicciones Especiales</div>
+      <div class="section-title"><span class="st-emoji">⭐</span><span class="st-text">Predicciones Especiales</span></div>
       <div class="section-sub">Hazlas antes del 11 de junio · Una sola oportunidad</div>
       <div id="especiales-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
     <div id="tab-admin" style="display:none">
-      <div class="section-title">🔧 Panel Admin</div>
+      <div class="section-title"><span class="st-emoji">🔧</span><span class="st-text">Panel Admin</span></div>
       <div class="section-sub">Ingresa resultados reales para calcular puntajes automáticamente</div>
       <div id="admin-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
