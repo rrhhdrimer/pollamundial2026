@@ -162,6 +162,25 @@
   .cj-list{margin:10px 0 0 18px;display:flex;flex-direction:column;gap:6px;}
   .cj-list li{font-size:15px;color:#051C2C;}
   .cj-list li strong{color:var(--gold-dark);}
+
+  /* PREMIOS */
+  .premios-section{margin-top:32px;text-align:center;}
+  .premios-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:3px;margin-bottom:6px;}
+  .premios-sub{font-size:17px;color:var(--text2);margin-bottom:28px;}
+  .premios-grid{display:flex;align-items:flex-end;justify-content:center;gap:16px;margin-bottom:20px;}
+  .premio-card{background:#DDE5ED;border:2px solid #b0c4d8;border-radius:16px;padding:24px 20px;text-align:center;position:relative;transition:transform .2s;}
+  .premio-card:hover{transform:translateY(-4px);}
+  .premio-1{border-color:var(--gold);background:rgba(245,200,66,0.08);min-width:180px;padding:32px 24px;}
+  .premio-2{border-color:#C0C0C0;background:rgba(192,192,192,0.08);min-width:150px;}
+  .premio-3{border-color:#CD7F32;background:rgba(205,127,50,0.08);min-width:150px;}
+  .premio-crown{font-size:28px;margin-bottom:4px;}
+  .premio-medal{font-size:44px;margin-bottom:8px;}
+  .premio-1 .premio-medal{font-size:52px;}
+  .premio-puesto{font-size:15px;font-weight:700;color:#1a3a4f;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+  .premio-monto{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#C8860A;letter-spacing:2px;line-height:1;}
+  .premio-1 .premio-monto{font-size:64px;color:var(--gold-dark);}
+  .premio-label{font-size:14px;color:#1a3a4f;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:4px;}
+  .premios-nota{font-size:15px;color:var(--text2);background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:12px 20px;display:inline-block;}
   .notice strong{color:#1a3a4f;display:block;margin-bottom:3px;font-size:19px;}
   .notice span{color:#1a3a4f;font-size:18px;}
 
@@ -176,130 +195,180 @@
 
 
   /* ── TABLET (601–900px) ── */
-  @media(min-width:601px) and (max-width:900px){
-    .app-header{height:78px;padding:0 14px;}
-    .app-header .app-logo img{height:78px !important;}
-    .app-header > div:nth-child(2) img{height:56px !important;}
+  /* ════════════════════════════════════════
+     RESPONSIVE — Solo modifica tamaños para
+     pantallas pequeñas. NO toca el CSS base.
+     ════════════════════════════════════════ */
+
+  /* ── TABLET (601–960px) ── */
+  @media(max-width:960px){
     .app-header > div:nth-child(2) div{font-size:12px !important;}
-    .nav-tab{padding:11px 12px;font-size:13px;}
-    .main-content{padding:16px;}
-    .section-title{font-size:28px;}
-    .section-sub{font-size:16px;}
+    .app-header > div:nth-child(2) img{height:50px !important;}
+    .nav-tab{padding:10px 12px;font-size:13px;}
     .especiales-grid{grid-template-columns:repeat(2,1fr);}
-    .team-flag-img{width:56px;height:42px;}
-    .team-name-txt{font-size:15px;}
-    .score-input{width:50px;height:50px;font-size:22px;}
-    .lb-pts{font-size:24px;}
-    .lb-name{font-size:18px;}
-    .match-date-tag{font-size:13px;}
-    .match-group-tag{font-size:12px;}
+    .cj-grid{grid-template-columns:repeat(2,1fr);}
+    .premios-grid{gap:10px;}
+    .premio-card{min-width:120px !important;padding:20px 14px !important;}
+    .premio-1{padding:26px 18px !important;}
+    .premio-monto{font-size:40px !important;}
+    .premio-1 .premio-monto{font-size:50px !important;}
   }
 
-  /* ── MÓVIL ALTA GAMA (411–600px) ── */
+  /* ── MÓVIL (hasta 600px) ── */
   @media(max-width:600px){
+    /* Body */
     body{font-size:15px;}
+
     /* Header */
-    .app-header{height:56px;padding:0 8px;}
+    .app-header{height:56px !important;padding:0 10px;}
     .app-header .app-logo img{height:56px !important;}
-    .app-header > div:nth-child(2){display:none;}
+    .app-header > div:nth-child(2){display:none !important;}
     .user-pill{display:none;}
-    .logout-btn{padding:5px 10px;font-size:13px;}
+    .logout-btn{padding:6px 10px;font-size:13px;}
+    #admin-toggle-btn{padding:6px 10px;font-size:12px;margin-right:6px;}
+
     /* Nav */
     .nav-tabs{padding:0 4px;}
-    .nav-tab{padding:8px 8px;font-size:11px;max-width:none;}
-    .st-emoji{font-size:22px !important;}
-    /* Section titles */
+    .nav-tab{padding:8px 6px;font-size:11px;max-width:none;line-height:1.3;}
+    .st-emoji{font-size:20px !important;}
+
+    /* Sticky nav top ajustado al header móvil */
+    .nav-tabs{top:56px !important;}
+
+    /* Main */
+    .main-content{padding:12px;}
     .section-title{font-size:22px;}
-    .section-sub{font-size:13px;margin-bottom:14px;}
-    /* Contenido */
-    .main-content{padding:10px;}
+    .section-sub{font-size:13px;margin-bottom:12px;}
+    .section-title .st-emoji{font-size:20px;}
+
+    /* Notice */
     .notice{padding:10px 12px;}
     .notice strong{font-size:14px !important;}
     .notice span{font-size:13px !important;}
-    /* Partidos */
+
+    /* Match cards */
     .grupo-header{font-size:17px;}
     .match-card{padding:10px 12px;margin-bottom:8px;}
-    .match-meta{margin-bottom:10px;}
-    .match-group-tag{font-size:11px;}
+    .match-meta{margin-bottom:8px;}
+    .match-group-tag{font-size:11px;padding:2px 7px;}
     .match-date-tag{font-size:11px;}
+    .match-date-center{font-size:12px !important;margin-bottom:6px;}
     .match-body{gap:4px;}
     .team-flag-img{width:40px;height:30px;border-radius:4px;}
     .team-name-txt{font-size:11px;}
-    .score-input{width:40px;height:40px;font-size:18px;}
-    .score-sep{font-size:18px;}
+    .score-input{width:42px;height:42px;font-size:20px;}
+    .score-sep{font-size:20px;}
     .estadio-txt{font-size:11px;}
-    .save-match-btn{font-size:13px;padding:9px;}
-    .match-result-info{font-size:13px;}
+    .vs-label{font-size:11px;}
+    .save-match-btn{font-size:14px;padding:10px;}
+    .match-result-info{font-size:13px;padding:8px;}
     .locked-overlay{font-size:12px;}
+
     /* Especiales */
     .especiales-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
     .esp-card{padding:14px 10px;}
-    .esp-icon{font-size:32px;}
+    .esp-icon{font-size:34px;}
     .esp-title{font-size:15px;}
     .esp-desc{font-size:12px;}
-    .esp-pts{font-size:24px;}
-    .esp-input{font-size:13px;padding:8px 10px;}
+    .esp-pts{font-size:22px;}
+    .esp-input{font-size:14px;padding:9px 10px;}
     .save-esp-btn{font-size:15px;padding:12px;}
+    .esp-saved-tag{font-size:12px;}
+
     /* Leaderboard */
-    .lb-row{padding:10px 10px;gap:8px;}
+    .lb-card{border-radius:10px;}
+    .lb-row{padding:10px 12px;gap:8px;}
     .rank-num{width:28px;height:28px;font-size:12px;}
-    .lb-pts{font-size:20px;}
-    .lb-name{font-size:14px;}
+    .lb-name{font-size:15px;}
     .lb-sub{font-size:11px;}
-    /* Fases */
-    .phase-grid{grid-template-columns:repeat(2,1fr);}
-    .phase-card{padding:14px 10px;}
-    .phase-icon{font-size:24px;}
-    .phase-name{font-size:14px;}
-    .phase-pts{font-size:12px;}
+    .lb-pts{font-size:22px;}
+    .lb-pts-label{font-size:11px;}
+    .you-tag{font-size:10px;}
+
+    /* Fases eliminatorias */
+    .phase-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+    .phase-card{padding:12px 8px;}
+    .phase-icon{font-size:22px;margin-bottom:6px;}
+    .phase-name{font-size:13px;}
+    .phase-pts{font-size:11px;}
     .phase-dates{font-size:11px;}
+    .phase-badge{font-size:11px;}
+
+    /* Premios */
+    .premios-section{margin-top:24px;}
+    .premios-title{font-size:28px;}
+    .premios-sub{font-size:14px;margin-bottom:20px;}
+    .premios-grid{gap:8px;}
+    .premio-card{min-width:90px !important;padding:14px 8px !important;border-radius:12px;}
+    .premio-1{padding:18px 10px !important;}
+    .premio-medal{font-size:30px;}
+    .premio-1 .premio-medal{font-size:36px;}
+    .premio-crown{font-size:20px;}
+    .premio-puesto{font-size:11px;}
+    .premio-monto{font-size:30px !important;}
+    .premio-1 .premio-monto{font-size:38px !important;}
+    .premio-label{font-size:10px;}
+    .premios-nota{font-size:12px;padding:10px 14px;}
+
+    /* Cómo se juega */
+    .cj-grid{grid-template-columns:1fr;gap:12px;}
+    .cj-welcome{padding:20px 16px;}
+    .cj-welcome-icon{font-size:38px;}
+    .cj-welcome-title{font-size:26px;}
+    .cj-welcome-text{font-size:15px;}
+    .cj-block{padding:18px 14px;}
+    .cj-icon{width:60px;height:60px;font-size:26px;}
+    .cj-block-title{font-size:17px;}
+    .cj-block-text{font-size:14px;}
+    .cj-list li{font-size:13px;}
+
+    /* Admin */
+    .admin-card{padding:14px;}
+    .admin-title{font-size:13px;}
+    .admin-row{gap:5px;flex-wrap:wrap;}
+    .admin-label{font-size:11px;min-width:100%;}
+    .admin-score-input{width:44px;font-size:13px;padding:6px;}
+    .admin-save-btn{font-size:12px;padding:7px 12px;}
+
     /* Login */
-    .login-box{padding:16px 14px 24px;}
-    .login-ball-wrap img{width:180px !important;}
+    .login-box{padding:18px 16px 26px;}
+    .login-ball-wrap img{width:200px !important;}
     .login-hosts{gap:8px;}
+    .host-flag img{width:30px !important;height:22px !important;}
+    .host-flag span{font-size:10px;}
     .login-edition{font-size:10px;letter-spacing:1px;}
     .login-box input{font-size:15px;padding:11px 12px;}
     .login-box select{font-size:14px;padding:11px 12px;}
     .login-btn{font-size:15px;padding:13px;}
-    /* Admin */
-    .admin-row{gap:6px;}
-    .admin-label{font-size:12px;min-width:100px;}
-    .admin-score-input{width:42px;font-size:13px;}
+    .login-toggle{font-size:13px;}
+    .register-title{font-size:20px;}
   }
 
-  /* ── MÓVIL BAJA GAMA (hasta 360px) ── */
-  @media(max-width:360px){
-    body{font-size:13px;}
-    .app-header{height:48px;padding:0 6px;}
-    .app-header .app-logo img{height:48px !important;}
-    .nav-tab{padding:7px 5px;font-size:10px;}
-    .st-emoji{font-size:18px !important;}
+  /* ── MÓVIL PEQUEÑO (hasta 375px) ── */
+  @media(max-width:375px){
+    body{font-size:14px;}
+    .app-header{height:50px !important;}
+    .app-header .app-logo img{height:50px !important;}
+    .nav-tab{padding:7px 4px;font-size:10px;}
     .section-title{font-size:19px;}
-    .match-body{gap:2px;}
-    .team-flag-img{width:32px;height:24px;}
+    .team-flag-img{width:34px;height:26px;}
     .team-name-txt{font-size:10px;}
-    .score-input{width:34px;height:34px;font-size:15px;}
-    .score-sep{font-size:15px;}
+    .score-input{width:36px;height:36px;font-size:17px;}
+    .score-sep{font-size:17px;}
+    .cj-grid{grid-template-columns:1fr;}
     .especiales-grid{grid-template-columns:1fr 1fr;}
-    .esp-icon{font-size:26px;}
-    .esp-title{font-size:13px;}
-    .esp-pts{font-size:20px;}
-    .lb-pts{font-size:18px;}
-    .lb-name{font-size:13px;}
-    .lb-sub{font-size:10px;}
-    .login-box{padding:12px 10px 20px;}
-    .login-ball-wrap img{width:150px !important;}
-    .login-btn{font-size:14px;padding:11px;}
-    .save-match-btn{font-size:12px;padding:8px;}
     .phase-grid{grid-template-columns:1fr 1fr;}
+    .premios-grid{flex-direction:column;align-items:center;}
+    .premio-card{width:100%;max-width:220px;min-width:unset !important;}
+    .premio-1{order:-1;}
+    .lb-pts{font-size:19px;}
+    .login-ball-wrap img{width:160px !important;}
+    .nav-tabs{position:sticky;top:50px !important;}
   }
 
   /* ── PC GRANDE (1200px+) ── */
   @media(min-width:1200px){
     .main-content{max-width:1100px;}
-    .especiales-grid{grid-template-columns:repeat(4,1fr);}
-    .phase-grid{grid-template-columns:repeat(5,1fr);}
-  }
     .especiales-grid{grid-template-columns:repeat(4,1fr);}
     .phase-grid{grid-template-columns:repeat(5,1fr);}
   }
@@ -396,6 +465,35 @@
         <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
         <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>miércoles 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
       </div>
+
+      <!-- PREMIOS -->
+      <div class="premios-section">
+        <div class="premios-title">🎁 PREMIOS</div>
+        <div class="premios-sub">Los tres mejores pronósticos del torneo se llevan:</div>
+        <div class="premios-grid">
+          <div class="premio-card premio-2">
+            <div class="premio-medal">🥈</div>
+            <div class="premio-puesto">2do Puesto</div>
+            <div class="premio-monto">S/ 300</div>
+            <div class="premio-label">soles</div>
+          </div>
+          <div class="premio-card premio-1">
+            <div class="premio-crown">👑</div>
+            <div class="premio-medal">🥇</div>
+            <div class="premio-puesto">1er Puesto</div>
+            <div class="premio-monto">S/ 600</div>
+            <div class="premio-label">soles</div>
+          </div>
+          <div class="premio-card premio-3">
+            <div class="premio-medal">🥉</div>
+            <div class="premio-puesto">3er Puesto</div>
+            <div class="premio-monto">S/ 150</div>
+            <div class="premio-label">soles</div>
+          </div>
+        </div>
+        <div class="premios-nota">💡 Los premios se entregan al finalizar el torneo el 19 de julio de 2026</div>
+      </div>
+
     </div>
     <div id="tab-leaderboard" style="display:none">
       <div class="section-title"><span class="st-emoji">🏆</span><span class="st-text">Tabla de Posiciones</span></div>
@@ -404,7 +502,7 @@
     </div>
     <div id="tab-grupos" style="display:none">
       <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase de Grupos</span></div>
-      <div class="section-sub">72 partidos · 11 Jun – 27 Jun 2026 · Hora Lima (GMT-5)</div>
+      <div class="section-sub">72 partidos · 11 Jun – 27 Jun 2026 · Hora Perú (GMT-5)</div>
       <div class="notice"><strong>¿Cómo funciona?</strong><span>Ingresa tu pronóstico antes de que empiece cada partido. El campo se bloquea automáticamente a la hora de inicio.</span></div>
       <div id="grupos-content"><div class="loader">⏳ Cargando partidos...</div></div>
     </div>
@@ -539,57 +637,16 @@ async function api(action,body={}){
   }
 }
 function apiLocal(action,body){
-  const store=k=>JSON.parse(localStorage.getItem("pm26_"+k)||"{}");
-  const save=(k,v)=>localStorage.setItem("pm26_"+k,JSON.stringify(v));
-  if(action==="register"){
-    let u=JSON.parse(localStorage.getItem("pm26_userdata")||"{}");
-    if(u[body.username.toLowerCase()])return{ok:false,error:"Este nombre ya está registrado"};
-    u[body.username.toLowerCase()]={username:body.username,gerencia:body.gerencia,area:body.area,pin:body.pin};
-    localStorage.setItem("pm26_userdata",JSON.stringify(u));
-    let ul=JSON.parse(localStorage.getItem("pm26_users")||"[]");
-    ul.push(body.username);localStorage.setItem("pm26_users",JSON.stringify(ul));
-    return{ok:true};
-  }
-  if(action==="loginPin"){
-    let u=JSON.parse(localStorage.getItem("pm26_userdata")||"{}");
-    const usr=u[body.username.toLowerCase()];
-    if(!usr)return{ok:false,error:"❌ Usuario no encontrado. ¿Ya te registraste?"};
-    if(usr.pin!==body.pin)return{ok:false,error:"🔐 PIN incorrecto. Vuelve a intentarlo."};
-    return{ok:true};
-  }
-  if(action==="savePronostico"){let p=store("prons_"+body.username);p[body.matchId]={local:body.local,visita:body.visita};save("prons_"+body.username,p);return{ok:true};}
-  if(action==="saveEspeciales"){save("esp_"+body.username,body);return{ok:true};}
-  if(action==="saveResultado"){let r=store("resultados");r[body.matchId]={local:body.local,visita:body.visita};save("resultados",r);return{ok:true};}
-  if(action==="getPronosticos")return{ok:true,data:store("prons_"+body.username)};
-  if(action==="getEspeciales")return{ok:true,data:store("esp_"+body.username)||{}};
-  if(action==="getResultados")return{ok:true,data:store("resultados")};
-  if(action==="clearResultado"){let r=store("resultados");delete r[body.matchId];save("resultados",r);return{ok:true};}
-  if(action==="saveElimTeams"){let t=store("elimteams");t[body.matchId]={local:body.local,visita:body.visita};save("elimteams",t);return{ok:true};}
-  if(action==="getElimTeams")return{ok:true,data:store("elimteams")};
-  if(action==="getLeaderboard"){
-    let users=JSON.parse(localStorage.getItem("pm26_users")||"[]"),res=store("resultados");
-    let lb=users.map(u=>{
-      let prons=store("prons_"+u),pts=0;
-      Object.entries(prons).forEach(([mid,p])=>{
-        let r=res[mid];if(!r)return;
-        let fase=mid.startsWith("g")?"g":mid.startsWith("r32")?"r32":mid.startsWith("r16")?"r16":mid.startsWith("qf")?"qf":mid.startsWith("sf")?"sf":mid.startsWith("fin")?"fin":"g";
-        let s=SCORING[fase],rL=parseInt(r.local),rV=parseInt(r.visita),pL=parseInt(p.local),pV=parseInt(p.visita);
-        if(pL===rL&&pV===rV)pts+=s.exact;
-        else{let rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";if(rG===pG)pts+=s.correct;}
-      });
-      // Especiales pts (basic local check)
-      let ptsEsp=0;
-      const espData=store("esp_"+u);
-      const espRes=store("resultados");
-      [["campeon",15],["subcampeon",10],["goleador",10],["portero",8]].forEach(([k,pts_])=>{
-        const resKey="esp_"+k;
-        if(espRes[resKey]&&espData[k]&&espData[k].toLowerCase()===espRes[resKey].local?.toString().toLowerCase())ptsEsp+=pts_;
-      });
-      return{usuario:u,puntos:pts+ptsEsp,pronGrupos:Object.keys(prons).length,pronElim:0,ptsEspeciales:ptsEsp,area:""};
-    }).sort((a,b)=>b.puntos-a.puntos).map((r,i)=>({...r,posicion:i+1}));
-    return{ok:true,data:lb};
-  }
-  return{ok:false,error:"Sin conexión"};
+  // Sin conexión al servidor Google Sheets.
+  // Lecturas devuelven vacío para no bloquear la UI.
+  // Escrituras retornan error — los datos DEBEN estar en la nube.
+  const reads = ["getLeaderboard","getPronosticos","getEspeciales","getResultados","getElimTeams"];
+  if(action==="getLeaderboard")return{ok:true,data:[]};
+  if(action==="getPronosticos")return{ok:true,data:{}};
+  if(action==="getEspeciales")return{ok:true,data:{}};
+  if(action==="getResultados")return{ok:true,data:{}};
+  if(action==="getElimTeams")return{ok:true,data:{}};
+  return{ok:false,error:"⚠️ Sin conexión al servidor. Verifica tu internet e intenta de nuevo."};
 }
 
 let estructuraData=[];
@@ -719,6 +776,12 @@ async function renderLeaderboard(){
 
 function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`);}
 function fmt(f){const[,m,d]=f.split("-");return `${parseInt(d)} ${["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"][parseInt(m)]}`;}
+function fmt12(h){
+  const[hh,mm]=h.split(":").map(Number);
+  const ampm=hh>=12?"pm":"am";
+  const h12=hh%12||12;
+  return `${String(h12).padStart(2,"0")}:${String(mm).padStart(2,"0")}${ampm}`;
+}
 
 function renderGrupos(){
   const grupos={};PARTIDOS.forEach(p=>{if(!grupos[p.grupo])grupos[p.grupo]=[];grupos[p.grupo].push(p);});
@@ -739,7 +802,7 @@ function renderGrupos(){
         <div class="match-body">
           <div class="team-side">${flagImg(p.local)}<div class="team-name-txt">${p.local}</div></div>
           <div class="score-zone">
-            <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</div>
+            <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
             <div class="score-inputs-row">
               <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
               <span class="score-sep">:</span>
@@ -802,7 +865,7 @@ function renderEliminatorias(){
       <div class="match-body">
         <div class="team-side">${p.local?flagImg(p.local):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.local||"Por definir"}</div></div>
         <div class="score-zone">
-          <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</div>
+          <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${fmt12(p.hora)}</div>
           <div class="score-inputs-row">
             <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
             <span class="score-sep">:</span>
@@ -857,11 +920,11 @@ async function renderAdmin(){
   if(!isAdmin){document.getElementById("admin-content").innerHTML="<div class='empty-state'><div class='ei'>🚫</div><div>Solo administradores</div></div>";return;}
   let html="";
   html+=`<div class="admin-card"><div class="admin-title">⚽ Resultados — Fase de Grupos</div>`;
-  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row"><div class="admin-label">${flagSmall(p.local)}${p.local} vs ${flagSmall(p.visita)}${p.visita} <small style="color:#2a4a5a">${fmt(p.fecha)} ${p.hora}</small></div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});
+  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row"><div class="admin-label">${flagSmall(p.local)}${p.local} vs ${flagSmall(p.visita)}${p.visita} <small style="color:#2a4a5a">${fmt(p.fecha)} ${fmt12(p.hora)}</small></div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});
   html+=`</div>`;
   const elimFases=[{key:"r32",label:"Ronda de 32",partidos:ELIM_PARTIDOS.r32},{key:"r16",label:"Octavos de Final",partidos:ELIM_PARTIDOS.r16},{key:"qf",label:"Cuartos de Final",partidos:ELIM_PARTIDOS.qf},{key:"sf",label:"Semifinales",partidos:ELIM_PARTIDOS.sf},{key:"fin",label:"Final",partidos:ELIM_PARTIDOS.fin}];
   html+=`<div class="admin-card"><div class="admin-title">⚽ Definir Equipos — Fase Eliminatoria</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Ingresa los equipos que se enfrentan en cada partido.</div>`;
-  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const sL=elimTeams[p.id]?.local||p.local||"",sV=elimTeams[p.id]?.visita||p.visita||"";html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">P${i+1} · ${fmt(p.fecha)} ${p.hora} · ${p.estadio}</div><input id="et-${p.id}-l" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Local" value="${sL}"><span style="color:#1a3a4f">vs</span><input id="et-${p.id}-v" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Visita" value="${sV}"><button class="admin-save-btn" onclick="saveElimTeams('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const sL=elimTeams[p.id]?.local||p.local||"",sV=elimTeams[p.id]?.visita||p.visita||"";html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">P${i+1} · ${fmt(p.fecha)} ${fmt12(p.hora)} · ${p.estadio}</div><input id="et-${p.id}-l" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Local" value="${sL}"><span style="color:#1a3a4f">vs</span><input id="et-${p.id}-v" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Visita" value="${sV}"><button class="admin-save-btn" onclick="saveElimTeams('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
   html+=`</div>`;
   html+=`<div class="admin-card"><div class="admin-title">🔥 Resultados — Fase Eliminatoria</div>`;
   elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{},lbl=p.local&&p.visita?`${p.local} vs ${p.visita}`:`Partido ${i+1}`;html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">${lbl} · ${fmt(p.fecha)}</div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
