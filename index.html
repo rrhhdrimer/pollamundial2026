@@ -862,7 +862,7 @@ function renderGrupos(){
           <div class="team-side">${flagImg(p.visita)}<div class="team-name-txt">${p.visita}</div></div>
         </div>
         <div class="estadio-txt">🏟️ ${p.estadio}</div>`;
-      if(!locked)html+=`<button class="save-match-btn" id="btn-${p.id}" onclick="savePron('${p.id}')" ${hasPron?"":"disabled"}>💾 Guardar pronóstico</button>`;
+      if(!locked)html+=`<button class="save-match-btn ${hasPron?'btn-saved':''}" id="btn-${p.id}" onclick="savePron('${p.id}')" ${hasPron?"":"disabled"}>${hasPron?'✅ Guardado':'💾 Guardar pronóstico'}</button>`;
       else if(res){
         const cls=si?(si.tipo==="exact"?"pts-exact":si.tipo==="correct"?"pts-correct":""):"";
         const lbl=si?(si.tipo==="exact"?"¡Score exacto! 🎯":si.tipo==="correct"?"Resultado correcto ✅":"Sin puntos ❌"):"";
@@ -925,6 +925,9 @@ function renderEliminatorias(){
   let html=`<div style="margin-top:20px"><div class="grupo-header">${pNames[faseActiva]} <span style="font-size:15px;font-weight:400;color:#C8860A">${pScore[faseActiva]}</span></div>`;
   partidos.forEach(p=>{
     const pron=myPronosticos[p.id]||{},res=resultados[p.id],hasPron=pron.local!==undefined;
+    // Merge elimTeams into p if available
+    if(elimTeams[p.id]?.local) p.local=elimTeams[p.id].local;
+    if(elimTeams[p.id]?.visita) p.visita=elimTeams[p.id].visita;
     const sinEq=!p.local||!p.visita,locked=!FASES_UNLOCK[faseActiva]||sinEq;
     let si=null;
     if(res&&hasPron){const s=SCORING[faseActiva],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}}
@@ -1015,14 +1018,14 @@ async function renderAdmin(){
   if(!isAdmin){document.getElementById("admin-content").innerHTML="<div class='empty-state'><div class='ei'>🚫</div><div>Solo administradores</div></div>";return;}
   let html="";
   html+=`<div class="admin-card"><div class="admin-title">⚽ Resultados — Fase de Grupos</div>`;
-  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row">
+  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};const hasSaved=res.local!==undefined&&res.local!=="";html+=`<div class="admin-row">
     <div class="admin-team">${flagSmall(p.local)}${p.local}</div>
-    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-">
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <span class="admin-score-sep">–</span>
-    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-">
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <div class="admin-team">${flagSmall(p.visita)}${p.visita}</div>
     <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
-    <button class="admin-save-btn" onclick="saveResultado('${p.id}',this)">Guardar</button>
+    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)" style="${hasSaved?'background:#1a3a4f;color:#fff;':''}">${hasSaved?'✅ Guardado':'Guardar'}</button>
   </div>`;});
   html+=`</div>`;
   const elimFases=[{key:"r32",label:"Ronda de 32",partidos:ELIM_PARTIDOS.r32},{key:"r16",label:"Octavos de Final",partidos:ELIM_PARTIDOS.r16},{key:"qf",label:"Cuartos de Final",partidos:ELIM_PARTIDOS.qf},{key:"sf",label:"Semifinales",partidos:ELIM_PARTIDOS.sf},{key:"fin",label:"Final",partidos:ELIM_PARTIDOS.fin}];
@@ -1036,14 +1039,14 @@ async function renderAdmin(){
   </div>`;});html+=`</div>`;});
   html+=`</div>`;
   html+=`<div class="admin-card"><div class="admin-title">🔥 Resultados — Fase Eliminatoria</div>`;
-  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{};const localNm=p.local||`Local ${i+1}`;const visitaNm=p.visita||`Visita ${i+1}`;html+=`<div class="admin-row">
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{};const hasSaved=res.local!==undefined&&res.local!=="";const localNm=elimTeams[p.id]?.local||p.local||`Local ${i+1}`;const visitaNm=elimTeams[p.id]?.visita||p.visita||`Visita ${i+1}`;html+=`<div class="admin-row">
     <div class="admin-team">${p.local?flagSmall(p.local):'❓'}${localNm}</div>
-    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-">
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <span class="admin-score-sep">–</span>
-    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-">
+    <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <div class="admin-team">${p.visita?flagSmall(p.visita):'❓'}${visitaNm}</div>
     <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
-    <button class="admin-save-btn" onclick="saveResultado('${p.id}',this)">Guardar</button>
+    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)" style="${hasSaved?'background:#1a3a4f;color:#fff;':''}">${hasSaved?'✅ Guardado':'Guardar'}</button>
   </div>`;});html+=`</div>`;});
   html+=`</div>`;
   // Ganadores Especiales
@@ -1052,7 +1055,8 @@ async function renderAdmin(){
   ["campeon","subcampeon"].forEach(k=>{
     const e=ESPECIALES.find(x=>x.id===k);
     const res=resultados["esp_"+k]||{};
-    html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${k}" value="${res.local||""}" placeholder="Equipo real"><button class="admin-save-btn" onclick="saveEspResultado('${k}')">Confirmar</button></div>`;
+    const hasSaved=!!(res.local);
+    html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${k}" value="${res.local||""}" placeholder="Equipo real" oninput="resetAdminBtn('btn-are-${k}')"><button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-are-${k}" onclick="saveEspResultado('${k}',this)" style="${hasSaved?'background:#1a3a4f;color:#fff;':''}">${hasSaved?'✅ Guardado':'Confirmar'}</button></div>`;
   });
   html+=`</div>`;
 
@@ -1115,11 +1119,19 @@ async function saveResultado(id,btn){
   }
 }
 
-async function saveEspResultado(espId){
+async function saveEspResultado(espId,btn){
   const val=document.getElementById(`are-${espId}`).value.trim();
   if(!val){showToast("Ingresa el valor","error");return;}
+  if(btn){btn.textContent="⏳...";btn.disabled=true;}
   const r=await api("saveResultado",{matchId:"esp_"+espId,local:val,visita:""});
-  if(r.ok){resultados["esp_"+espId]={local:val};showToast("✅ Confirmado","success");}
+  if(r.ok){
+    resultados["esp_"+espId]={local:val};
+    if(btn){btn.textContent="✅ Guardado";btn.style.background="#1a3a4f";btn.style.color="#fff";btn.disabled=false;btn.classList.add("btn-saved");}
+    showToast("✅ Confirmado","success");
+  }else{
+    if(btn){btn.textContent="Confirmar";btn.disabled=false;}
+    showToast("Error al guardar","error");
+  }
 }
 
 async function loadEspAnswers(key){
@@ -1195,6 +1207,14 @@ async function saveElimTeams(matchId,btn){
     b.textContent="Guardar";b.disabled=false;
     showToast("Error al guardar","error");
   }
+}
+
+function resetAdminBtn(btnId){
+  const btn=document.getElementById(btnId);
+  if(!btn||!btn.classList.contains("btn-saved"))return;
+  btn.classList.remove("btn-saved");
+  btn.style.background="";btn.style.color="";
+  btn.textContent="Guardar";
 }
 
 function toggleFase(key){
