@@ -6,6 +6,7 @@
 <title>La Polla Drimer 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
   :root{--gold:#F5C842;--gold-dark:#C8860A;--green:#1A7A4A;--green-light:#25A865;--dark:#0A0E1A;--dark2:#131929;--dark3:#1C2438;--dark4:#2A3550;--text:#E6EDF3;--text2:#8B949E;--text3:#3D4B66;--red:#E05252;--radius:14px;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--dark);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;font-size:18px;}
@@ -301,59 +302,42 @@
     .especiales-grid{grid-template-columns:repeat(4,1fr);}
     .phase-grid{grid-template-columns:repeat(5,1fr);}
   }
+
 </style>
 </head>
 <body>
-
 <div id="login-screen">
   <div class="login-box">
     <div class="login-ball-wrap">
-      <img src="./LPD_Logo.png" alt="La Polla Drimer" style="width:300px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 20px rgba(56,73,103,0.15))">
+      <img src="./LPD_Logo.png" alt="La Polla Drimer" style="width:300px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 20px rgba(56,73,103,0.15));margin-bottom:-32px">
     </div>
     <div class="login-edition">COPA MUNDIAL DE FÚTBOL 2026</div>
     <div class="login-hosts">
-      <div class="host-flag">
-        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/us.svg" alt="USA">
-        <span>USA</span>
-      </div>
-      <div class="host-flag">
-        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/ca.svg" alt="Canadá">
-        <span>Canadá</span>
-      </div>
-      <div class="host-flag">
-        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/mx.svg" alt="México">
-        <span>México</span>
-      </div>
+      <div class="host-flag"><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/us.svg" alt="USA" class="host-flag-img"><span>USA</span></div>
+      <div class="host-flag"><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/ca.svg" alt="Canadá" class="host-flag-img"><span>Canadá</span></div>
+      <div class="host-flag"><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/mx.svg" alt="México" class="host-flag-img"><span>México</span></div>
     </div>
-
-    <!-- PANEL LOGIN -->
     <div id="panel-login">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <input type="text" id="login-nombre" placeholder="Nombre(s)" maxlength="40" style="margin-bottom:12px"/>
         <input type="text" id="login-apellido" placeholder="Apellido(s)" maxlength="40" style="margin-bottom:12px"/>
       </div>
-      <input type="password" id="login-pin" placeholder="Tu PIN de 4 dígitos" maxlength="4" pattern="[0-9]{4}" inputmode="numeric"/>
+      <input type="password" id="login-pin" placeholder="Tu PIN de 4 dígitos" maxlength="4" inputmode="numeric"/>
       <button class="login-btn" onclick="doLogin()">⚡ ENTRAR A JUGAR</button>
       <div class="login-toggle">¿Primera vez? <span onclick="showRegister()">Regístrate aquí</span></div>
       <div class="login-error" id="login-error"></div>
       <div class="login-loader" id="login-loader"></div>
     </div>
-
-    <!-- PANEL REGISTRO -->
     <div id="panel-registro" style="display:none">
       <div class="register-title">📋 Crear cuenta</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <input type="text" id="reg-nombre" placeholder="Nombre(s)" maxlength="40" style="margin-bottom:12px"/>
         <input type="text" id="reg-apellido" placeholder="Apellido(s)" maxlength="40" style="margin-bottom:12px"/>
       </div>
-      <select id="reg-gerencia" onchange="loadAreas()">
-        <option value="">-- Selecciona tu Gerencia --</option>
-      </select>
-      <select id="reg-area">
-        <option value="">-- Selecciona tu Área --</option>
-      </select>
-      <input type="password" id="reg-pin" placeholder="Elige un PIN de 4 dígitos" maxlength="4" pattern="[0-9]{4}" inputmode="numeric"/>
-      <input type="password" id="reg-pin2" placeholder="Confirma tu PIN" maxlength="4" pattern="[0-9]{4}" inputmode="numeric"/>
+      <select id="reg-gerencia" onchange="loadAreas()"><option value="">-- Selecciona tu Gerencia --</option></select>
+      <select id="reg-area"><option value="">-- Selecciona tu Área --</option></select>
+      <input type="password" id="reg-pin" placeholder="Elige un PIN de 4 dígitos" maxlength="4" inputmode="numeric"/>
+      <input type="password" id="reg-pin2" placeholder="Confirma tu PIN" maxlength="4" inputmode="numeric"/>
       <button class="login-btn" onclick="doRegister()">✅ REGISTRARME</button>
       <div class="login-toggle">¿Ya tienes cuenta? <span onclick="showLogin()">Inicia sesión</span></div>
       <div class="login-error" id="reg-error"></div>
@@ -364,23 +348,26 @@
 
 <div id="app">
   <div class="app-header">
-    <!-- Izquierda: Logo La Polla Drimer -->
     <div class="app-logo">
       <img src="./LPD_Logo.png" alt="La Polla Drimer" style="height:134px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.2))">
     </div>
-    <!-- Centro: texto + logo mundial + países -->
     <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:#384967;text-align:right;line-height:1.3;white-space:nowrap;">COPA MUNDIAL<br>DE FÚTBOL 2026</div>
-      <img src="./Mundial_logo.png" alt="FIFA Mundial 2026" style="height:72px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(56,73,103,0.15))" onerror="this.style.display='none'">
-      <div style="display:flex;align-items:center;gap:8px;white-space:nowrap;"><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/us.svg" style="height:20px;width:auto;border-radius:3px"><span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">USA</span><span style="color:#b0c4d8">|</span><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/ca.svg" style="height:20px;width:auto;border-radius:3px"><span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">Canadá</span><span style="color:#b0c4d8">|</span><img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/mx.svg" style="height:20px;width:auto;border-radius:3px"><span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">México</span></div>
+      <img src="./Mundial_logo.png" alt="FIFA Mundial 2026" style="height:72px;width:auto;object-fit:contain;" onerror="this.style.display='none'">
+      <div style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
+        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/us.svg" style="height:20px;width:auto;border-radius:3px">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">USA</span>
+        <span style="color:#b0c4d8">|</span>
+        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/ca.svg" style="height:20px;width:auto;border-radius:3px">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">Canadá</span>
+        <span style="color:#b0c4d8">|</span>
+        <img src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/mx.svg" style="height:20px;width:auto;border-radius:3px">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:#384967;">México</span>
+      </div>
     </div>
-    <!-- Derecha: Usuario, toggle admin y salir -->
     <div class="header-right">
       <div id="admin-toggle-wrap" style="display:none;align-items:center;">
-        <button id="admin-toggle-btn" onclick="toggleAdminMode()"
-          style="background:rgba(5,28,44,0.08);color:#1a3a4f;border:1.5px solid #b0c4d8;border-radius:8px;padding:7px 14px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;margin-right:10px;transition:all 0.2s;">
-          🔒 Modo Admin: OFF
-        </button>
+        <button id="admin-toggle-btn" onclick="toggleAdminMode()" style="background:rgba(5,28,44,0.08);color:#1a3a4f;border:1.5px solid #b0c4d8;border-radius:8px;padding:7px 14px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;margin-right:10px;transition:all 0.2s;">🔒 Modo Admin: OFF</button>
       </div>
       <div class="user-pill">👤 <strong id="header-username"></strong></div>
       <button class="logout-btn" onclick="doLogout()">Salir</button>
@@ -397,58 +384,22 @@
   <div class="main-content">
     <div id="tab-comojuega">
       <div class="section-title"><span class="st-emoji">⚡</span><span class="st-text">¿Cómo se juega?</span></div>
-
-      <!-- BIENVENIDOS -->
       <div class="cj-welcome">
         <div class="cj-welcome-icon">🏆</div>
         <div class="cj-welcome-title">¡BIENVENIDOS!</div>
         <div class="cj-welcome-text">Sé parte de la fiebre del fútbol participando en La Polla Drimer 2026, creada exclusivamente para tí. <strong>¡Juega, acierta y gana!</strong></div>
       </div>
-
-      <!-- BLOQUES -->
       <div class="cj-grid">
-
-        <div class="cj-block">
-          <div class="cj-icon" style="background:#384967">⚽</div>
-          <div class="cj-block-title">¿CÓMO SE JUEGA?</div>
-          <div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div>
-        </div>
-
-        <div class="cj-block">
-          <div class="cj-icon" style="background:#1A7A4A">📊</div>
-          <div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div>
-          <div class="cj-block-text">
-            En la <strong>Fase de Grupos:</strong> si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.
-            <br><br>
-            En la <strong>Fase Eliminatoria</strong> los puntos se multiplican según la ronda:
-            <ul class="cj-list">
-              <li>Ronda de 32: <strong>2 pts</strong> resultado · <strong>6 pts</strong> exacto</li>
-              <li>Octavos de Final: <strong>3 pts</strong> · <strong>9 pts</strong> exacto</li>
-              <li>Cuartos de Final: <strong>4 pts</strong> · <strong>12 pts</strong> exacto</li>
-              <li>Semifinales: <strong>5 pts</strong> · <strong>15 pts</strong> exacto</li>
-              <li>Final: <strong>8 pts</strong> · <strong>¡24 pts</strong> si aciertas el marcador exacto!</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cj-block">
-          <div class="cj-icon" style="background:#C49A10">⭐</div>
-          <div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div>
-          <div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div>
-        </div>
-
-        <div class="cj-block">
-          <div class="cj-icon" style="background:#E05252">🔒</div>
-          <div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div>
-          <div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>miércoles 18 de junio a las 11:00pm</strong> (hora Lima).</div>
-        </div>
-
+        <div class="cj-block"><div class="cj-icon" style="background:#384967">⚽</div><div class="cj-block-title">¿CÓMO SE JUEGA?</div><div class="cj-block-text">En la sección <strong>Fase de Grupos</strong> y <strong>Fase Eliminatoria</strong> ingresa tu marcador para cada partido. Mientras más pronósticos aciertes, más puntos acumulas y más cerca estarás de ganar.</div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#1A7A4A">📊</div><div class="cj-block-title">¿CÓMO ACUMULO PUNTOS?</div><div class="cj-block-text">En la <strong>Fase de Grupos:</strong> si aciertas el resultado (quién gana o empate) ganas <strong>1 punto</strong>. Si además aciertas el marcador exacto, ganas <strong>3 puntos</strong>.<br><br>En la <strong>Fase Eliminatoria</strong> los puntos se multiplican:<ul class="cj-list"><li>Ronda de 32: <strong>2 pts</strong> · <strong>6 pts</strong> exacto</li><li>Octavos de Final: <strong>3 pts</strong> · <strong>9 pts</strong> exacto</li><li>Cuartos de Final: <strong>4 pts</strong> · <strong>12 pts</strong> exacto</li><li>Semifinales: <strong>5 pts</strong> · <strong>15 pts</strong> exacto</li><li>Final: <strong>8 pts</strong> · <strong>¡24 pts</strong> exacto!</li></ul></div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#C49A10">⭐</div><div class="cj-block-title">¿PUEDO GANAR MÁS PUNTOS?</div><div class="cj-block-text">Sí, visita la sección <strong>Predicciones Especiales</strong> y elige quién crees que será el campeón, subcampeón, máximo goleador y mejor portero del torneo. Puedes ganar hasta <strong>43 puntos extra</strong>.</div></div>
+        <div class="cj-block"><div class="cj-icon" style="background:#E05252">🔒</div><div class="cj-block-title">¿HASTA CUÁNDO PUEDO PRONOSTICAR?</div><div class="cj-block-text">Cada partido se bloquea automáticamente a la hora de inicio. Las <strong>Predicciones Especiales</strong> cierran el <strong>miércoles 18 de junio a las 11:00pm</strong> (hora Lima).</div></div>
       </div>
     </div>
     <div id="tab-leaderboard" style="display:none">
       <div class="section-title"><span class="st-emoji">🏆</span><span class="st-text">Tabla de Posiciones</span></div>
       <div class="section-sub">Puntajes actualizados en tiempo real</div>
-      <div id="leaderboard-content"><div class="loader">⏳ Cargando clasificación...</div></div>
+      <div id="leaderboard-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
     <div id="tab-grupos" style="display:none">
       <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase de Grupos</span></div>
@@ -458,15 +409,10 @@
     </div>
     <div id="tab-eliminatorias" style="display:none">
       <div class="section-title"><span class="st-emoji">⚽</span><span class="st-text">Fase Eliminatoria</span></div>
-      <div class="section-sub">Se desbloquean conforme avanza el torneo</div>
-      <div class="phase-grid">
-        <div class="phase-card unlocked"><div class="phase-icon">3️⃣2️⃣</div><div class="phase-name">Ronda de 32</div><div class="phase-pts">2pts / 6pts exacto</div><div class="phase-dates">28 Jun – 3 Jul</div><div class="phase-badge open">Abre 27 Jun</div></div>
-        <div class="phase-card locked"><div class="phase-icon">⚔️</div><div class="phase-name">Octavos de Final</div><div class="phase-pts">3pts / 9pts exacto</div><div class="phase-dates">4 Jul – 7 Jul</div><div class="phase-badge">Bloqueado</div></div>
-        <div class="phase-card locked"><div class="phase-icon">🛡️</div><div class="phase-name">Cuartos de Final</div><div class="phase-pts">4pts / 12pts exacto</div><div class="phase-dates">8 Jul – 11 Jul</div><div class="phase-badge">Bloqueado</div></div>
-        <div class="phase-card locked"><div class="phase-icon">🌟</div><div class="phase-name">Semifinales</div><div class="phase-pts">5pts / 15pts exacto</div><div class="phase-dates">14 Jul – 15 Jul</div><div class="phase-badge">Bloqueado</div></div>
-        <div class="phase-card locked"><div class="phase-icon">👑</div><div class="phase-name">Final</div><div class="phase-pts">8pts / 24pts exacto</div><div class="phase-dates">19 Jul 2026</div><div class="phase-badge">Bloqueado</div></div>
-      </div>
-      <div class="empty-state"><div class="ei">🔒</div><div>Las eliminatorias abren el 27 de junio</div></div>
+      <div class="section-sub">Se desbloquean conforme avanza el torneo · Puntos con multiplicadores por ronda</div>
+      <div class="phase-grid" id="phase-grid-display"></div>
+      <div id="elim-empty" class="empty-state"><div class="ei">🔒</div><div>Las eliminatorias abren el 27 de junio al concluir la fase de grupos</div></div>
+      <div id="elim-content"></div>
     </div>
     <div id="tab-especiales" style="display:none">
       <div class="section-title"><span class="st-emoji">⭐</span><span class="st-text">Predicciones Especiales</span></div>
@@ -475,57 +421,26 @@
     </div>
     <div id="tab-admin" style="display:none">
       <div class="section-title"><span class="st-emoji">🔧</span><span class="st-text">Panel Admin</span></div>
-      <div class="section-sub">Ingresa resultados reales para calcular puntajes automáticamente</div>
+      <div class="section-sub">Ingresa resultados reales y administra las fases del torneo</div>
       <div id="admin-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
   </div>
 </div>
-
 <div id="toast"></div>
 
 <script>
-// ============================================================
-// CONFIG
-// ============================================================
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxE6EltVzBUdprzTiM22nA-B_JH6L_JlG1YPAeFIJ-Dfi4kbpsP3EnH64vgxAtUzuQS/exec';
-const CLIMA_SHEET_ID = '1IT_sRqzsuMteZ9rNdHGM95uH605CO2VlBPQd17hMQaw'; // Sheet encuesta clima — para leer Estructura
-const ADMIN_USERS = ['christopher'];
-// Fases desbloqueadas — controlado desde panel Admin
-let FASES_UNLOCK = JSON.parse(localStorage.getItem('pm26_fases') || '{"grupos":true,"r32":false,"r16":false,"qf":false,"sf":false,"fin":false}');
-const saveFases = () => localStorage.setItem('pm26_fases', JSON.stringify(FASES_UNLOCK));
+const SCRIPT_URL    = "https://script.google.com/macros/s/AKfycbxE6EltVzBUdprzTiM22nA-B_JH6L_JlG1YPAeFIJ-Dfi4kbpsP3EnH64vgxAtUzuQS/exec";
+const CLIMA_SHEET_ID = "1IT_sRqzsuMteZ9rNdHGM95uH605CO2VlBPQd17hMQaw";
+const ADMIN_USERS   = ["christopher landauro"];
 
-// ============================================================
-// BANDERAS
-// ============================================================
-const FLAG_BASE = 'https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/';
-const FLAG_CODES = {
-  'México':'mx','Sudáfrica':'za','Corea del Sur':'kr','Chequia':'cz',
-  'Canadá':'ca','Bosnia y Herzegovina':'ba','Catar':'qa','Suiza':'ch',
-  'Brasil':'br','Marruecos':'ma','Haití':'ht','Escocia':'gb-sct',
-  'Estados Unidos':'us','Paraguay':'py','Australia':'au','Turquía':'tr',
-  'Alemania':'de','Curazao':'cw','Costa de Marfil':'ci','Ecuador':'ec',
-  'Países Bajos':'nl','Japón':'jp','Suecia':'se','Túnez':'tn',
-  'España':'es','Cabo Verde':'cv','Bélgica':'be','Egipto':'eg',
-  'Arabia Saudita':'sa','Uruguay':'uy','Irán':'ir','Nueva Zelanda':'nz',
-  'Francia':'fr','Senegal':'sn','Irak':'iq','Noruega':'no',
-  'Argentina':'ar','Argelia':'dz','Austria':'at','Jordania':'jo',
-  'Portugal':'pt','RD Congo':'cd','Uzbekistán':'uz','Colombia':'co',
-  'Inglaterra':'gb-eng','Croacia':'hr','Ghana':'gh','Panamá':'pa',
-};
-const flagImg = (team) => {
-  const code = FLAG_CODES[team];
-  if (!code) return '<div style="font-size:52px;text-align:center">🏳️</div>';
-  return `<img src="${FLAG_BASE}${code}.svg" alt="${team}" class="team-flag-img" loading="lazy">`;
-};
-const flagSmall = (team) => {
-  const code = FLAG_CODES[team];
-  if (!code) return '';
-  return `<img src="${FLAG_BASE}${code}.svg" alt="${team}" style="width:22px;height:16px;border-radius:3px;vertical-align:middle;margin-right:4px;object-fit:cover">`;
-};
+let FASES_UNLOCK = JSON.parse(localStorage.getItem("pm26_fases") || '{"grupos":true,"r32":false,"r16":false,"qf":false,"sf":false,"fin":false}');
+const saveFases  = () => localStorage.setItem("pm26_fases", JSON.stringify(FASES_UNLOCK));
 
-// ============================================================
-// PARTIDOS
-// ============================================================
+const FLAG_BASE  = "https://raw.githubusercontent.com/hampusborgos/country-flags/main/svg/";
+const FLAG_CODES = {"México":"mx","Sudáfrica":"za","Corea del Sur":"kr","Chequia":"cz","Canadá":"ca","Bosnia y Herzegovina":"ba","Catar":"qa","Suiza":"ch","Brasil":"br","Marruecos":"ma","Haití":"ht","Escocia":"gb-sct","Estados Unidos":"us","Paraguay":"py","Australia":"au","Turquía":"tr","Alemania":"de","Curazao":"cw","Costa de Marfil":"ci","Ecuador":"ec","Países Bajos":"nl","Japón":"jp","Suecia":"se","Túnez":"tn","España":"es","Cabo Verde":"cv","Bélgica":"be","Egipto":"eg","Arabia Saudita":"sa","Uruguay":"uy","Irán":"ir","Nueva Zelanda":"nz","Francia":"fr","Senegal":"sn","Irak":"iq","Noruega":"no","Argentina":"ar","Argelia":"dz","Austria":"at","Jordania":"jo","Portugal":"pt","RD Congo":"cd","Uzbekistán":"uz","Colombia":"co","Inglaterra":"gb-eng","Croacia":"hr","Ghana":"gh","Panamá":"pa"};
+const flagImg   = t => { const c=FLAG_CODES[t]; return c ? `<img src="${FLAG_BASE}${c}.svg" alt="${t}" class="team-flag-img" loading="lazy">` : '<div style="font-size:44px;text-align:center">🏳️</div>'; };
+const flagSmall = t => { const c=FLAG_CODES[t]; return c ? `<img src="${FLAG_BASE}${c}.svg" alt="${t}" style="width:22px;height:16px;border-radius:3px;vertical-align:middle;margin-right:4px;object-fit:cover">` : ""; };
+
 const PARTIDOS = [
   {id:"g001",grupo:"A",local:"México",visita:"Sudáfrica",fecha:"2026-06-11",hora:"14:00",estadio:"Estadio Azteca, Ciudad de México"},
   {id:"g002",grupo:"A",local:"Corea del Sur",visita:"Chequia",fecha:"2026-06-11",hora:"21:00",estadio:"Estadio Akron, Guadalajara"},
@@ -600,11 +515,8 @@ const PARTIDOS = [
   {id:"g071",grupo:"J",local:"Argelia",visita:"Austria",fecha:"2026-06-27",hora:"21:00",estadio:"Arrowhead Stadium, Kansas City"},
   {id:"g072",grupo:"J",local:"Jordania",visita:"Argentina",fecha:"2026-06-27",hora:"21:00",estadio:"AT&T Stadium, Dallas"},
 ];
-
-const ELIM_PARTIDOS = {"r32": [{"id": "e001", "local": "", "visita": "", "fecha": "2026-06-28", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "e002", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "12:00", "estadio": "NRG Stadium, Houston"}, {"id": "e003", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "15:30", "estadio": "Gillette Stadium, Boston"}, {"id": "e004", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "20:00", "estadio": "Estadio BBVA, Monterrey"}, {"id": "e005", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "12:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "e006", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "16:00", "estadio": "MetLife Stadium, New York"}, {"id": "e007", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "20:00", "estadio": "Estadio Azteca, Ciudad de México"}, {"id": "e008", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "11:00", "estadio": "Mercedes Benz Stadium, Atlanta"}, {"id": "e009", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "15:00", "estadio": "Lumen Field, Seattle"}, {"id": "e010", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "19:00", "estadio": "Levi's Stadium, San Francisco"}, {"id": "e011", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "e012", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "18:00", "estadio": "BMO Field, Toronto"}, {"id": "e013", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "22:00", "estadio": "BC Place, Vancouver"}, {"id": "e014", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "13:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "e015", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "17:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "e016", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "20:30", "estadio": "Arrowhead Stadium, Kansas City"}], "r16": [{"id": "e017", "local": "", "visita": "", "fecha": "2026-07-04", "hora": "12:00", "estadio": "NRG Stadium, Houston"}, {"id": "e018", "local": "", "visita": "", "fecha": "2026-07-04", "hora": "16:00", "estadio": "Lincoln Financial Field, Filadelfia"}, {"id": "e019", "local": "", "visita": "", "fecha": "2026-07-05", "hora": "15:00", "estadio": "MetLife Stadium, New York"}, {"id": "e020", "local": "", "visita": "", "fecha": "2026-07-05", "hora": "19:00", "estadio": "Estadio Azteca, Ciudad de México"}, {"id": "e021", "local": "", "visita": "", "fecha": "2026-07-06", "hora": "14:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "e022", "local": "", "visita": "", "fecha": "2026-07-06", "hora": "19:00", "estadio": "Lumen Field, Seattle"}, {"id": "e023", "local": "", "visita": "", "fecha": "2026-07-07", "hora": "11:00", "estadio": "Mercedes Benz Stadium, Atlanta"}, {"id": "e024", "local": "", "visita": "", "fecha": "2026-07-07", "hora": "15:00", "estadio": "BC Place, Vancouver"}], "qf": [{"id": "e025", "local": "", "visita": "", "fecha": "2026-07-09", "hora": "15:00", "estadio": "Gillette Stadium, Boston"}, {"id": "e026", "local": "", "visita": "", "fecha": "2026-07-10", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "e027", "local": "", "visita": "", "fecha": "2026-07-11", "hora": "16:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "e028", "local": "", "visita": "", "fecha": "2026-07-11", "hora": "20:00", "estadio": "Arrowhead Stadium, Kansas City"}], "sf": [{"id": "e029", "local": "", "visita": "", "fecha": "2026-07-14", "hora": "14:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "e030", "local": "", "visita": "", "fecha": "2026-07-15", "hora": "14:00", "estadio": "Mercedes Benz Stadium, Atlanta"}], "fin": [{"id": "e031", "local": "", "visita": "", "fecha": "2026-07-18", "hora": "16:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "e032", "local": "", "visita": "", "fecha": "2026-07-19", "hora": "14:00", "estadio": "MetLife Stadium, New York"}]};
-
+const ELIM_PARTIDOS = {"r32": [{"id": "r32_001", "local": "", "visita": "", "fecha": "2026-06-28", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "r32_002", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "12:00", "estadio": "NRG Stadium, Houston"}, {"id": "r32_003", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "15:30", "estadio": "Gillette Stadium, Boston"}, {"id": "r32_004", "local": "", "visita": "", "fecha": "2026-06-29", "hora": "20:00", "estadio": "Estadio BBVA, Monterrey"}, {"id": "r32_005", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "12:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "r32_006", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "16:00", "estadio": "MetLife Stadium, New York"}, {"id": "r32_007", "local": "", "visita": "", "fecha": "2026-06-30", "hora": "20:00", "estadio": "Estadio Azteca, Ciudad de México"}, {"id": "r32_008", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "11:00", "estadio": "Mercedes Benz Stadium, Atlanta"}, {"id": "r32_009", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "15:00", "estadio": "Lumen Field, Seattle"}, {"id": "r32_010", "local": "", "visita": "", "fecha": "2026-07-01", "hora": "19:00", "estadio": "Levi's Stadium, San Francisco"}, {"id": "r32_011", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "r32_012", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "18:00", "estadio": "BMO Field, Toronto"}, {"id": "r32_013", "local": "", "visita": "", "fecha": "2026-07-02", "hora": "22:00", "estadio": "BC Place, Vancouver"}, {"id": "r32_014", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "13:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "r32_015", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "17:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "r32_016", "local": "", "visita": "", "fecha": "2026-07-03", "hora": "20:30", "estadio": "Arrowhead Stadium, Kansas City"}], "r16": [{"id": "r16_001", "local": "", "visita": "", "fecha": "2026-07-04", "hora": "12:00", "estadio": "NRG Stadium, Houston"}, {"id": "r16_002", "local": "", "visita": "", "fecha": "2026-07-04", "hora": "16:00", "estadio": "Lincoln Financial Field, Filadelfia"}, {"id": "r16_003", "local": "", "visita": "", "fecha": "2026-07-05", "hora": "15:00", "estadio": "MetLife Stadium, New York"}, {"id": "r16_004", "local": "", "visita": "", "fecha": "2026-07-05", "hora": "19:00", "estadio": "Estadio Azteca, Ciudad de México"}, {"id": "r16_005", "local": "", "visita": "", "fecha": "2026-07-06", "hora": "14:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "r16_006", "local": "", "visita": "", "fecha": "2026-07-06", "hora": "19:00", "estadio": "Lumen Field, Seattle"}, {"id": "r16_007", "local": "", "visita": "", "fecha": "2026-07-07", "hora": "11:00", "estadio": "Mercedes Benz Stadium, Atlanta"}, {"id": "r16_008", "local": "", "visita": "", "fecha": "2026-07-07", "hora": "15:00", "estadio": "BC Place, Vancouver"}], "qf": [{"id": "qf_001", "local": "", "visita": "", "fecha": "2026-07-09", "hora": "15:00", "estadio": "Gillette Stadium, Boston"}, {"id": "qf_002", "local": "", "visita": "", "fecha": "2026-07-10", "hora": "14:00", "estadio": "SoFi Stadium, Los Ángeles"}, {"id": "qf_003", "local": "", "visita": "", "fecha": "2026-07-11", "hora": "16:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "qf_004", "local": "", "visita": "", "fecha": "2026-07-11", "hora": "20:00", "estadio": "Arrowhead Stadium, Kansas City"}], "sf": [{"id": "sf_001", "local": "", "visita": "", "fecha": "2026-07-14", "hora": "14:00", "estadio": "AT&T Stadium, Dallas"}, {"id": "sf_002", "local": "", "visita": "", "fecha": "2026-07-15", "hora": "14:00", "estadio": "Mercedes Benz Stadium, Atlanta"}], "fin": [{"id": "fin_001", "local": "", "visita": "", "fecha": "2026-07-18", "hora": "16:00", "estadio": "Hard Rock Stadium, Miami"}, {"id": "fin_002", "local": "", "visita": "", "fecha": "2026-07-19", "hora": "14:00", "estadio": "MetLife Stadium, New York"}]};
 const EQUIPOS = ['Alemania','Arabia Saudita','Argelia','Argentina','Australia','Austria','Bélgica','Bosnia y Herzegovina','Brasil','Cabo Verde','Canadá','Catar','Chequia','Colombia','Corea del Sur','Costa de Marfil','Croacia','Curazao','Ecuador','Egipto','Escocia','España','Estados Unidos','Francia','Ghana','Haití','Inglaterra','Irak','Irán','Japón','Jordania','Marruecos','México','Noruega','Nueva Zelanda','Países Bajos','Panamá','Paraguay','Portugal','RD Congo','Senegal','Sudáfrica','Suecia','Suiza','Turquía','Túnez','Uruguay','Uzbekistán'];
-
 const ESPECIALES = [
   {id:'campeon',   titulo:'Campeón',       puntos:15, tipo:'select', icon:'🏆', desc:'¿Quién levanta la Copa?'},
   {id:'subcampeon',titulo:'Subcampeón',    puntos:10, tipo:'select', icon:'🥈', desc:'¿Quién llega a la Final?'},
@@ -612,687 +524,386 @@ const ESPECIALES = [
   {id:'portero',   titulo:'Guante de Oro', puntos:8,  tipo:'text',   icon:'🧤', desc:'Mejor portero del torneo',   ph:'Ej: Dibu Martínez'},
 ];
 
-const SCORING = {
-  g:{correct:1,exact:3}, r32:{correct:2,exact:6}, r16:{correct:3,exact:9},
-  qf:{correct:4,exact:12}, sf:{correct:5,exact:15}, fin:{correct:8,exact:24}
-};
+const SCORING = {"g":{"correct":1,"exact":3},"r32":{"correct":2,"exact":6},"r16":{"correct":3,"exact":9},"qf":{"correct":4,"exact":12},"sf":{"correct":5,"exact":15},"fin":{"correct":8,"exact":24}};
 
-// ============================================================
-// STATE
-// ============================================================
-let currentUser = null, isAdmin = false;
-let myPronosticos = {}, myEspeciales = {}, resultados = {};
-let elimTeams = {};
+let currentUser=null,isAdmin=false,myPronosticos={},myEspeciales={},resultados={},elimTeams={};
 
-// ============================================================
-// API
-// ============================================================
-async function api(action, body = {}) {
-  try {
-    const res = await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action, ...body})});
-    const data = await res.json();
-    setSyncStatus(true);
-    return data;
-  } catch(e) {
-    setSyncStatus(false);
-    return apiLocal(action, body);
-  }
+async function api(action,body={}){
+  try{const r=await fetch(SCRIPT_URL,{method:"POST",body:JSON.stringify({action,...body})});return await r.json();}
+  catch(e){return apiLocal(action,body);}
 }
-
-function apiLocal(action, body) {
-  const store = k => JSON.parse(localStorage.getItem('pm26_'+k) || '{}');
-  const save  = (k,v) => localStorage.setItem('pm26_'+k, JSON.stringify(v));
-  if (action === 'register') {
-    let users = JSON.parse(localStorage.getItem('pm26_userdata') || '{}');
-    if (users[body.username.toLowerCase()]) return {ok:false, error:'Este nombre ya está registrado'};
-    users[body.username.toLowerCase()] = {username:body.username, gerencia:body.gerencia, area:body.area, pin:body.pin};
-    localStorage.setItem('pm26_userdata', JSON.stringify(users));
-    let ul = JSON.parse(localStorage.getItem('pm26_users') || '[]');
-    ul.push(body.username); localStorage.setItem('pm26_users', JSON.stringify(ul));
-    return {ok:true};
+function apiLocal(action,body){
+  const store=k=>JSON.parse(localStorage.getItem("pm26_"+k)||"{}");
+  const save=(k,v)=>localStorage.setItem("pm26_"+k,JSON.stringify(v));
+  if(action==="register"){
+    let u=JSON.parse(localStorage.getItem("pm26_userdata")||"{}");
+    if(u[body.username.toLowerCase()])return{ok:false,error:"Este nombre ya está registrado"};
+    u[body.username.toLowerCase()]={username:body.username,gerencia:body.gerencia,area:body.area,pin:body.pin};
+    localStorage.setItem("pm26_userdata",JSON.stringify(u));
+    let ul=JSON.parse(localStorage.getItem("pm26_users")||"[]");
+    ul.push(body.username);localStorage.setItem("pm26_users",JSON.stringify(ul));
+    return{ok:true};
   }
-  if (action === 'loginPin') {
-    let users = JSON.parse(localStorage.getItem('pm26_userdata') || '{}');
-    const u = users[body.username.toLowerCase()];
-    if (!u) return {ok:false, error:'Usuario no encontrado. ¿Ya te registraste?'};
-    if (u.pin !== body.pin) return {ok:false, error:'PIN incorrecto'};
-    return {ok:true};
+  if(action==="loginPin"){
+    let u=JSON.parse(localStorage.getItem("pm26_userdata")||"{}");
+    const usr=u[body.username.toLowerCase()];
+    if(!usr)return{ok:false,error:"❌ Usuario no encontrado. ¿Ya te registraste?"};
+    if(usr.pin!==body.pin)return{ok:false,error:"🔐 PIN incorrecto. Vuelve a intentarlo."};
+    return{ok:true};
   }
-  if (action === 'login') {
-    let ul = JSON.parse(localStorage.getItem('pm26_users') || '[]');
-    if (!ul.includes(body.username)) { ul.push(body.username); localStorage.setItem('pm26_users', JSON.stringify(ul)); }
-    return {ok:true};
-  }
-  if (action === 'savePronostico') {
-    let p = store('prons_'+body.username);
-    p[body.matchId] = {local:body.local, visita:body.visita};
-    save('prons_'+body.username, p);
-    return {ok:true};
-  }
-  if (action === 'saveEspeciales') { save('esp_'+body.username, body); return {ok:true}; }
-  if (action === 'saveResultado') {
-    let r = store('resultados');
-    r[body.matchId] = {local:body.local, visita:body.visita};
-    save('resultados', r);
-    return {ok:true};
-  }
-  if (action === 'getPronosticos') return {ok:true, data: store('prons_'+body.username)};
-  if (action === 'getEspeciales')  return {ok:true, data: store('esp_'+body.username) || {}};
-  if (action === 'getResultados')   return {ok:true, data: store('resultados')};
-  if (action === 'saveElimTeams') {
-    let t = store('elimteams');
-    t[body.matchId] = {local: body.local, visita: body.visita};
-    save('elimteams', t);
-    return {ok:true};
-  }
-  if (action === 'getElimTeams') return {ok:true, data: store('elimteams')};
-  if (action === 'getLeaderboard') {
-    let users = JSON.parse(localStorage.getItem('pm26_users') || '[]');
-    let res   = store('resultados');
-    let lb = users.map(u => {
-      let prons = store('prons_'+u), pts = 0;
-      Object.entries(prons).forEach(([mid, p]) => {
-        let r = res[mid]; if (!r) return;
-        let fase = mid.startsWith('g') ? 'g' : mid.startsWith('r32') ? 'r32' : mid.startsWith('r16') ? 'r16' : mid.startsWith('qf') ? 'qf' : mid.startsWith('sf') ? 'sf' : 'fin';
-        let s = SCORING[fase], rL = parseInt(r.local), rV = parseInt(r.visita), pL = parseInt(p.local), pV = parseInt(p.visita);
-        if (pL===rL && pV===rV) pts += s.exact;
-        else { let rG = rL>rV?'L':rV>rL?'V':'E', pG = pL>pV?'L':pV>pL?'V':'E'; if (rG===pG) pts += s.correct; }
+  if(action==="savePronostico"){let p=store("prons_"+body.username);p[body.matchId]={local:body.local,visita:body.visita};save("prons_"+body.username,p);return{ok:true};}
+  if(action==="saveEspeciales"){save("esp_"+body.username,body);return{ok:true};}
+  if(action==="saveResultado"){let r=store("resultados");r[body.matchId]={local:body.local,visita:body.visita};save("resultados",r);return{ok:true};}
+  if(action==="getPronosticos")return{ok:true,data:store("prons_"+body.username)};
+  if(action==="getEspeciales")return{ok:true,data:store("esp_"+body.username)||{}};
+  if(action==="getResultados")return{ok:true,data:store("resultados")};
+  if(action==="saveElimTeams"){let t=store("elimteams");t[body.matchId]={local:body.local,visita:body.visita};save("elimteams",t);return{ok:true};}
+  if(action==="getElimTeams")return{ok:true,data:store("elimteams")};
+  if(action==="getLeaderboard"){
+    let users=JSON.parse(localStorage.getItem("pm26_users")||"[]"),res=store("resultados");
+    let lb=users.map(u=>{
+      let prons=store("prons_"+u),pts=0;
+      Object.entries(prons).forEach(([mid,p])=>{
+        let r=res[mid];if(!r)return;
+        let fase=mid.startsWith("g")?"g":mid.startsWith("r32")?"r32":mid.startsWith("r16")?"r16":mid.startsWith("qf")?"qf":mid.startsWith("sf")?"sf":mid.startsWith("fin")?"fin":"g";
+        let s=SCORING[fase],rL=parseInt(r.local),rV=parseInt(r.visita),pL=parseInt(p.local),pV=parseInt(p.visita);
+        if(pL===rL&&pV===rV)pts+=s.exact;
+        else{let rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";if(rG===pG)pts+=s.correct;}
       });
-      return {usuario:u, puntos:pts, pronGrupos:Object.keys(prons).length, pronElim:0, ptsEspeciales:0};
-    }).sort((a,b) => b.puntos - a.puntos).map((r,i) => ({...r, posicion:i+1}));
-    return {ok:true, data:lb};
+      // Especiales pts (basic local check)
+      let ptsEsp=0;
+      const espData=store("esp_"+u);
+      const espRes=store("resultados");
+      [["campeon",15],["subcampeon",10],["goleador",10],["portero",8]].forEach(([k,pts_])=>{
+        const resKey="esp_"+k;
+        if(espRes[resKey]&&espData[k]&&espData[k].toLowerCase()===espRes[resKey].local?.toString().toLowerCase())ptsEsp+=pts_;
+      });
+      return{usuario:u,puntos:pts+ptsEsp,pronGrupos:Object.keys(prons).length,pronElim:0,ptsEspeciales:ptsEsp,area:""};
+    }).sort((a,b)=>b.puntos-a.puntos).map((r,i)=>({...r,posicion:i+1}));
+    return{ok:true,data:lb};
   }
-  return {ok:false};
+  return{ok:false,error:"Sin conexión"};
 }
 
-function setSyncStatus(online) {
-  const el = document.getElementById('sync-status');
-  if (el) el.innerHTML = online
-    ? '<span class="online-badge">● En línea</span>'
-    : '<span class="offline-badge">● Sin conexión</span>';
+let estructuraData=[];
+async function loadEstructura(){
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${CLIMA_SHEET_ID}/gviz/tq?tqx=out:json&sheet=Estructura`;
+    const res=await fetch(url);const text=await res.text();
+    const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.*)\)/s)[1]);
+    estructuraData=json.table.rows.filter(r=>r.c[0]&&r.c[0].v).map(r=>({gerencia:r.c[0].v,area:r.c[1]?.v||""}));
+    const gerencias=[...new Set(estructuraData.map(r=>r.gerencia))].sort();
+    const selG=document.getElementById("reg-gerencia");
+    gerencias.forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;selG.appendChild(o);});
+  }catch(e){console.log("estructura fallback");}
+}
+function loadAreas(){
+  const g=document.getElementById("reg-gerencia").value;
+  const selA=document.getElementById("reg-area");
+  selA.innerHTML="<option value=''>-- Selecciona tu Área --</option>";
+  [...new Set(estructuraData.filter(r=>r.gerencia===g).map(r=>r.area))].sort().forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;selA.appendChild(o);});
 }
 
-// ============================================================
-// CARGAR ESTRUCTURA (Gerencias/Áreas desde Sheets de Clima)
-// ============================================================
-let estructuraData = [];
+function showRegister(){document.getElementById("panel-login").style.display="none";document.getElementById("panel-registro").style.display="block";loadEstructura();}
+function showLogin(){document.getElementById("panel-registro").style.display="none";document.getElementById("panel-login").style.display="block";}
 
-async function loadEstructura() {
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${CLIMA_SHEET_ID}/gviz/tq?tqx=out:json&sheet=Estructura`;
-    const res  = await fetch(url);
-    const text = await res.text();
-    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\((.*)\)/s)[1]);
-    estructuraData = json.table.rows
-      .filter(r => r.c[0] && r.c[0].v)
-      .map(r => ({ gerencia: r.c[0].v, area: r.c[1]?.v || '' }));
-    // Populate gerencias
-    const gerencias = [...new Set(estructuraData.map(r => r.gerencia))].sort();
-    const selG = document.getElementById('reg-gerencia');
-    gerencias.forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g; selG.appendChild(o); });
-  } catch(e) {
-    // Si falla, poner texto libre
-    document.getElementById('reg-gerencia').outerHTML = '<input type="text" id="reg-gerencia" placeholder="Tu Gerencia" maxlength="60" style="width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:14px 16px;color:var(--text);font-family:Outfit,sans-serif;font-size:17px;margin-bottom:12px;outline:none">';
-    document.getElementById('reg-area').outerHTML    = '<input type="text" id="reg-area"     placeholder="Tu Área"     maxlength="60" style="width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:14px 16px;color:var(--text);font-family:Outfit,sans-serif;font-size:17px;margin-bottom:12px;outline:none">';
-  }
-}
-
-function loadAreas() {
-  const gerencia = document.getElementById('reg-gerencia').value;
-  const selA = document.getElementById('reg-area');
-  selA.innerHTML = '<option value="">-- Selecciona tu Área --</option>';
-  const areas = [...new Set(estructuraData.filter(r => r.gerencia === gerencia).map(r => r.area))].sort();
-  areas.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; selA.appendChild(o); });
-}
-
-// ============================================================
-// UI HELPERS
-// ============================================================
-function showRegister() {
-  document.getElementById('panel-login').style.display    = 'none';
-  document.getElementById('panel-registro').style.display = 'block';
-  loadEstructura();
-}
-function showLogin() {
-  document.getElementById('panel-registro').style.display = 'none';
-  document.getElementById('panel-login').style.display    = 'block';
-}
-
-// ============================================================
-// AUTH — REGISTRO
-// ============================================================
-async function doRegister() {
-  const rawNombre = (document.getElementById('reg-nombre').value.trim() + ' ' + document.getElementById('reg-apellido').value.trim()).trim();
-  const nombre    = rawNombre.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-  const gerencia = document.getElementById('reg-gerencia').value;
-  const area     = document.getElementById('reg-area').value;
-  const pin      = document.getElementById('reg-pin').value.trim();
-  const pin2     = document.getElementById('reg-pin2').value.trim();
-  const err      = document.getElementById('reg-error');
-  const ldr      = document.getElementById('reg-loader');
-
-  if (!document.getElementById('reg-nombre').value.trim())   { err.textContent = 'Ingresa tu nombre'; return; }
-  if (!document.getElementById('reg-apellido').value.trim()) { err.textContent = 'Ingresa tu apellido'; return; }
-  if (!gerencia)        { err.textContent = 'Selecciona tu gerencia'; return; }
-  if (!area)            { err.textContent = 'Selecciona tu área'; return; }
-  if (!/^\d{4}$/.test(pin))  { err.textContent = 'El PIN debe ser exactamente 4 dígitos'; return; }
-  if (pin !== pin2)     { err.textContent = 'Los PINs no coinciden'; return; }
-
-  err.textContent = ''; ldr.textContent = 'Registrando...';
-  const r = await api('register', {username: nombre, gerencia, area, pin});
-  if (!r.ok) {
-    ldr.textContent = '';
-    err.textContent = r.error || 'Error al registrar';
-    return;
-  }
-  ldr.textContent = '';
+async function doRegister(){
+  const rawN=(document.getElementById("reg-nombre").value.trim()+" "+document.getElementById("reg-apellido").value.trim()).trim();
+  const nombre=rawN.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+  const gerencia=document.getElementById("reg-gerencia").value;
+  const area=document.getElementById("reg-area").value;
+  const pin=document.getElementById("reg-pin").value.trim();
+  const pin2=document.getElementById("reg-pin2").value.trim();
+  const err=document.getElementById("reg-error"),ldr=document.getElementById("reg-loader");
+  if(!document.getElementById("reg-nombre").value.trim()){err.textContent="Ingresa tu nombre";return;}
+  if(!document.getElementById("reg-apellido").value.trim()){err.textContent="Ingresa tu apellido";return;}
+  if(!gerencia){err.textContent="Selecciona tu gerencia";return;}
+  if(!area){err.textContent="Selecciona tu área";return;}
+  if(!/^\d{4}$/.test(pin)){err.textContent="El PIN debe ser exactamente 4 dígitos";return;}
+  if(pin!==pin2){err.textContent="Los PINs no coinciden";return;}
+  err.textContent="";ldr.textContent="Registrando...";
+  const r=await api("register",{username:nombre,gerencia,area,pin});
+  ldr.textContent="";
+  if(!r.ok){err.textContent=r.error||"Error al registrar";return;}
   await enterApp(nombre);
 }
 
-// ============================================================
-// AUTH — LOGIN
-// ============================================================
-async function doLogin() {
-  const rawName = (document.getElementById('login-nombre').value.trim() + ' ' + document.getElementById('login-apellido').value.trim()).trim();
-  const name    = rawName.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-  const pin  = document.getElementById('login-pin').value.trim();
-  const err  = document.getElementById('login-error');
-  const ldr  = document.getElementById('login-loader');
-
-  if (!document.getElementById('login-nombre').value.trim())   { err.textContent = 'Ingresa tu nombre'; return; }
-  if (!document.getElementById('login-apellido').value.trim()) { err.textContent = 'Ingresa tu apellido'; return; }
-  if (!/^\d{4}$/.test(pin))   { err.textContent = 'Ingresa tu PIN de 4 dígitos'; return; }
-
-  err.textContent = ''; ldr.textContent = 'Verificando...';
-
-  const r = await api('loginPin', {username: name, pin});
-  if (!r.ok) {
-    ldr.textContent = '';
-    err.textContent = r.error || 'Nombre o PIN incorrecto';
-    return;
-  }
-  ldr.textContent = '';
+async function doLogin(){
+  const rawN=(document.getElementById("login-nombre").value.trim()+" "+document.getElementById("login-apellido").value.trim()).trim();
+  const name=rawN.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+  const pin=document.getElementById("login-pin").value.trim();
+  const err=document.getElementById("login-error"),ldr=document.getElementById("login-loader");
+  if(!document.getElementById("login-nombre").value.trim()){err.textContent="Ingresa tu nombre";return;}
+  if(!document.getElementById("login-apellido").value.trim()){err.textContent="Ingresa tu apellido";return;}
+  if(!/^\d{4}$/.test(pin)){err.textContent="Ingresa tu PIN de 4 dígitos";return;}
+  err.textContent="";ldr.textContent="Verificando...";
+  const r=await api("loginPin",{username:name,pin});
+  ldr.textContent="";
+  if(!r.ok){err.textContent=r.error||"Error al ingresar";return;}
   await enterApp(name);
 }
 
-async function loadElimTeams() {
-  const r = await api('getElimTeams');
-  if (r.ok && r.data) {
-    elimTeams = r.data;
-    Object.entries(elimTeams).forEach(([matchId, teams]) => {
-      for (const fase of Object.values(ELIM_PARTIDOS)) {
-        const p = fase.find(x => x.id === matchId);
-        if (p) { p.local = teams.local; p.visita = teams.visita; }
-      }
+document.getElementById("login-pin").addEventListener("keydown",e=>{if(e.key==="Enter")doLogin();});
+
+async function loadElimTeams(){
+  const r=await api("getElimTeams");
+  if(r.ok&&r.data){
+    elimTeams=r.data;
+    Object.entries(elimTeams).forEach(([id,t])=>{
+      for(const fase of Object.values(ELIM_PARTIDOS)){const p=fase.find(x=>x.id===id);if(p){p.local=t.local;p.visita=t.visita;}}
     });
   }
 }
 
-async function enterApp(name) {
+async function enterApp(name){
   await loadElimTeams();
-  currentUser = name;
-  const [pR, eR, rR] = await Promise.all([
-    api('getPronosticos', {username: name}),
-    api('getEspeciales',  {username: name}),
-    api('getResultados'),
-  ]);
-  myPronosticos = pR.data || {};
-  myEspeciales  = eR.data || {};
-  resultados    = rR.data || {};
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  document.getElementById('header-username').textContent = name;
-  // Show admin toggle only for Christopher
-  if (ADMIN_USERS.includes(name.toLowerCase())) {
-    document.getElementById('admin-toggle-wrap').style.display = 'flex';
-  }
-  showTab('comojuega', document.querySelector('[data-tab="comojuega"]'));
+  currentUser=name;isAdmin=false;
+  const[pR,eR,rR]=await Promise.all([api("getPronosticos",{username:name}),api("getEspeciales",{username:name}),api("getResultados")]);
+  myPronosticos=pR.data||{};myEspeciales=eR.data||{};resultados=rR.data||{};
+  document.getElementById("login-screen").style.display="none";
+  document.getElementById("app").style.display="block";
+  document.getElementById("header-username").textContent=name;
+  if(ADMIN_USERS.includes(name.toLowerCase()))document.getElementById("admin-toggle-wrap").style.display="flex";
+  showTab("comojuega",document.querySelector("[data-tab=comojuega]"));
 }
 
-function doLogout() {
-  currentUser = null; isAdmin = false; myPronosticos = {}; myEspeciales = {}; resultados = {};
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-name').value = '';
-  document.getElementById('login-pin').value  = '';
+function doLogout(){
+  currentUser=null;isAdmin=false;myPronosticos={};myEspeciales={};resultados={};
+  document.getElementById("login-screen").style.display="flex";
+  document.getElementById("app").style.display="none";
+  ["login-nombre","login-apellido","login-pin"].forEach(id=>document.getElementById(id).value="");
+  const wrap=document.getElementById("admin-toggle-wrap"),btn=document.getElementById("admin-toggle-btn");
+  wrap.style.display="none";btn.textContent="🔒 Modo Admin: OFF";btn.style.background="rgba(5,28,44,0.08)";btn.style.color="#1a3a4f";
+  document.getElementById("admin-tab").style.display="none";
   showLogin();
 }
 
-document.getElementById('login-pin').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-
-// ============================================================
-// NAV
-// ============================================================
-function showTab(tab, el) {
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  if (el) el.classList.add('active');
-  document.querySelectorAll('[id^="tab-"]').forEach(t => t.style.display = 'none');
-  document.getElementById('tab-'+tab).style.display = 'block';
-  if (tab === 'leaderboard')    renderLeaderboard();
-  if (tab === 'grupos')         renderGrupos();
-  if (tab === 'eliminatorias')  renderEliminatorias();
-  if (tab === 'especiales')    renderEspeciales();
-  if (tab === 'admin')         renderAdmin();
-  // comojuega es estático, no necesita render
+function toggleAdminMode(){
+  isAdmin=!isAdmin;
+  const btn=document.getElementById("admin-toggle-btn"),tab=document.getElementById("admin-tab");
+  if(isAdmin){btn.textContent="🔓 Modo Admin: ON";btn.style.background="#1A7A4A";btn.style.color="#fff";tab.style.display="flex";showToast("Modo Admin activado","success");}
+  else{btn.textContent="🔒 Modo Admin: OFF";btn.style.background="rgba(5,28,44,0.08)";btn.style.color="#1a3a4f";tab.style.display="none";if(document.getElementById("tab-admin").style.display!=="none")showTab("comojuega",document.querySelector("[data-tab=comojuega]"));}
 }
 
-// ============================================================
-// LEADERBOARD
-// ============================================================
-async function renderLeaderboard() {
-  document.getElementById('leaderboard-content').innerHTML = '<div class="loader">⏳ Actualizando...</div>';
-  const r  = await api('getLeaderboard');
-  const lb = r.data || [];
-  if (!lb.length) {
-    document.getElementById('leaderboard-content').innerHTML = '<div class="empty-state"><div class="ei">🏁</div><div>Aún no hay participantes</div></div>';
-    return;
-  }
-  let html = '<div class="lb-card">';
-  lb.forEach((s, i) => {
-    const isMe = s.usuario === currentUser;
-    const rc   = i===0?'rk1':i===1?'rk2':i===2?'rk3':'rkn';
-    const medal= i===0?'🥇':i===1?'🥈':i===2?'🥉':'';
-    html += `<div class="lb-row ${isMe?'you-row':''}">
-      <div class="rank-num ${rc}">${i+1}</div>
-      <div style="flex:1">
-        <div class="lb-name">${medal} ${s.usuario}${isMe?'<span class="you-tag">tú</span>':''}</div>
-        <div class="lb-sub">${s.area||''} · ${(s.pronGrupos||0)+(s.pronElim||0)} pronósticos</div>
-      </div>
-      <div style="text-align:right">
-        <div class="lb-pts">${s.puntos}</div>
-        <div class="lb-pts-label">puntos</div>
-      </div>
-    </div>`;
+function showTab(tab,el){
+  document.querySelectorAll(".nav-tab").forEach(t=>t.classList.remove("active"));
+  if(el)el.classList.add("active");
+  document.querySelectorAll("[id^=tab-]").forEach(t=>t.style.display="none");
+  document.getElementById("tab-"+tab).style.display="block";
+  if(tab==="leaderboard")renderLeaderboard();
+  if(tab==="grupos")renderGrupos();
+  if(tab==="eliminatorias")renderEliminatorias();
+  if(tab==="especiales")renderEspeciales();
+  if(tab==="admin")renderAdmin();
+}
+
+async function renderLeaderboard(){
+  document.getElementById("leaderboard-content").innerHTML="<div class='loader'>⏳ Actualizando...</div>";
+  const r=await api("getLeaderboard");const lb=r.data||[];
+  if(!lb.length){document.getElementById("leaderboard-content").innerHTML="<div class='empty-state'><div class='ei'>🏁</div><div>Aún no hay participantes</div></div>";return;}
+  let html="<div class='lb-card'>";
+  lb.forEach((s,i)=>{
+    const isMe=s.usuario===currentUser,rc=i===0?"rk1":i===1?"rk2":i===2?"rk3":"rkn",medal=i===0?"🥇":i===1?"🥈":i===2?"🥉":"";
+    html+=`<div class="lb-row ${isMe?"you-row":""}"><div class="rank-num ${rc}">${i+1}</div><div style="flex:1"><div class="lb-name">${medal} ${s.usuario}${isMe?"<span class='you-tag'>tú</span>":""}</div><div class="lb-sub">${s.area||""} · ${(s.pronGrupos||0)+(s.pronElim||0)} pronósticos</div></div><div style="text-align:right"><div class="lb-pts">${s.puntos}</div><div class="lb-pts-label">puntos</div></div></div>`;
   });
-  html += '</div>';
-  document.getElementById('leaderboard-content').innerHTML = html;
+  html+="</div>";
+  document.getElementById("leaderboard-content").innerHTML=html;
 }
 
-// ============================================================
-// GRUPOS
-// ============================================================
-function renderGrupos() {
-  const grupos = {};
-  PARTIDOS.forEach(p => { if (!grupos[p.grupo]) grupos[p.grupo]=[]; grupos[p.grupo].push(p); });
-  let html = '';
-  Object.entries(grupos).sort().forEach(([g, partidos]) => {
-    html += `<div class="grupo-header">GRUPO ${g}</div>`;
-    partidos.forEach(p => {
-      const pron    = myPronosticos[p.id] || {};
-      const res     = resultados[p.id];
-      const locked  = TEST_MODE ? false : isLocked(p.fecha, p.hora);
-      const hasPron = pron.local !== undefined;
-      let scoreInfo = null;
-      if (res && hasPron) {
-        const s = SCORING['g'];
-        const rL=parseInt(res.local), rV=parseInt(res.visita), pL=parseInt(pron.local), pV=parseInt(pron.visita);
-        if (pL===rL && pV===rV) scoreInfo = {pts:s.exact, tipo:'exact'};
-        else { const rG=rL>rV?'L':rV>rL?'V':'E', pG=pL>pV?'L':pV>pL?'V':'E'; scoreInfo = rG===pG ? {pts:s.correct,tipo:'correct'} : {pts:0,tipo:'wrong'}; }
+function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`);}
+function fmt(f){const[,m,d]=f.split("-");return `${parseInt(d)} ${["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"][parseInt(m)]}`;}
+
+function renderGrupos(){
+  const grupos={};PARTIDOS.forEach(p=>{if(!grupos[p.grupo])grupos[p.grupo]=[];grupos[p.grupo].push(p);});
+  let html="";
+  Object.entries(grupos).sort().forEach(([g,partidos])=>{
+    html+=`<div class="grupo-header">GRUPO ${g}</div>`;
+    partidos.forEach(p=>{
+      const pron=myPronosticos[p.id]||{},res=resultados[p.id];
+      const locked=!FASES_UNLOCK.grupos||isLocked(p.fecha,p.hora),hasPron=pron.local!==undefined;
+      let si=null;
+      if(res&&hasPron){
+        const s=SCORING["g"],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);
+        if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};
+        else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}
       }
-      html += `<div class="match-card ${hasPron?'saved':''}" id="mc-${p.id}">
-        <div class="match-meta">
-          <span class="match-group-tag">Grupo ${g}</span>
-          <span class="match-date-tag"></span>
-        </div>
+      html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
+        <div class="match-meta"><span class="match-group-tag">Grupo ${g}</span></div>
         <div class="match-body">
           <div class="team-side">${flagImg(p.local)}<div class="team-name-txt">${p.local}</div></div>
           <div class="score-zone">
             <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</div>
             <div class="score-inputs-row">
-              <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:''}" placeholder="0" ${locked?'disabled':''} oninput="onInput('${p.id}')">
+              <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
               <span class="score-sep">:</span>
-              <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:''}" placeholder="0" ${locked?'disabled':''} oninput="onInput('${p.id}')">
+              <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
             </div>
-            <div class="vs-label">${locked&&!TEST_MODE?'🔒 CERRADO':''}</div>
+            <div class="vs-label">${locked?"🔒 CERRADO":""}</div>
           </div>
           <div class="team-side">${flagImg(p.visita)}<div class="team-name-txt">${p.visita}</div></div>
         </div>
         <div class="estadio-txt">🏟️ ${p.estadio}</div>`;
-      if (!locked || TEST_MODE) {
-        html += `<button class="save-match-btn" id="btn-${p.id}" onclick="savePron('${p.id}')" ${hasPron?'':'disabled'}>💾 Guardar pronóstico</button>`;
-      } else if (res) {
-        const cls = scoreInfo ? (scoreInfo.tipo==='exact'?'pts-exact':scoreInfo.tipo==='correct'?'pts-correct':'') : '';
-        const lbl = scoreInfo ? (scoreInfo.tipo==='exact'?'¡Score exacto! 🎯':scoreInfo.tipo==='correct'?'Resultado correcto ✅':'Sin puntos ❌') : '';
-        html += `<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${scoreInfo?` · <span class="${cls}">${lbl} +${scoreInfo.pts}pts</span>`:''}</div>`;
-      } else if (hasPron) {
-        html += `<div class="locked-overlay">🔒 Cerrado · Tu pronóstico: ${pron.local}–${pron.visita}</div>`;
-      } else {
-        html += `<div class="locked-overlay">🔒 Cerrado · No ingresaste pronóstico</div>`;
-      }
-      html += `</div>`;
+      if(!locked)html+=`<button class="save-match-btn" id="btn-${p.id}" onclick="savePron('${p.id}')" ${hasPron?"":"disabled"}>💾 Guardar pronóstico</button>`;
+      else if(res){
+        const cls=si?(si.tipo==="exact"?"pts-exact":si.tipo==="correct"?"pts-correct":""):"";
+        const lbl=si?(si.tipo==="exact"?"¡Score exacto! 🎯":si.tipo==="correct"?"Resultado correcto ✅":"Sin puntos ❌"):"";
+        html+=`<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${si?` · <span class="${cls}">${lbl} +${si.pts}pts`:""}</div>`;
+      }else if(hasPron)html+=`<div class="locked-overlay">🔒 Cerrado · Tu pronóstico: ${pron.local}–${pron.visita}</div>`;
+      else html+=`<div class="locked-overlay">🔒 Cerrado · No ingresaste pronóstico</div>`;
+      html+=`</div>`;
     });
   });
-  document.getElementById('grupos-content').innerHTML = html;
+  document.getElementById("grupos-content").innerHTML=html;
 }
 
-function onInput(id) {
-  const l = document.getElementById('sl-'+id)?.value;
-  const v = document.getElementById('sv-'+id)?.value;
-  const btn = document.getElementById('btn-'+id);
-  if (btn) btn.disabled = (l==='' || v==='');
+function onInput(id){const l=document.getElementById("sl-"+id)?.value,v=document.getElementById("sv-"+id)?.value,btn=document.getElementById("btn-"+id);if(btn)btn.disabled=(l===""||v==="");}
+
+async function savePron(id){
+  const l=document.getElementById("sl-"+id).value,v=document.getElementById("sv-"+id).value;
+  if(l===""||v==="")return;
+  const btn=document.getElementById("btn-"+id);btn.textContent="⏳ Guardando...";btn.disabled=true;
+  const r=await api("savePronostico",{username:currentUser,matchId:id,local:parseInt(l),visita:parseInt(v)});
+  if(r.ok){myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};document.getElementById("mc-"+id).classList.add("saved");btn.textContent="✅ Guardado";showToast("Pronóstico guardado ✓","success");}
+  else{btn.textContent="💾 Guardar pronóstico";btn.disabled=false;showToast("Error al guardar","error");}
 }
 
-async function savePron(id) {
-  const l = document.getElementById('sl-'+id).value;
-  const v = document.getElementById('sv-'+id).value;
-  if (l==='' || v==='') return;
-  const btn = document.getElementById('btn-'+id);
-  btn.textContent = '⏳ Guardando...'; btn.disabled = true;
-  const r = await api('savePronostico', {username:currentUser, matchId:id, local:parseInt(l), visita:parseInt(v)});
-  if (r.ok) {
-    myPronosticos[id] = {local:parseInt(l), visita:parseInt(v)};
-    document.getElementById('mc-'+id).classList.add('saved');
-    btn.textContent = '✅ Guardado';
-    showToast('Pronóstico guardado ✓', 'success');
-  } else {
-    btn.textContent = '💾 Guardar pronóstico'; btn.disabled = false;
-    showToast('Error al guardar', 'error');
-  }
+function renderPhaseGrid(){
+  const phases=[{key:"r32",icon:"3️⃣2️⃣",name:"Ronda de 32",pts:"2pts / 6pts exacto",dates:"28 Jun – 3 Jul"},{key:"r16",icon:"⚔️",name:"Octavos de Final",pts:"3pts / 9pts exacto",dates:"4 Jul – 7 Jul"},{key:"qf",icon:"🛡️",name:"Cuartos de Final",pts:"4pts / 12pts exacto",dates:"8 Jul – 11 Jul"},{key:"sf",icon:"🌟",name:"Semifinales",pts:"5pts / 15pts exacto",dates:"14 Jul – 15 Jul"},{key:"fin",icon:"👑",name:"Final",pts:"8pts / 24pts exacto",dates:"19 Jul 2026"}];
+  const grid=document.getElementById("phase-grid-display"),empty=document.getElementById("elim-empty");
+  if(!grid)return;
+  const anyOpen=phases.some(p=>FASES_UNLOCK[p.key]);
+  empty.style.display=anyOpen?"none":"block";
+  grid.innerHTML=phases.map(p=>{const open=FASES_UNLOCK[p.key];return `<div class="phase-card ${open?"unlocked":"locked"}"><div class="phase-icon">${p.icon}</div><div class="phase-name">${p.name}</div><div class="phase-pts">${p.pts}</div><div class="phase-dates">${p.dates}</div><div class="phase-badge ${open?"open":""}">${open?"Abierta":"Bloqueado"}</div></div>`;}).join("");
 }
 
-function isLocked(fecha, hora) {
-  if (FASES_UNLOCK.grupos) return false; // Admin desbloqueó grupos
-  return new Date() >= new Date(`${fecha}T${hora}:00-05:00`);
-}
-function fmt(f) { const[,m,d]=f.split('-'); return `${parseInt(d)} ${['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][parseInt(m)]}`; }
-
-// ============================================================
-// ELIMINATORIAS
-// ============================================================
-function renderEliminatorias() {
-  const faseActiva = ['r32','r16','qf','sf','fin'].find(f => FASES_UNLOCK[f]) || null;
-  const phaseNames = {r32:'Ronda de 32', r16:'Octavos de Final', qf:'Cuartos de Final', sf:'Semifinales', fin:'Final'};
-  const phaseScoring = {r32:'2pts resultado · 6pts exacto', r16:'3pts · 9pts exacto', qf:'4pts · 12pts exacto', sf:'5pts · 15pts exacto', fin:'8pts · 24pts exacto'};
-
-  // Re-render phase grid
-  if (typeof renderPhaseGrid === 'function') renderPhaseGrid();
-  renderEliminatorias();
-
-  if (!faseActiva) return;
-
-  const partidos = ELIM_PARTIDOS[faseActiva] || [];
-  let html = `<div style="margin-top:20px"><div class="grupo-header">${phaseNames[faseActiva]} <span style="font-size:15px;font-weight:400;color:#C8860A">${phaseScoring[faseActiva]}</span></div>`;
-
-  partidos.forEach(p => {
-    const pron = myPronosticos[p.id] || {};
-    const res  = resultados[p.id];
-    const hasPron = pron.local !== undefined;
-    const locked = !FASES_UNLOCK[faseActiva] || (!p.local && !p.visita);
-    let scoreInfo = null;
-    if (res && hasPron) {
-      const fase = faseActiva;
-      const s = SCORING[fase];
-      const rL=parseInt(res.local), rV=parseInt(res.visita), pL=parseInt(pron.local), pV=parseInt(pron.visita);
-      if (pL===rL && pV===rV) scoreInfo = {pts:s.exact, tipo:'exact'};
-      else { const rG=rL>rV?'L':rV>rL?'V':'E', pG=pL>pV?'L':pV>pL?'V':'E'; scoreInfo = rG===pG ? {pts:s.correct,tipo:'correct'} : {pts:0,tipo:'wrong'}; }
-    }
-
-    const equipoLocal  = p.local  || '❓ Por definir';
-    const equipoVisita = p.visita || '❓ Por definir';
-    const sinEquipos   = !p.local || !p.visita;
-
-    html += `<div class="match-card ${hasPron?'saved':''}" id="mc-${p.id}">
-      <div class="match-meta">
-        <span class="match-group-tag">${phaseNames[faseActiva]}</span>
-        <span class="match-date-tag"></span>
-      </div>
+function renderEliminatorias(){
+  renderPhaseGrid();
+  const faseActiva=["r32","r16","qf","sf","fin"].find(f=>FASES_UNLOCK[f])||null;
+  const pNames={r32:"Ronda de 32",r16:"Octavos de Final",qf:"Cuartos de Final",sf:"Semifinales",fin:"Final"};
+  const pScore={r32:"2pts · 6pts exacto",r16:"3pts · 9pts exacto",qf:"4pts · 12pts exacto",sf:"5pts · 15pts exacto",fin:"8pts · 24pts exacto"};
+  const ec=document.getElementById("elim-content");
+  if(!faseActiva){ec.innerHTML="";return;}
+  const partidos=ELIM_PARTIDOS[faseActiva]||[];
+  let html=`<div style="margin-top:20px"><div class="grupo-header">${pNames[faseActiva]} <span style="font-size:15px;font-weight:400;color:#C8860A">${pScore[faseActiva]}</span></div>`;
+  partidos.forEach(p=>{
+    const pron=myPronosticos[p.id]||{},res=resultados[p.id],hasPron=pron.local!==undefined;
+    const sinEq=!p.local||!p.visita,locked=!FASES_UNLOCK[faseActiva]||sinEq;
+    let si=null;
+    if(res&&hasPron){const s=SCORING[faseActiva],rL=parseInt(res.local),rV=parseInt(res.visita),pL=parseInt(pron.local),pV=parseInt(pron.visita);if(pL===rL&&pV===rV)si={pts:s.exact,tipo:"exact"};else{const rG=rL>rV?"L":rV>rL?"V":"E",pG=pL>pV?"L":pV>pL?"V":"E";si=rG===pG?{pts:s.correct,tipo:"correct"}:{pts:0,tipo:"wrong"};}}
+    html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
+      <div class="match-meta"><span class="match-group-tag">${pNames[faseActiva]}</span></div>
       <div class="match-body">
-        <div class="team-side">${p.local ? flagImg(p.local) : '<div style="font-size:40px;text-align:center">❓</div>'}<div class="team-name-txt">${equipoLocal}</div></div>
+        <div class="team-side">${p.local?flagImg(p.local):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.local||"Por definir"}</div></div>
         <div class="score-zone">
           <div class="match-date-center">📅 ${fmt(p.fecha)} · ⏰ ${p.hora} Lima</div>
           <div class="score-inputs-row">
-            <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:''}" placeholder="0" ${locked||sinEquipos?'disabled':''} oninput="onInput('${p.id}')">
+            <input class="score-input" type="number" min="0" max="20" id="sl-${p.id}" value="${hasPron?pron.local:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
             <span class="score-sep">:</span>
-            <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:''}" placeholder="0" ${locked||sinEquipos?'disabled':''} oninput="onInput('${p.id}')">
+            <input class="score-input" type="number" min="0" max="20" id="sv-${p.id}" value="${hasPron?pron.visita:""}" placeholder="0" ${locked?"disabled":""} oninput="onInput('${p.id}')">
           </div>
-          <div class="vs-label">${sinEquipos?'⏳ Equipos por definir':''}</div>
+          <div class="vs-label">${sinEq?"⏳ Equipos por definir":locked?"🔒 CERRADO":""}</div>
         </div>
-        <div class="team-side">${p.visita ? flagImg(p.visita) : '<div style="font-size:40px;text-align:center">❓</div>'}<div class="team-name-txt">${equipoVisita}</div></div>
+        <div class="team-side">${p.visita?flagImg(p.visita):"<div style='font-size:40px;text-align:center'>❓</div>"}<div class="team-name-txt">${p.visita||"Por definir"}</div></div>
       </div>
       <div class="estadio-txt">🏟️ ${p.estadio}</div>`;
-
-    if (!sinEquipos && !locked) {
-      html += `<button class="save-match-btn" id="btn-${p.id}" onclick="saveElimPron('${p.id}','${faseActiva}')" ${hasPron?'':'disabled'}>💾 Guardar pronóstico</button>`;
-    } else if (res) {
-      const cls = scoreInfo ? (scoreInfo.tipo==='exact'?'pts-exact':scoreInfo.tipo==='correct'?'pts-correct':'') : '';
-      const lbl = scoreInfo ? (scoreInfo.tipo==='exact'?'¡Score exacto! 🎯':scoreInfo.tipo==='correct'?'Resultado correcto ✅':'Sin puntos ❌') : '';
-      html += `<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${scoreInfo?` · <span class="${cls}">${lbl} +${scoreInfo.pts}pts</span>`:''}</div>`;
-    }
-    html += `</div>`;
+    if(!sinEq&&!locked)html+=`<button class="save-match-btn" id="btn-${p.id}" onclick="saveElimPron('${p.id}','${faseActiva}')" ${hasPron?"":"disabled"}>💾 Guardar pronóstico</button>`;
+    else if(res){const cls=si?(si.tipo==="exact"?"pts-exact":si.tipo==="correct"?"pts-correct":""):"";const lbl=si?(si.tipo==="exact"?"¡Score exacto! 🎯":si.tipo==="correct"?"Resultado correcto ✅":"Sin puntos ❌"):"";html+=`<div class="match-result-info">Resultado: <strong>${res.local} – ${res.visita}</strong>${si?` · <span class="${cls}">${lbl} +${si.pts}pts`:""}</div>`;}
+    html+=`</div>`;
   });
-
-  html += '</div>';
-  document.getElementById('elim-content').innerHTML = html;
+  html+="</div>";ec.innerHTML=html;
 }
 
-async function saveElimPron(id, fase) {
-  const l = document.getElementById('sl-'+id).value;
-  const v = document.getElementById('sv-'+id).value;
-  if (l===''||v==='') return;
-  const btn = document.getElementById('btn-'+id);
-  btn.textContent = '⏳ Guardando...'; btn.disabled = true;
-  const r = await api('savePronostico', {username:currentUser, matchId:id, local:parseInt(l), visita:parseInt(v)});
-  if (r.ok) {
-    myPronosticos[id] = {local:parseInt(l), visita:parseInt(v)};
-    document.getElementById('mc-'+id).classList.add('saved');
-    btn.textContent = '✅ Guardado';
-    showToast('Pronóstico guardado ✓', 'success');
-  } else {
-    btn.textContent = '💾 Guardar pronóstico'; btn.disabled = false;
-    showToast('Error al guardar', 'error');
-  }
+async function saveElimPron(id,fase){
+  const l=document.getElementById("sl-"+id).value,v=document.getElementById("sv-"+id).value;
+  if(l===""||v==="")return;
+  const btn=document.getElementById("btn-"+id);btn.textContent="⏳ Guardando...";btn.disabled=true;
+  const r=await api("savePronostico",{username:currentUser,matchId:id,local:parseInt(l),visita:parseInt(v)});
+  if(r.ok){myPronosticos[id]={local:parseInt(l),visita:parseInt(v)};document.getElementById("mc-"+id).classList.add("saved");btn.textContent="✅ Guardado";showToast("Pronóstico guardado ✓","success");}
+  else{btn.textContent="💾 Guardar pronóstico";btn.disabled=false;showToast("Error al guardar","error");}
 }
 
-// ============================================================
-// ESPECIALES
-// ============================================================
-function renderEspeciales() {
-  const locked = !FASES_UNLOCK.grupos && new Date() >= new Date('2026-06-18T23:00:00-05:00');
-  let html = '<div class="especiales-grid">';
-  ESPECIALES.forEach(esp => {
-    const saved = myEspeciales[esp.id];
-    html += `<div class="esp-card ${saved?'esp-saved':''} ${locked?'esp-locked':''}">
-      <span class="esp-icon">${esp.icon}</span>
-      <div class="esp-title">${esp.titulo}</div>
-      <div class="esp-desc">${esp.desc}</div>
-      <div class="esp-pts">${esp.puntos} PTS</div>`;
-    if (esp.tipo === 'select') {
-      html += `<select class="esp-input" id="esp-${esp.id}" ${locked?'disabled':''}><option value="">-- Elige equipo --</option>${EQUIPOS.map(eq=>`<option value="${eq}" ${saved===eq?'selected':''}>${eq}</option>`).join('')}</select>`;
-    } else {
-      html += `<input class="esp-input" type="text" id="esp-${esp.id}" placeholder="${esp.ph}" value="${saved||''}" ${locked?'disabled':''}>`;
-    }
-    if (saved) html += `<div class="esp-saved-tag">✓ ${saved}</div>`;
-    html += `</div>`;
+function renderEspeciales(){
+  const locked=!FASES_UNLOCK.grupos&&new Date()>=new Date("2026-06-18T23:00:00-05:00");
+  let html="<div class='especiales-grid'>";
+  ESPECIALES.forEach(esp=>{
+    const saved=myEspeciales[esp.id];
+    html+=`<div class="esp-card ${saved?"esp-saved":""} ${locked?"esp-locked":""}"><span class="esp-icon">${esp.icon}</span><div class="esp-title">${esp.titulo}</div><div class="esp-desc">${esp.desc}</div><div class="esp-pts">${esp.puntos} PTS</div>`;
+    if(esp.tipo==="select")html+=`<select class="esp-input" id="esp-${esp.id}" ${locked?"disabled":""}><option value="">-- Elige equipo --</option>${EQUIPOS.map(eq=>`<option value="${eq}" ${saved===eq?"selected":""}>${eq}</option>`).join("")}</select>`;
+    else html+=`<input class="esp-input" type="text" id="esp-${esp.id}" placeholder="${esp.ph}" value="${saved||""}" ${locked?"disabled":""}>`;
+    if(saved)html+=`<div class="esp-saved-tag">✓ ${saved}</div>`;
+    html+=`</div>`;
   });
-  html += '</div>';
-  if (!locked) html += `<button class="save-esp-btn" onclick="saveEspeciales()">⭐ GUARDAR MIS PREDICCIONES</button>`;
-  else html += `<div class="notice"><strong>🔒 Predicciones cerradas</strong><span>Cerraron con el inicio del torneo.</span></div>`;
-  document.getElementById('especiales-content').innerHTML = html;
+  html+="</div>";
+  if(!locked)html+=`<button class="save-esp-btn" onclick="saveEspeciales()">⭐ GUARDAR MIS PREDICCIONES</button>`;
+  else html+=`<div class="notice"><strong>🔒 Predicciones cerradas</strong><span>Cerraron el 18 de junio a las 11:00pm.</span></div>`;
+  document.getElementById("especiales-content").innerHTML=html;
 }
 
-async function saveEspeciales() {
-  const data = {};
-  ESPECIALES.forEach(e => { data[e.id] = document.getElementById('esp-'+e.id)?.value || ''; });
-  const r = await api('saveEspeciales', {username:currentUser, ...data});
-  if (r.ok) { myEspeciales = data; renderEspeciales(); showToast('Predicciones guardadas ✓', 'success'); }
-  else showToast('Error al guardar', 'error');
+async function saveEspeciales(){
+  const data={};ESPECIALES.forEach(e=>{data[e.id]=document.getElementById("esp-"+e.id)?.value||"";});
+  const r=await api("saveEspeciales",{username:currentUser,...data});
+  if(r.ok){myEspeciales=data;renderEspeciales();showToast("Predicciones guardadas ✓","success");}
+  else showToast("Error al guardar","error");
 }
 
-// ============================================================
-// ADMIN
-// ============================================================
-async function renderAdmin() {
-  if (!isAdmin) { document.getElementById('admin-content').innerHTML = '<div class="empty-state"><div class="ei">🚫</div><div>Solo administradores</div></div>'; return; }
-  let html = `<div class="admin-card"><div class="admin-title">⚽ Resultados Fase de Grupos</div>`;
-  PARTIDOS.forEach(p => {
-    const res = resultados[p.id] || {};
-    html += `<div class="admin-row">
-      <div class="admin-label">${flagSmall(p.local)}${p.local} vs ${flagSmall(p.visita)}${p.visita} <small style="color:var(--text3)">${fmt(p.fecha)} ${p.hora}</small></div>
-      <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??''}" placeholder="L">
-      <span style="color:var(--text3)">–</span>
-      <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??''}" placeholder="V">
-      <button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button>
-    </div>`;
-  });
-  html += `</div>
-  <div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales</div>`;
-  ESPECIALES.forEach(e => {
-    const res = resultados['esp_'+e.id] || {};
-    html += `<div class="admin-row">
-      <div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div>
-      <input class="admin-score-input" style="width:160px" type="text" id="are-${e.id}" value="${res.local||''}" placeholder="Ganador real">
-      <button class="admin-save-btn" onclick="saveEspResultado('${e.id}')">Confirmar</button>
-    </div>`;
-  });
-  // Admin: set elim teams
-  html += `</div>
-  <div class="admin-card">
-    <div class="admin-title">⚽ Definir Equipos — Fase Eliminatoria</div>
-    <div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Ingresa los equipos que se enfrentan en cada partido. Una vez guardados, los participantes podrán pronosticar.</div>`;
-
-  const elimFases = [
-    {key:'r32', label:'Ronda de 32', partidos: ELIM_PARTIDOS.r32},
-    {key:'r16', label:'Octavos de Final', partidos: ELIM_PARTIDOS.r16},
-    {key:'qf',  label:'Cuartos de Final', partidos: ELIM_PARTIDOS.qf},
-    {key:'sf',  label:'Semifinales', partidos: ELIM_PARTIDOS.sf},
-    {key:'fin', label:'Final', partidos: ELIM_PARTIDOS.fin},
-  ];
-
-  elimFases.forEach(fase => {
-    html += `<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;
-    fase.partidos.forEach((p,i) => {
-      const savedLocal  = elimTeams[p.id]?.local  || p.local  || '';
-      const savedVisita = elimTeams[p.id]?.visita || p.visita || '';
-      html += `<div class="admin-row">
-        <div class="admin-label" style="font-size:13px;color:#1a3a4f">Partido ${i+1} · ${fmt(p.fecha)} ${p.hora} · ${p.estadio}</div>
-        <input id="et-${p.id}-l" class="admin-score-input" style="width:140px;font-size:13px" type="text" placeholder="Equipo Local" value="${savedLocal}">
-        <span style="color:#1a3a4f">vs</span>
-        <input id="et-${p.id}-v" class="admin-score-input" style="width:140px;font-size:13px" type="text" placeholder="Equipo Visita" value="${savedVisita}">
-        <button class="admin-save-btn" onclick="saveElimTeams('${p.id}')">Guardar</button>
-      </div>`;
-    });
-    html += `</div>`;
-  });
-  html += `</div>`;
-
-  html += `</div>
-
-  <!-- CONTROL DE FASES -->`;
-  <div class="admin-card">
-    <div class="admin-title">🔓 Control de Fases</div>
-    <div style="font-size:15px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente. Los cambios aplican inmediatamente para todos los usuarios.</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" id="fase-controls"></div>
-    <div style="margin-top:14px;font-size:13px;color:#2a4a5a;">⚠️ Al activar una fase, los participantes pueden ingresar pronósticos. Al desactivarla, se bloquean.</div>
-  </div>`;
-
-  // Render fase controls
-  setTimeout(() => {
-    const fases = [
-      {key:'grupos', label:'⚽ Fase de Grupos'},
-      {key:'r32',    label:'3️⃣2️⃣ Ronda de 32'},
-      {key:'r16',    label:'⚔️ Octavos de Final'},
-      {key:'qf',     label:'🛡️ Cuartos de Final'},
-      {key:'sf',     label:'🌟 Semifinales'},
-      {key:'fin',    label:'👑 Final'},
-    ];
-    const container = document.getElementById('fase-controls');
-    if (!container) return;
-    container.innerHTML = fases.map(f => `
-      <div style="background:${FASES_UNLOCK[f.key]?'rgba(37,168,101,0.15)':'rgba(5,28,44,0.08)'};border:2px solid ${FASES_UNLOCK[f.key]?'#1A7A4A':'#b0c4d8'};border-radius:10px;padding:12px;text-align:center;">
-        <div style="font-size:13px;font-weight:600;color:#051C2C;margin-bottom:8px;">${f.label}</div>
-        <div style="font-size:12px;color:${FASES_UNLOCK[f.key]?'#1A7A4A':'#6a8a9a'};margin-bottom:10px;font-weight:700;">${FASES_UNLOCK[f.key]?'✅ ABIERTA':'🔒 BLOQUEADA'}</div>
-        <button onclick="toggleFase('${f.key}')" style="background:${FASES_UNLOCK[f.key]?'#E05252':'#1A7A4A'};color:#fff;border:none;border-radius:6px;padding:7px 14px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;width:100%;">
-          ${FASES_UNLOCK[f.key]?'Bloquear':'Desbloquear'}
-        </button>
-      </div>`).join('');
-  }, 50);
-
-  html += `<div class="admin-card"><div class="admin-title">🔐 Accesos</div>
-    <div style="font-size:16px;color:var(--text2);line-height:2.5">
-      Contraseña grupo: <strong style="color:var(--text)">${GROUP_PASSWORD}</strong><br>
-      Contraseña admin: <strong style="color:var(--gold)">${ADMIN_PASSWORD}</strong><br>
-      Modo prueba: <strong style="color:${TEST_MODE?'var(--green-light)':'var(--red)}'}">${TEST_MODE?'ACTIVO':'INACTIVO'}</strong>
-    </div>
-  </div>`;
-  document.getElementById('admin-content').innerHTML = html;
+async function renderAdmin(){
+  if(!isAdmin){document.getElementById("admin-content").innerHTML="<div class='empty-state'><div class='ei'>🚫</div><div>Solo administradores</div></div>";return;}
+  let html="";
+  html+=`<div class="admin-card"><div class="admin-title">⚽ Resultados — Fase de Grupos</div>`;
+  PARTIDOS.forEach(p=>{const res=resultados[p.id]||{};html+=`<div class="admin-row"><div class="admin-label">${flagSmall(p.local)}${p.local} vs ${flagSmall(p.visita)}${p.visita} <small style="color:#2a4a5a">${fmt(p.fecha)} ${p.hora}</small></div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});
+  html+=`</div>`;
+  const elimFases=[{key:"r32",label:"Ronda de 32",partidos:ELIM_PARTIDOS.r32},{key:"r16",label:"Octavos de Final",partidos:ELIM_PARTIDOS.r16},{key:"qf",label:"Cuartos de Final",partidos:ELIM_PARTIDOS.qf},{key:"sf",label:"Semifinales",partidos:ELIM_PARTIDOS.sf},{key:"fin",label:"Final",partidos:ELIM_PARTIDOS.fin}];
+  html+=`<div class="admin-card"><div class="admin-title">⚽ Definir Equipos — Fase Eliminatoria</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Ingresa los equipos que se enfrentan en cada partido.</div>`;
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#C8860A;letter-spacing:1px;margin-bottom:8px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const sL=elimTeams[p.id]?.local||p.local||"",sV=elimTeams[p.id]?.visita||p.visita||"";html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">P${i+1} · ${fmt(p.fecha)} ${p.hora} · ${p.estadio}</div><input id="et-${p.id}-l" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Local" value="${sL}"><span style="color:#1a3a4f">vs</span><input id="et-${p.id}-v" class="admin-score-input" style="width:130px;font-size:13px" type="text" placeholder="Visita" value="${sV}"><button class="admin-save-btn" onclick="saveElimTeams('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
+  html+=`</div>`;
+  html+=`<div class="admin-card"><div class="admin-title">🔥 Resultados — Fase Eliminatoria</div>`;
+  elimFases.forEach(fase=>{html+=`<div style="margin-bottom:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#C8860A;margin-bottom:6px">${fase.label}</div>`;fase.partidos.forEach((p,i)=>{const res=resultados[p.id]||{},lbl=p.local&&p.visita?`${p.local} vs ${p.visita}`:`Partido ${i+1}`;html+=`<div class="admin-row"><div class="admin-label" style="font-size:13px">${lbl} · ${fmt(p.fecha)}</div><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-l" value="${res.local??""}" placeholder="L"><span style="color:#1a3a4f">–</span><input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="V"><button class="admin-save-btn" onclick="saveResultado('${p.id}')">Guardar</button></div>`;});html+=`</div>`;});
+  html+=`</div>`;
+  html+=`<div class="admin-card"><div class="admin-title">⭐ Ganadores Especiales</div>`;
+  ESPECIALES.forEach(e=>{const res=resultados["esp_"+e.id]||{};html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${e.id}" value="${res.local||""}" placeholder="Ganador real"><button class="admin-save-btn" onclick="saveEspResultado('${e.id}')">Confirmar</button></div>`;});
+  html+=`</div>`;
+  html+=`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
+  document.getElementById("admin-content").innerHTML=html;
+  setTimeout(()=>{
+    const fases=[{key:"grupos",label:"⚽ Grupos"},{key:"r32",label:"3️⃣2️⃣ Ronda 32"},{key:"r16",label:"⚔️ Octavos"},{key:"qf",label:"🛡️ Cuartos"},{key:"sf",label:"🌟 Semis"},{key:"fin",label:"👑 Final"}];
+    const c=document.getElementById("fase-controls");if(!c)return;
+    c.innerHTML=fases.map(f=>`<div style="background:${FASES_UNLOCK[f.key]?"rgba(37,168,101,0.15)":"rgba(5,28,44,0.08)"};border:2px solid ${FASES_UNLOCK[f.key]?"#1A7A4A":"#b0c4d8"};border-radius:10px;padding:12px;text-align:center;"><div style="font-size:13px;font-weight:600;color:#051C2C;margin-bottom:6px">${f.label}</div><div style="font-size:12px;color:${FASES_UNLOCK[f.key]?"#1A7A4A":"#6a8a9a"};margin-bottom:8px;font-weight:700">${FASES_UNLOCK[f.key]?"✅ ABIERTA":"🔒 BLOQUEADA"}</div><button onclick="toggleFase('${f.key}')" style="background:${FASES_UNLOCK[f.key]?"#E05252":"#1A7A4A"};color:#fff;border:none;border-radius:6px;padding:7px 14px;font-family:Outfit,sans-serif;font-weight:600;font-size:13px;cursor:pointer;width:100%">${FASES_UNLOCK[f.key]?"Bloquear":"Desbloquear"}</button></div>`).join("");
+  },50);
 }
 
-async function saveResultado(id) {
-  const l = document.getElementById(`ar-${id}-l`).value;
-  const v = document.getElementById(`ar-${id}-v`).value;
-  if (l==='' || v==='') { showToast('Ingresa ambos valores', 'error'); return; }
-  const r = await api('saveResultado', {matchId:id, local:parseInt(l), visita:parseInt(v)});
-  if (r.ok) { resultados[id] = {local:parseInt(l), visita:parseInt(v)}; showToast('✅ Resultado guardado', 'success'); }
-  else showToast('Error al guardar', 'error');
+async function saveResultado(id){
+  const l=document.getElementById(`ar-${id}-l`).value,v=document.getElementById(`ar-${id}-v`).value;
+  if(l===""||v===""){showToast("Ingresa ambos valores","error");return;}
+  const r=await api("saveResultado",{matchId:id,local:parseInt(l),visita:parseInt(v)});
+  if(r.ok){resultados[id]={local:parseInt(l),visita:parseInt(v)};showToast("✅ Resultado guardado","success");}
+  else showToast("Error al guardar","error");
 }
 
-async function saveElimTeams(matchId) {
-  const l = document.getElementById('et-'+matchId+'-l').value.trim();
-  const v = document.getElementById('et-'+matchId+'-v').value.trim();
-  if (!l || !v) { showToast('Ingresa ambos equipos', 'error'); return; }
-  const btn = event.target;
-  btn.textContent = '⏳...'; btn.disabled = true;
-  const r = await api('saveElimTeams', {matchId, local: l, visita: v});
-  btn.textContent = 'Guardar'; btn.disabled = false;
-  if (r.ok) {
-    elimTeams[matchId] = {local: l, visita: v};
-    // Update ELIM_PARTIDOS in memory
-    for (const fase of Object.values(ELIM_PARTIDOS)) {
-      const p = fase.find(x => x.id === matchId);
-      if (p) { p.local = l; p.visita = v; }
-    }
-    showToast('✅ Equipos guardados en Sheets', 'success');
-    renderEliminatorias();
-  } else {
-    showToast('Error al guardar', 'error');
-  }
+async function saveEspResultado(espId){
+  const val=document.getElementById(`are-${espId}`).value.trim();
+  if(!val){showToast("Ingresa el valor","error");return;}
+  const r=await api("saveResultado",{matchId:"esp_"+espId,local:val,visita:""});
+  if(r.ok){resultados["esp_"+espId]={local:val};showToast("✅ Confirmado","success");}
 }
 
-function toggleAdminMode() {
-  isAdmin = !isAdmin;
-  const btn   = document.getElementById('admin-toggle-btn');
-  const tab   = document.getElementById('admin-tab');
-  if (isAdmin) {
-    btn.textContent = '🔓 Modo Admin: ON';
-    btn.style.background = '#1A7A4A';
-    btn.style.color = '#fff';
-    tab.style.display = 'flex';
-    showToast('Modo Admin activado', 'success');
-  } else {
-    btn.textContent = '🔒 Modo Admin: OFF';
-    btn.style.background = 'rgba(5,28,44,0.08)';
-    btn.style.color = '#1a3a4f';
-    tab.style.display = 'none';
-    // If currently on admin tab, go back to comojuega
-    if (document.getElementById('tab-admin').style.display !== 'none') {
-      showTab('comojuega', document.querySelector('[data-tab="comojuega"]'));
-    }
-  }
+async function saveElimTeams(matchId){
+  const l=document.getElementById("et-"+matchId+"-l").value.trim(),v=document.getElementById("et-"+matchId+"-v").value.trim();
+  if(!l||!v){showToast("Ingresa ambos equipos","error");return;}
+  const btn=event.target;btn.textContent="⏳...";btn.disabled=true;
+  const r=await api("saveElimTeams",{matchId,local:l,visita:v});
+  btn.textContent="Guardar";btn.disabled=false;
+  if(r.ok){elimTeams[matchId]={local:l,visita:v};for(const fase of Object.values(ELIM_PARTIDOS)){const p=fase.find(x=>x.id===matchId);if(p){p.local=l;p.visita=v;}}showToast("✅ Equipos guardados en Sheets","success");renderEliminatorias();}
+  else showToast("Error al guardar","error");
 }
 
-function toggleFase(key) {
-  FASES_UNLOCK[key] = !FASES_UNLOCK[key];
-  saveFases();
-  renderAdmin(); // re-render admin panel
-  if (typeof renderPhaseGrid === 'function') renderPhaseGrid();
-  renderEliminatorias();
-  showToast(`${FASES_UNLOCK[key] ? '✅ Fase desbloqueada' : '🔒 Fase bloqueada'}`, FASES_UNLOCK[key] ? 'success' : 'error');
+function toggleFase(key){
+  FASES_UNLOCK[key]=!FASES_UNLOCK[key];saveFases();renderAdmin();renderEliminatorias();
+  showToast(FASES_UNLOCK[key]?"✅ Fase desbloqueada":"🔒 Fase bloqueada","success");
 }
 
-async function saveEspResultado(espId) {
-  const val = document.getElementById(`are-${espId}`).value.trim();
-  if (!val) { showToast('Ingresa el valor', 'error'); return; }
-  const r = await api('saveResultado', {matchId:'esp_'+espId, local:val, visita:''});
-  if (r.ok) { resultados['esp_'+espId] = {local:val}; showToast('✅ Confirmado', 'success'); }
-}
-
-// ============================================================
-// TOAST
-// ============================================================
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = `show ${type}`;
-  setTimeout(() => { t.className = ''; }, 2800);
+function showToast(msg,type="success"){
+  const t=document.getElementById("toast");t.textContent=msg;t.className=`show ${type}`;
+  setTimeout(()=>{t.className="";},2800);
 }
 </script>
 </body>
