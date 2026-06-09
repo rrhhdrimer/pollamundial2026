@@ -15,8 +15,8 @@
   #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:radial-gradient(ellipse at 50% 0%,#1a2a4a 0%,var(--dark) 70%);}
   .login-box{background:#DDE5ED;border:1px solid #b0c4d8;border-radius:20px;padding:24px 38px 36px;width:100%;max-width:420px;text-align:center;}
   .login-ball-wrap{display:flex;justify-content:center;margin-bottom:0;}
-  .login-ball{width:130px;height:130px;animation:spin 8s linear infinite;object-fit:contain;filter:drop-shadow(0 8px 28px rgba(0,150,255,0.3));}
-  @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .login-ball{width:130px;height:130px;animation:flipX 3s linear infinite;object-fit:contain;mix-blend-mode:lighten;filter:drop-shadow(0 4px 20px rgba(200,134,10,0.5));}
+  @keyframes flipX{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
   .login-hosts{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;margin-top:8px;}
   .host-flag{display:flex;flex-direction:column;align-items:center;gap:6px;}
   .host-flag img{width:36px;height:27px;border-radius:4px;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
@@ -395,7 +395,7 @@
 <div id="login-screen">
   <div class="login-box">
     <div class="login-ball-wrap">
-      <img src="./trionda.png" alt="Pelota Oficial FIFA Mundial 2026" class="login-ball">
+      <img src="./trofeo.png" alt="Trofeo FIFA Mundial 2026" class="login-ball">
     </div>
     <div class="login-ball-wrap">
       <img src="./LPD_Logo.png" alt="La Polla Drimer" style="width:300px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 20px rgba(56,73,103,0.15))">
