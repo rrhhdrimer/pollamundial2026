@@ -437,7 +437,7 @@
         <input type="text" id="reg-apellido" placeholder="Apellido(s)" maxlength="40" style="margin-bottom:12px"/>
       </div>
       <select id="reg-gerencia" onchange="loadAreas()"><option value="">-- Selecciona tu Gerencia --</option></select>
-      <select id="reg-area"><option value="">-- Selecciona tu Área --</option></select>
+      <select id="reg-area"><option value="">-- Selecciona tu Área --</option><option value="-">-</option></select>
       <input type="password" id="reg-pin" placeholder="Elige un PIN de 4 dígitos" maxlength="4" inputmode="numeric"/>
       <input type="password" id="reg-pin2" placeholder="Confirma tu PIN" maxlength="4" inputmode="numeric"/>
       <button class="login-btn" onclick="doRegister()">✅ REGISTRARME</button>
@@ -729,7 +729,7 @@ async function loadEstructura(){
 function loadAreas(){
   const g=document.getElementById("reg-gerencia").value;
   const selA=document.getElementById("reg-area");
-  selA.innerHTML="<option value=''>-- Selecciona tu Área --</option>";
+  selA.innerHTML="<option value=''>-- Selecciona tu Área --</option><option value='-'>- (No aplica)</option>";
   [...new Set(estructuraData.filter(r=>r.gerencia===g).map(r=>r.area))].sort().forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;selA.appendChild(o);});
 }
 
@@ -857,7 +857,7 @@ async function renderLeaderboard(){
   let html="<div class='lb-card'>";
   lb.forEach((s,i)=>{
     const isMe=s.usuario===currentUser,rc=i===0?"rk1":i===1?"rk2":i===2?"rk3":"rkn",medal=i===0?"🥇":i===1?"🥈":i===2?"🥉":"";
-    html+=`<div class="lb-row ${isMe?"you-row":""}"><div class="rank-num ${rc}">${i+1}</div><div style="flex:1"><div class="lb-name">${medal} ${s.usuario}${isMe?"<span class='you-tag'>tú</span>":""}</div><div class="lb-sub">${s.area||""} · ${(s.pronGrupos||0)+(s.pronElim||0)} pronósticos</div></div><div style="text-align:right"><div class="lb-pts">${s.puntos}</div><div class="lb-pts-label">puntos</div></div></div>`;
+    html+=`<div class="lb-row ${isMe?"you-row":""}"><div class="rank-num ${rc}">${i+1}</div><div style="flex:1"><div class="lb-name">${medal} ${s.usuario}${isMe?"<span class='you-tag'>tú</span>":""}</div><div class="lb-sub">${(s.gerencia||"").toUpperCase()}${s.area&&s.area!=="-"?" | "+s.area.charAt(0).toUpperCase()+s.area.slice(1).toLowerCase():""} | ${(s.pronGrupos||0)+(s.pronElim||0)} pronósticos</div></div><div style="text-align:right"><div class="lb-pts">${s.puntos}</div><div class="lb-pts-label">puntos</div></div></div>`;
   });
   html+="</div>";
   document.getElementById("leaderboard-content").innerHTML=html;
