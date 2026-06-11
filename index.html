@@ -788,7 +788,6 @@ async function doLogin(){
   await enterApp(name);
 }
 
-document.getElementById("login-pin").addEventListener("keydown",e=>{if(e.key==="Enter")doLogin();});
 
 async function loadElimTeams(){
   const r=await api("getElimTeams");
@@ -1396,6 +1395,8 @@ function toggleFase(key){
 document.addEventListener('DOMContentLoaded',function(){
   const modal=document.getElementById('pin-modal');
   if(modal) modal.addEventListener('click',function(e){if(e.target===this)closeChangePinModal();});
+  const pinInput=document.getElementById('login-pin');
+  if(pinInput) pinInput.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 });
 
 function showToast(msg,type="success"){
