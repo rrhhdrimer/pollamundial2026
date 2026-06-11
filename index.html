@@ -711,6 +711,7 @@ function apiLocal(action,body){
   if(action==="resetPin")return{ok:false,error:"⚠️ Sin conexión al servidor."};
   if(action==="buscarUsuario")return{ok:false,error:"⚠️ Sin conexión al servidor."};
   if(action==="eliminarUsuario")return{ok:false,error:"⚠️ Sin conexión al servidor."};
+  if(action==="recalcularLeaderboard")return{ok:false,error:"⚠️ Sin conexión al servidor."};
   return{ok:false,error:"⚠️ Sin conexión al servidor. Verifica tu internet e intenta de nuevo."};
 }
 
@@ -1176,6 +1177,13 @@ async function renderAdmin(){
     <div id="del-user-preview" style="margin-top:14px;"></div>
   </div>`;
 
+  // Recalcular leaderboard
+  html+=`<div class="admin-card"><div class="admin-title">🔄 Recalcular Tabla de Posiciones</div>
+    <div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Recalcula todos los puntajes desde cero basándose en los resultados reales ingresados. Úsalo cuando el orden no se vea correcto.</div>
+    <button class="admin-save-btn" id="recalc-btn" onclick="recalcularLeaderboard(this)">🔄 Recalcular ahora</button>
+    <div id="recalc-msg" style="font-size:13px;margin-top:10px;"></div>
+  </div>`;
+
   html+=`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
   document.getElementById("admin-content").innerHTML=html;
   setTimeout(()=>{
@@ -1446,6 +1454,25 @@ async function doResetPin(btn){
     btn.textContent='Resetear a 0000';
     msg.style.color='#E05252';
     msg.textContent=r.error||'Usuario no encontrado';
+  }
+}
+
+async function recalcularLeaderboard(btn){
+  if(btn){btn.textContent='⏳ Recalculando...';btn.disabled=true;}
+  const msg=document.getElementById('recalc-msg');
+  const r=await api('recalcularLeaderboard',{});
+  if(r.ok){
+    if(btn){btn.textContent='✅ Listo';btn.style.background='#1a3a4f';btn.style.color='#fff';btn.disabled=false;}
+    if(msg){msg.style.color='#1A7A4A';msg.textContent='✓ Tabla recalculada correctamente';}
+    showToast('✅ Tabla de posiciones actualizada','success');
+    setTimeout(()=>{
+      if(btn){btn.textContent='🔄 Recalcular ahora';btn.style.background='';btn.style.color='';}
+      if(msg)msg.textContent='';
+    },3000);
+  }else{
+    if(btn){btn.textContent='🔄 Recalcular ahora';btn.disabled=false;}
+    if(msg){msg.style.color='#E05252';msg.textContent='Error al recalcular';}
+    showToast('Error al recalcular','error');
   }
 }
 
