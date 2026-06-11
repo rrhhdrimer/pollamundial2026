@@ -47,6 +47,19 @@
   .user-pill{background:rgba(56,73,103,0.1);border:1px solid #b0c4d8;border-radius:20px;padding:6px 14px;font-size:15px;color:#384967;}
   .user-pill strong{color:#0A0E1A;}
   .logout-btn{background:none;border:1px solid #b0c4d8;border-radius:8px;padding:7px 14px;color:#384967;font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;}
+  .change-pin-btn{background:rgba(5,28,44,0.08);color:#1a3a4f;border:1.5px solid #b0c4d8;border-radius:8px;padding:7px 10px;font-size:16px;cursor:pointer;margin-right:6px;transition:all .2s;}
+  .change-pin-btn:hover{background:#1a3a4f;color:#fff;}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(5,28,44,0.75);z-index:9999;align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:#DDE5ED;border-radius:16px;padding:32px 28px;max-width:380px;width:90%;}
+  .modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#1a3a4f;letter-spacing:2px;margin-bottom:6px;}
+  .modal-sub{font-size:15px;color:#2a4a5a;margin-bottom:20px;}
+  .modal-input{width:100%;background:#fff;border:1.5px solid #b0c4d8;border-radius:8px;padding:12px;font-family:'Outfit',sans-serif;font-size:18px;color:#1a3a4f;outline:none;text-align:center;margin-bottom:12px;box-sizing:border-box;}
+  .modal-input:focus{border-color:#1a3a4f;}
+  .modal-btn{width:100%;background:var(--gold);color:#051C2C;border:none;border-radius:8px;padding:13px;font-family:'Outfit',sans-serif;font-weight:700;font-size:17px;cursor:pointer;transition:all .2s;box-sizing:border-box;}
+  .modal-btn.saved{background:#1a3a4f;color:#fff;}
+  .modal-cancel{width:100%;background:transparent;color:#2a4a5a;border:none;padding:10px;font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;margin-top:4px;}
+  .modal-error{color:#E05252;font-size:14px;margin-bottom:10px;text-align:center;min-height:20px;}
   .logout-btn:hover{border-color:#c0392b;color:#c0392b;}
   .online-badge{background:rgba(37,168,101,.15);color:var(--green-light);border-radius:20px;padding:4px 12px;font-size:14px;border:1px solid rgba(37,168,101,.3);}
   .offline-badge{background:rgba(224,82,82,.1);color:var(--red);border-radius:20px;padding:4px 12px;font-size:14px;border:1px solid rgba(224,82,82,.3);}
