@@ -1337,14 +1337,14 @@ function resetAdminBtn(btnId){
 function showChangePinModal(){
   document.getElementById('pin-nuevo').value='';
   document.getElementById('pin-nuevo2').value='';
-  document.getElementById('pin-modal-error').textContent='';
-  document.getElementById('pin-modal-btn').textContent='Guardar nuevo PIN';
-  document.getElementById('pin-modal-btn').className='modal-btn';
-  document.getElementById('pin-modal').classList.add('show');
-  setTimeout(()=>document.getElementById('pin-nuevo').focus(),100);
+  const _pmErr=document.getElementById('pin-modal-error'); if(_pmErr)_pmErr.textContent='';
+  const _pmBtn=document.getElementById('pin-modal-btn'); if(_pmBtn)_pmBtn.textContent='Guardar nuevo PIN';
+  if(_pmBtn)_pmBtn.className='modal-btn';
+  const _pm=document.getElementById('pin-modal'); if(_pm)_pm.classList.add('show');
+  setTimeout(()=>{const _pn=document.getElementById('pin-nuevo');if(_pn)_pn.focus();},100);
 }
 function closeChangePinModal(){
-  document.getElementById('pin-modal').classList.remove('show');
+  const _pm2=document.getElementById('pin-modal'); if(_pm2)_pm2.classList.remove('show');
 }
 async function doChangePin(){
   const p1=document.getElementById('pin-nuevo').value.trim();
