@@ -459,6 +459,7 @@
         <button id="admin-toggle-btn" onclick="toggleAdminMode()" style="background:rgba(5,28,44,0.08);color:#1a3a4f;border:1.5px solid #b0c4d8;border-radius:8px;padding:7px 14px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;margin-right:10px;transition:all 0.2s;">🔒 Modo Admin: OFF</button>
       </div>
       <div class="user-pill">👤 <strong id="header-username"></strong></div>
+      <button class="change-pin-btn" onclick="showChangePinModal()" title="Cambiar PIN">🔑</button>
       <button class="logout-btn" onclick="doLogout()">Salir</button>
     </div>
   </div>
@@ -558,6 +559,17 @@
       <div class="section-sub">Ingresa resultados reales y administra las fases del torneo</div>
       <div id="admin-content"><div class="loader">⏳ Cargando...</div></div>
     </div>
+  </div>
+</div>
+<div class="modal-overlay" id="pin-modal">
+  <div class="modal-box">
+    <div class="modal-title">🔑 Cambiar PIN</div>
+    <div class="modal-sub">Elige un nuevo PIN de 4 dígitos para tu cuenta.</div>
+    <input class="modal-input" type="password" id="pin-nuevo" placeholder="Nuevo PIN" maxlength="4" inputmode="numeric">
+    <input class="modal-input" type="password" id="pin-nuevo2" placeholder="Confirmar PIN" maxlength="4" inputmode="numeric">
+    <div class="modal-error" id="pin-modal-error"></div>
+    <button class="modal-btn" id="pin-modal-btn" onclick="doChangePin()">Guardar nuevo PIN</button>
+    <button class="modal-cancel" onclick="closeChangePinModal()">Cancelar</button>
   </div>
 </div>
 <div id="toast"></div>
@@ -682,6 +694,8 @@ function apiLocal(action,body){
   if(action==="getResultados")return{ok:true,data:{}};
   if(action==="getElimTeams")return{ok:true,data:{}};
   if(action==="getEspManualWinners")return{ok:true,data:{}};
+  if(action==="changePin")return{ok:false,error:"⚠️ Sin conexión al servidor."};
+  if(action==="resetPin")return{ok:false,error:"⚠️ Sin conexión al servidor."};
   return{ok:false,error:"⚠️ Sin conexión al servidor. Verifica tu internet e intenta de nuevo."};
 }
 
@@ -1128,7 +1142,17 @@ async function renderAdmin(){
     </div>`;
   });
   html+=`</div>`;
-  html+=`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
+  // Reset PIN section
+  html+=`<div class="admin-card"><div class="admin-title">🔑 Resetear PIN de Usuario</div>
+    <div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Resetea el PIN de cualquier usuario a <strong>0000</strong>. El usuario podrá cambiarlo al ingresar.</div>
+    <div class="admin-row">
+      <input id="reset-pin-user" class="admin-score-input" style="width:220px;font-size:14px" type="text" placeholder="Nombre completo del usuario">
+      <button class="admin-save-btn" id="reset-pin-btn" onclick="doResetPin(this)">Resetear a 0000</button>
+    </div>
+    <div id="reset-pin-msg" style="font-size:13px;margin-top:10px;"></div>
+  </div>`;
+
+  html+=\`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
   document.getElementById("admin-content").innerHTML=html;
   setTimeout(()=>{
     const fases=[{key:"grupos",label:"⚽ Grupos"},{key:"r32",label:"3️⃣2️⃣ Ronda 32"},{key:"r16",label:"⚔️ Octavos"},{key:"qf",label:"🛡️ Cuartos"},{key:"sf",label:"🌟 Semis"},{key:"fin",label:"👑 Final"}];
@@ -1295,6 +1319,66 @@ function resetAdminBtn(btnId){
   btn.style.border="";
   btn.textContent="Guardar";
 }
+
+// ── CAMBIAR PIN (usuario) ────────────────────────────────
+function showChangePinModal(){
+  document.getElementById('pin-nuevo').value='';
+  document.getElementById('pin-nuevo2').value='';
+  document.getElementById('pin-modal-error').textContent='';
+  document.getElementById('pin-modal-btn').textContent='Guardar nuevo PIN';
+  document.getElementById('pin-modal-btn').className='modal-btn';
+  document.getElementById('pin-modal').classList.add('show');
+  setTimeout(()=>document.getElementById('pin-nuevo').focus(),100);
+}
+function closeChangePinModal(){
+  document.getElementById('pin-modal').classList.remove('show');
+}
+async function doChangePin(){
+  const p1=document.getElementById('pin-nuevo').value.trim();
+  const p2=document.getElementById('pin-nuevo2').value.trim();
+  const err=document.getElementById('pin-modal-error');
+  const btn=document.getElementById('pin-modal-btn');
+  if(!/^\d{4}$/.test(p1)){err.textContent='El PIN debe ser exactamente 4 dígitos';return;}
+  if(p1!==p2){err.textContent='Los PINs no coinciden';return;}
+  err.textContent='';
+  btn.textContent='⏳ Guardando...'; btn.disabled=true;
+  const r=await api('changePin',{username:currentUser,newPin:p1});
+  btn.disabled=false;
+  if(r.ok){
+    btn.textContent='✅ PIN actualizado'; btn.className='modal-btn saved';
+    showToast('PIN actualizado correctamente ✓','success');
+    setTimeout(()=>closeChangePinModal(),1500);
+  }else{
+    btn.textContent='Guardar nuevo PIN'; btn.className='modal-btn';
+    err.textContent=r.error||'Error al guardar';
+  }
+}
+
+// ── RESETEAR PIN (admin) ─────────────────────────────────
+async function doResetPin(btn){
+  const name=document.getElementById('reset-pin-user').value.trim();
+  const msg=document.getElementById('reset-pin-msg');
+  if(!name){msg.style.color='#E05252';msg.textContent='Ingresa el nombre completo del usuario';return;}
+  btn.textContent='⏳...'; btn.disabled=true;
+  const r=await api('resetPin',{username:name,newPin:'0000'});
+  btn.disabled=false;
+  if(r.ok){
+    btn.textContent='✅ Reseteado'; btn.style.background='#1a3a4f'; btn.style.color='#fff';
+    msg.style.color='#1A7A4A';
+    msg.textContent=`✓ PIN de "${name}" reseteado a 0000`;
+    document.getElementById('reset-pin-user').value='';
+    setTimeout(()=>{btn.textContent='Resetear a 0000';btn.style.background='';btn.style.color='';msg.textContent='';},3000);
+  }else{
+    btn.textContent='Resetear a 0000';
+    msg.style.color='#E05252';
+    msg.textContent=r.error||'Usuario no encontrado';
+  }
+}
+
+// Close modal clicking outside
+document.getElementById('pin-modal').addEventListener('click',function(e){
+  if(e.target===this) closeChangePinModal();
+});
 
 function toggleFase(key){
   FASES_UNLOCK[key]=!FASES_UNLOCK[key];saveFases();renderAdmin();renderEliminatorias();
