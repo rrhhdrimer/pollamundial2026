@@ -1102,7 +1102,7 @@ async function renderAdmin(){
     <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <div class="admin-team">${flagSmall(p.visita)}${p.visita}</div>
     <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
-    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)" ">${hasSaved?'✅ Guardado':'Guardar'}</button>
+    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)">${hasSaved?'✅ Guardado':'Guardar'}</button>
   </div>`;});
   html+=`</div>`;
   const elimFases=[{key:"r32",label:"Ronda de 32",partidos:ELIM_PARTIDOS.r32},{key:"r16",label:"Octavos de Final",partidos:ELIM_PARTIDOS.r16},{key:"qf",label:"Cuartos de Final",partidos:ELIM_PARTIDOS.qf},{key:"sf",label:"Semifinales",partidos:ELIM_PARTIDOS.sf},{key:"fin",label:"Final",partidos:ELIM_PARTIDOS.fin}];
@@ -1123,7 +1123,7 @@ async function renderAdmin(){
     <input class="admin-score-input" type="number" min="0" max="20" id="ar-${p.id}-v" value="${res.visita??""}" placeholder="-" oninput="resetAdminBtn('btn-ar-${p.id}')">
     <div class="admin-team">${p.visita?flagSmall(p.visita):'❓'}${visitaNm}</div>
     <span class="admin-date">${fmt(p.fecha)} ${fmt12(p.hora)}</span>
-    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)" ">${hasSaved?'✅ Guardado':'Guardar'}</button>
+    <button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-ar-${p.id}" onclick="saveResultado('${p.id}',this)">${hasSaved?'✅ Guardado':'Guardar'}</button>
   </div>`;});html+=`</div>`;});
   html+=`</div>`;
   // Ganadores Especiales
@@ -1133,7 +1133,7 @@ async function renderAdmin(){
     const e=ESPECIALES.find(x=>x.id===k);
     const res=resultados["esp_"+k]||{};
     const hasSaved=!!(res.local);
-    html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${k}" value="${res.local||""}" placeholder="Equipo real" oninput="resetAdminBtn('btn-are-${k}')"><button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-are-${k}" onclick="saveEspResultado('${k}',this)" ">${hasSaved?'✅ Guardado':'Confirmar'}</button></div>`;
+    html+=`<div class="admin-row"><div class="admin-label">${e.icon} ${e.titulo} (+${e.puntos}pts)</div><input class="admin-score-input" style="width:160px" type="text" id="are-${k}" value="${res.local||""}" placeholder="Equipo real" oninput="resetAdminBtn('btn-are-${k}')"><button class="admin-save-btn ${hasSaved?'btn-saved':''}" id="btn-are-${k}" onclick="saveEspResultado('${k}',this)">${hasSaved?'✅ Guardado':'Confirmar'}</button></div>`;
   });
   html+=`</div>`;
 
@@ -1164,7 +1164,7 @@ async function renderAdmin(){
     <div id="reset-pin-msg" style="font-size:13px;margin-top:10px;"></div>
   </div>`;
 
-  html+=\`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
+  html+=`<div class="admin-card"><div class="admin-title">🔓 Control de Fases</div><div style="font-size:14px;color:#1a3a4f;margin-bottom:16px;">Activa o desactiva cada fase manualmente.</div><div id="fase-controls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div></div>`;
   document.getElementById("admin-content").innerHTML=html;
   setTimeout(()=>{
     const fases=[{key:"grupos",label:"⚽ Grupos"},{key:"r32",label:"3️⃣2️⃣ Ronda 32"},{key:"r16",label:"⚔️ Octavos"},{key:"qf",label:"🛡️ Cuartos"},{key:"sf",label:"🌟 Semis"},{key:"fin",label:"👑 Final"}];
