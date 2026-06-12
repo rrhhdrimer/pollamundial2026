@@ -878,6 +878,13 @@ function ptsBadge(pron, res, fase){
 
 function isLocked(fecha,hora){return new Date()>=new Date(`${fecha}T${hora}:00-05:00`)-30*60*1000;}
 function fmt(f){const[,m,d]=f.split("-");return `${parseInt(d)} ${["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"][parseInt(m)]}`;}
+function fmtFullDate(f){
+  const dias=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  const meses=["","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  const[y,m,d]=f.split("-").map(Number);
+  const date=new Date(y,m-1,d);
+  return `${dias[date.getDay()]}, ${d} de ${meses[m]}`;
+}
 function fmt12(h){
   const[hh,mm]=h.split(":").map(Number);
   const ampm=hh>=12?"pm":"am";
@@ -886,10 +893,10 @@ function fmt12(h){
 }
 
 function renderGrupos(){
-  const grupos={};PARTIDOS.forEach(p=>{if(!grupos[p.grupo])grupos[p.grupo]=[];grupos[p.grupo].push(p);});
+  const porFecha={};PARTIDOS.forEach(p=>{if(!porFecha[p.fecha])porFecha[p.fecha]=[];porFecha[p.fecha].push(p);});
   let html="";
-  Object.entries(grupos).sort().forEach(([g,partidos])=>{
-    html+=`<div class="grupo-header">GRUPO ${g}</div>`;
+  Object.entries(porFecha).sort(([a],[b])=>a.localeCompare(b)).forEach(([fecha,partidos])=>{
+    html+=`<div class="grupo-header">${fmtFullDate(fecha)}</div>`;
     partidos.forEach(p=>{
       const pron=myPronosticos[p.id]||{},res=resultados[p.id];
       const locked=!FASES_UNLOCK.grupos||isLocked(p.fecha,p.hora),hasPron=pron.local!==undefined;
@@ -901,7 +908,7 @@ function renderGrupos(){
       }
       html+=`<div class="match-card ${hasPron?"saved":""}" id="mc-${p.id}">
         ${ptsBadge(pron, res, 'g')}
-        <div class="match-meta"><span class="match-group-tag">Grupo ${g}</span></div>
+        <div class="match-meta"><span class="match-group-tag">Grupo ${p.grupo}</span></div>
         <div class="match-body">
           <div class="team-side">${flagImg(p.local)}<div class="team-name-txt">${p.local}</div></div>
           <div class="score-zone">
